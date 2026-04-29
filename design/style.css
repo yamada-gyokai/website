@@ -1,0 +1,272 @@
+/* ===== リセット & ベース ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans JP', 'Yu Gothic', 'YuGothic', 'Hiragino Sans', sans-serif;
+  font-weight: 300;
+  color: #1a1a1a;
+  background: #ffffff;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== コンテナ ===== */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== ファーストビュー ===== */
+.hero {
+  padding: 140px 0 120px;
+}
+
+.hero-catch {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.hero-sub {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  color: #444;
+  letter-spacing: 0.04em;
+  line-height: 1.9;
+}
+
+/* ===== 共通セクションリード ===== */
+.section-lead {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+/* ===== 共感セクション ===== */
+.empathy {
+  padding: 100px 0;
+  border-top: 1px solid #e8e8e8;
+}
+
+.empathy-list {
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+.empathy-list li {
+  font-size: 1rem;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  letter-spacing: 0.02em;
+}
+
+.empathy-list li::before {
+  content: "— ";
+  color: #bbb;
+}
+
+.empathy-close {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 2;
+}
+
+/* ===== 問題の本質 ===== */
+.essence {
+  padding: 100px 0;
+  border-top: 1px solid #e8e8e8;
+}
+
+.essence-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #2c5f2e;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.essence-heading {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.essence-body {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 2;
+}
+
+/* ===== 解決の考え方 ===== */
+.approach {
+  padding: 100px 0;
+  border-top: 1px solid #e8e8e8;
+}
+
+.approach-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-top: 8px;
+}
+
+.approach-list li {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.approach-num {
+  font-size: 0.7rem;
+  color: #2c5f2e;
+  letter-spacing: 0.1em;
+  padding-top: 4px;
+  flex-shrink: 0;
+  width: 28px;
+}
+
+.approach-list strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.approach-list p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.9;
+}
+
+/* ===== 提供価値 ===== */
+.value {
+  padding: 100px 0;
+  border-top: 1px solid #e8e8e8;
+}
+
+.value-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  margin-top: 8px;
+}
+
+.value-list strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.value-list p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.9;
+}
+
+/* ===== 導線 (CTA) ===== */
+.cta {
+  padding: 100px 0 120px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.cta-lead {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 40px;
+  letter-spacing: 0.02em;
+}
+
+.cta-nav {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cta-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #444;
+  text-decoration: none;
+  padding: 12px 28px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.cta-link:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}
+
+.cta-link--primary {
+  color: #2c5f2e;
+  border-color: #2c5f2e;
+}
+
+.cta-link--primary:hover {
+  background: #2c5f2e;
+  color: #fff;
+}
+
+/* ===== フッター ===== */
+.footer {
+  padding: 40px 0;
+  border-top: 1px solid #e8e8e8;
+}
+
+.footer-name {
+  font-size: 0.8rem;
+  color: #aaa;
+  letter-spacing: 0.08em;
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 600px) {
+  .hero {
+    padding: 100px 0 80px;
+  }
+
+  .empathy,
+  .essence,
+  .approach,
+  .value,
+  .cta {
+    padding: 72px 0;
+  }
+
+  .approach-list li {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cta-nav {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cta-link {
+    text-align: center;
+  }
+}
