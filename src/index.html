@@ -3,1084 +3,907 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>株式会社 業務の改善 — 構造を変える、現場を変える。</title>
+  <title>株式会社 業務の改善 | 現場が本来の価値を発揮できる仕組みを、ITでつくります。</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+            serif: ['"Noto Serif JP"', 'serif'],
+          },
+          colors: {
+            ink: { DEFAULT: '#2d3a50', light: '#4a5a72', muted: '#6b7a90' },
+            ocean: {
+              50:  '#f0f6ff',
+              100: '#deeaff',
+              200: '#b8d0ff',
+              300: '#85afff',
+              500: '#3a6fd8',
+              600: '#2952b8',
+              700: '#1e3e96',
+              800: '#152f78',
+              900: '#0e2058',
+            },
+          },
+        },
+      },
+    }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; line-height: 1.85; background: #fff; }
+    h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }
 
-    /* ══════════════════════════════
-       TOKENS
-    ══════════════════════════════ */
-
-    :root {
-      --dark:        #0c0c0c;
-      --dark-2:      #141414;
-      --dark-border: #252525;
-      --on-dark:     #f0f0f0;
-      --on-dark-dim: #555;
-      --light:       #ffffff;
-      --light-gray:  #f5f5f5;
-      --light-border:#e5e5e5;
-      --on-light:    #111;
-      --on-light-dim:#888;
-      --blue:        #036eb8;
-      --blue-hover:  #0580d0;
-    }
-
-    /* ══════════════════════════════
-       RESET
-    ══════════════════════════════ */
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      font-size: 16px;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-weight: 300;
-      line-height: 1.9;
-      background: var(--dark);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ══════════════════════════════
-       LAYOUT
-    ══════════════════════════════ */
-
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 64px;
-    }
-
-    .wrap--narrow {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 64px;
-    }
-
-    /* ══════════════════════════════
-       SCROLL REVEAL
-    ══════════════════════════════ */
-
+    /* Scroll fade-in */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
 
-    .reveal.visible { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.10s; }
-    .d2 { transition-delay: 0.20s; }
-    .d3 { transition-delay: 0.30s; }
-
-    /* ══════════════════════════════
-       HEADER
-    ══════════════════════════════ */
-
-    .header {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 100;
-      padding: 28px 0;
-      transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+    /* Hero */
+    .hero-gradient {
+      background: linear-gradient(155deg, #f2f8ff 0%, #ffffff 55%, #f7fbff 100%);
     }
-
-    .header.scrolled {
-      background: rgba(12, 12, 12, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 18px 0;
-    }
-
-    .header-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .header-logo {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
-
-    .header-name {
-      font-size: 0.8125rem;
-      font-weight: 300;
-      color: #fff;
-      letter-spacing: 0.06em;
-      white-space: nowrap;
-    }
-
-    .header .wrap {
-      padding-left: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .header-nav a {
-      font-size: 0.8125rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      transition: color 0.2s;
-    }
-
-    .header-nav a:hover {
-      color: #fff;
-    }
-
-    .header-nav .nav-cta {
-      padding: 7px 20px;
-      background: var(--blue);
-      color: #fff;
-      border-radius: 2px;
-      transition: background 0.2s;
-    }
-
-    .header-nav .nav-cta:hover {
-      background: var(--blue-hover);
-      color: #fff;
-    }
-
-    /* ══════════════════════════════
-       HERO
-    ══════════════════════════════ */
-
-    .hero {
-      min-height: 60svh;
-      background:
-        linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.32)),
-        url('assets/main-image.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 64px 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* concentric rings */
-    .hero::before,
-    .hero::after {
-      content: '';
+    .hero-blob {
       position: absolute;
       border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: ring 10s ease-in-out infinite;
+      filter: blur(60px);
       pointer-events: none;
     }
 
-    .hero::before {
-      width: 680px; height: 680px;
-      border: 1px solid rgba(3,110,184,.07);
-    }
-
-    .hero::after {
-      width: 380px; height: 380px;
-      border: 1px solid rgba(3,110,184,.12);
-      animation-delay: 3s;
-      animation-direction: reverse;
-    }
-
-    @keyframes ring {
-      0%,100% { transform: translate(-50%,-50%) scale(1); opacity: .8; }
-      50%      { transform: translate(-50%,-50%) scale(1.07); opacity: .3; }
-    }
-
-    .hero-body {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-tag {
+    /* Section label */
+    .label {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      font-size: 0.5625rem;
-      letter-spacing: 0.3em;
-      color: #fff;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-      opacity: 0;
-      animation: up 1s ease 0.2s forwards;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #2952b8;
+      margin-bottom: 16px;
     }
-
-    .hero-tag::before,
-    .hero-tag::after {
+    .label::before {
       content: '';
-      width: 28px;
-      height: 1px;
-      background: rgba(255,255,255,.4);
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #3a6fd8;
     }
 
-    .hero-h1 {
-      font-size: 5.25rem;
-      font-weight: 400;
-      color: #fff;
-      letter-spacing: 0.06em;
-      line-height: 1.25;
-      margin-bottom: 32px;
-      opacity: 0;
-      animation: up 1s ease 0.4s forwards;
+    /* Pain cards */
+    .pain-card {
+      border-left: 3px solid #b8d0ff;
+      background: #f8faff;
+      border-radius: 0 12px 12px 0;
     }
 
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,.85);
-      letter-spacing: 0.05em;
-      line-height: 2;
-      opacity: 0;
-      animation: up 1s ease 0.6s forwards;
+    /* Service card hover */
+    .service-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(41, 82, 184, 0.12);
     }
 
-    .hero-btns {
+    /* Process step number */
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 14px;
-      margin-top: 40px;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: up 1s ease 0.8s forwards;
-    }
-
-    .hero-btn {
-      display: inline-block;
-      padding: 13px 36px;
       font-size: 0.875rem;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      transition: background .18s, color .18s, border-color .18s;
+      font-weight: 500;
+      flex-shrink: 0;
     }
 
-    .hero-btn--primary {
-      background: var(--blue);
-      color: #fff;
-    }
+    /* FAQ accordion */
+    .faq-item details summary { list-style: none; cursor: pointer; }
+    .faq-item details summary::-webkit-details-marker { display: none; }
 
-    .hero-btn--primary:hover {
-      background: var(--blue-hover);
-    }
-
-    .hero-btn--ghost {
-      border: 1px solid rgba(255,255,255,0.5);
-      color: #fff;
-    }
-
-    .hero-btn--ghost:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,0.08);
-    }
-
-    @keyframes up {
-      from { opacity:0; transform:translateY(22px); }
-      to   { opacity:1; transform:none; }
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 36px;
+    /* Floating CTA (mobile) */
+    .floating-cta {
+      position: fixed;
+      bottom: 24px;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      opacity: 0;
-      animation: up 1s ease 1s forwards;
+      z-index: 40;
     }
 
-    .hero-scroll span {
-      font-size: 0.5rem;
-      letter-spacing: 0.3em;
-      color: rgba(255,255,255,.18);
-      text-transform: uppercase;
-    }
-
-    .hero-scroll-line {
-      width: 1px;
-      height: 44px;
-      background: linear-gradient(to bottom, rgba(255,255,255,.15), transparent);
-      animation: drop 2.2s ease-in-out infinite;
-    }
-
-    @keyframes drop {
-      0%   { transform: scaleY(0); transform-origin: top; opacity:1; }
-      50%  { transform: scaleY(1); transform-origin: top; opacity:1; }
-      100% { transform: scaleY(1); transform-origin: bottom; opacity:0; }
-    }
-
-    /* ══════════════════════════════
-       STORY SECTION
-    ══════════════════════════════ */
-
-    .story-sec {
-      background: #fff;
-      padding: 160px 0;
-    }
-
-    .story-sec .wrap--narrow {
-      display: grid;
-      grid-template-columns: 2fr 3fr;
-      gap: 80px;
-      align-items: start;
-      max-width: 1100px;
-      padding-left: 24px;
-    }
-
-    .story-aside {
-      padding-top: 0.5em;
-    }
-
-    .story-image {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-      filter: brightness(0.7) contrast(0.9);
-    }
-
-    .story-text {
-      font-size: 1.15rem;
-      font-weight: 400;
-      line-height: 2.5;
-      letter-spacing: 0.04em;
-      color: #222;
-    }
-
-    /* ══════════════════════════════
-       SELECT SECTION
-    ══════════════════════════════ */
-
-    .select-sec {
-      background: #f0f0f0;
-      padding: 160px 0;
-      border-top: 1px dashed #ccc;
-    }
-
-    .sec-kicker {
-      display: block;
-      font-size: 0.5625rem;
-      letter-spacing: 0.3em;
-      color: var(--on-light-dim);
-      text-transform: uppercase;
-      margin-bottom: 48px;
-      text-align: center;
-    }
-
-    .sec-question {
-      display: block;
-      font-size: 2rem;
-      line-height: 1.5;
-      font-weight: 400;
-      color: var(--on-light);
-      letter-spacing: 0.06em;
-      text-align: center;
-      margin-bottom: 72px;
-    }
-
-    .select-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      background: transparent;
-      border: none;
-    }
-
-    .sel-card {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 40px;
-      padding: 40px 48px;
-      background: var(--light);
-      text-decoration: none;
-      color: var(--on-light);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      transition: all 0.35s ease;
-    }
-
-    .sel-content {
-      flex: 1;
-    }
-
-    .card-icon {
-      display: block;
-      width: 52px;
-      height: 46px;
-      flex-shrink: 0;
-      color: var(--blue);
-      opacity: .75;
-      transition: opacity .2s;
-    }
-
-    .sel-card:hover .card-icon {
-      opacity: 1;
-    }
-
-    .sel-num {
-      display: block;
-      font-size: 0.5rem;
-      letter-spacing: 0.28em;
-      color: #036eb8;
-      margin-bottom: 8px;
-    }
-
-    .sel-text {
-      font-size: 1.15rem;
-      line-height: 1.9;
-      letter-spacing: 0.02em;
-      flex: 1;
-      color: var(--on-light);
-    }
-
-    .sel-arrow {
-      font-size: 1rem;
-      color: #ccc;
-      transition: color .2s, transform .2s;
-      display: block;
-      flex-shrink: 0;
-      transform: rotate(-90deg);
-    }
-
-    .sel-card:hover {
-      background: #eaf4fb;
-      transform: translateY(-10px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-    }
-
-    .sel-card:hover .sel-text { color: var(--blue); }
-
-    .sel-card:hover .sel-arrow {
-      color: var(--blue);
-      transform: rotate(-90deg) translateX(5px);
-    }
-
-    .bridge {
-      text-align: center;
-      padding-top: 140px;
-      padding-bottom: 80px;
-    }
-
-    .bridge-line {
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: #444;
-      letter-spacing: 0.04em;
-      line-height: 2;
-    }
-
-    .bridge-line em {
-      font-style: normal;
-      color: var(--blue);
-      font-weight: 500;
-      border-bottom: 1px solid rgba(3,110,184,.3);
-    }
-
-    /* ══════════════════════════════
-       BRIDGE STORY SECTION
-    ══════════════════════════════ */
-
-    .bridge-story-sec {
-      background: #ffffff;
-      padding: 180px 0;
-    }
-
-    .bridge-story-sec .wrap--narrow {
-      max-width: 680px;
-    }
-
-    .bridge-story-text {
-      font-size: 1.05rem;
-      line-height: 2.4;
-      letter-spacing: 0.03em;
-      color: #222;
-    }
-
-    /* ══════════════════════════════
-       STATEMENT SECTION
-    ══════════════════════════════ */
-
-    .stmt-sec {
-      background: var(--dark);
-      padding: 240px 0;
-    }
-
-    .stmt-sec .wrap--narrow {
-      max-width: 900px;
-    }
-
-    .stmt-eyebrow {
-      display: block;
-      font-size: 0.5625rem;
-      letter-spacing: 0.32em;
-      color: rgba(255,255,255,.15);
-      text-transform: uppercase;
-      margin-bottom: 56px;
-    }
-
-    .stmt-text {
-      font-size: 5.2rem;
-      font-weight: 400;
-      color: var(--on-dark);
-      line-height: 1.3;
-      letter-spacing: 0.06em;
-    }
-
-    .stmt-text .blue { color: var(--blue); }
-
-    .stmt-note {
-      margin-top: 52px;
-      font-size: 0.875rem;
-      color: var(--on-dark-dim);
-      line-height: 2.1;
-    }
-
-    /* ══════════════════════════════
-       PHILOSOPHY SECTION
-    ══════════════════════════════ */
-
-    .phil-sec {
-      background: var(--light-gray);
-      padding: 128px 0;
-    }
-
-    .phil-grid {
-      display: flex;
-      overflow-x: auto;
-      gap: 40px;
-      margin-top: 64px;
-      padding-bottom: 8px;
-    }
-
-    .phil-item {
-      min-width: 220px;
-      flex-shrink: 0;
-      padding: 0 40px 0 0;
-      border-right: 1px solid var(--light-border);
-    }
-
-    .phil-item:last-child {
-      border-right: none;
-      padding-right: 0;
-    }
-
-    .phil-num {
-      display: block;
-      font-size: 0.5rem;
-      letter-spacing: 0.28em;
-      color: var(--blue);
-      margin-bottom: 20px;
-    }
-
-    .phil-word {
-      display: block;
-      font-size: 2rem;
-      font-weight: 400;
-      color: var(--on-light);
-      letter-spacing: 0.12em;
-      margin-bottom: 16px;
-      line-height: 1;
-    }
-
-    .phil-desc {
-      font-size: 0.8125rem;
-      color: var(--on-light-dim);
-      line-height: 1.75;
-    }
-
-    /* ══════════════════════════════
-       VALUE SECTION
-    ══════════════════════════════ */
-
-    .val-sec {
-      background: var(--light);
-      padding: 128px 0;
-    }
-
-    .val-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--light-border);
-      border: 1px solid var(--light-border);
-      margin-top: 56px;
-    }
-
-    .val-card {
-      background: var(--light);
-      padding: 52px 44px;
-    }
-
-    .val-big-num {
-      display: block;
-      font-size: 3.5rem;
-      font-weight: 200;
-      color: var(--blue);
-      opacity: .18;
-      line-height: 1;
-      margin-bottom: 24px;
-    }
-
-    .val-title {
-      display: block;
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: var(--on-light);
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
-
-    .val-desc {
-      font-size: 0.875rem;
-      color: var(--on-light-dim);
-      line-height: 1.95;
-    }
-
-    /* ══════════════════════════════
-       CTA SECTION
-    ══════════════════════════════ */
-
-    .cta-sec {
-      background: var(--blue);
-      padding: 128px 0;
-      text-align: center;
-    }
-
-    .cta-eyebrow {
-      display: block;
-      font-size: 0.5625rem;
-      letter-spacing: 0.3em;
-      color: rgba(255,255,255,.35);
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    .cta-heading {
-      font-size: 1.875rem;
-      font-weight: 400;
-      color: #fff;
-      letter-spacing: 0.04em;
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-
-    .cta-sub {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,.6);
-      line-height: 2;
-      margin-bottom: 56px;
-    }
-
-    .cta-btns {
-      display: flex;
-      justify-content: flex-start;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .cta-sec .wrap {
-      text-align: left;
-      max-width: 800px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 44px;
-      font-size: 0.875rem;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      transition: background .18s, color .18s, border-color .18s;
-    }
-
-    .btn--white {
-      background: #fff;
-      color: var(--blue);
-    }
-
-    .btn--white:hover { background: rgba(255,255,255,.9); }
-
-    .btn--ghost {
-      border: 1px solid rgba(255,255,255,.4);
-      color: #fff;
-    }
-
-    .btn--ghost:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,.08);
-    }
-
-    /* ══════════════════════════════
-       FOOTER
-    ══════════════════════════════ */
-
-    .footer {
-      background: var(--dark);
-      padding: 44px 0;
-      border-top: 1px solid var(--dark-border);
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .footer-logo {
-      height: 18px;
-      width: auto;
-      filter: brightness(0) invert(1);
-      opacity: .5;
-    }
-
-    .footer-copy {
-      font-size: 0.6875rem;
-      color: rgba(255,255,255,.18);
-      letter-spacing: 0.1em;
-    }
-
-    /* ══════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════ */
-
-    @media (max-width: 900px) {
-      .wrap, .wrap--narrow { padding: 0 40px; }
-
-      .hero { padding: 60px 40px 60px; }
-      .hero-h1 { font-size: 3.75rem; }
-
-      .select-grid { grid-template-columns: 1fr; }
-
-      .stmt-text { font-size: 2.75rem; }
-
-      .phil-grid { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
-      .phil-item { border-right: none; padding-right: 0; margin-right: 0; }
-      .phil-item:not(:first-child) { padding-left: 0; }
-
-      .val-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      .wrap, .wrap--narrow { padding: 0 28px; }
-
-      .hero { padding: 48px 28px 48px; }
-      .hero-h1 { font-size: 2.625rem; letter-spacing: .04em; }
-      .hero-tag::before, .hero-tag::after { width: 16px; }
-
-      .select-sec, .stmt-sec, .phil-sec,
-      .val-sec, .cta-sec { padding: 88px 0; }
-
-      .stmt-text { font-size: 2rem; }
-
-      .sel-card { padding: 40px 28px; }
-      .val-card { padding: 40px 28px; }
-
-      .cta-heading { font-size: 1.5rem; }
-
-      .phil-grid { grid-template-columns: 1fr; }
-    }
-
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f0f4f8; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
   </style>
 </head>
-<body>
 
-  <!-- ▸ HEADER ──────────────────────────── -->
-  <header class="header" id="js-header">
-    <div class="wrap">
-      <a href="index.html" class="header-brand">
-        <img src="assets/GyokaiLogo.svg" alt="株式会社 業務の改善" class="header-logo">
-        <span class="header-name">株式会社 業務の改善</span>
+<body class="antialiased">
+
+<!-- ─────────────────────────────────────────────
+     HEADER
+───────────────────────────────────────────── -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class="group">
+      <div class="text-[10px] text-gray-400 leading-none mb-0.5">株式会社</div>
+      <div class="text-lg font-bold text-ocean-800 leading-none tracking-tight group-hover:text-ocean-700 transition-colors">業務の改善</div>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#services" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
+      <a href="#process"  class="text-sm text-ink-light hover:text-ocean-700 transition-colors">進め方</a>
+      <a href="#about"    class="text-sm text-ink-light hover:text-ocean-700 transition-colors">代表について</a>
+      <a href="#contact"  class="text-sm bg-ocean-700 hover:bg-ocean-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">
+        相談してみる
       </a>
-      <nav class="header-nav" style="display:none">
-        <a href="service.html">サービス</a>
-        <a href="cases.html">事例</a>
-        <a href="about.html">私について</a>
-        <a href="contact.html" class="nav-cta">問い合わせ</a>
-      </nav>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 text-ink-muted hover:text-ocean-700 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-5">
+      <a href="#services" class="text-sm text-ink-light">サービス</a>
+      <a href="#process"  class="text-sm text-ink-light">進め方</a>
+      <a href="#about"    class="text-sm text-ink-light">代表について</a>
+      <a href="#contact"  class="text-sm bg-ocean-700 text-white py-3 px-6 rounded-full text-center font-medium">相談してみる</a>
     </div>
-  </header>
+  </div>
+</header>
 
 
-  <!-- ▸ HERO ───────────────────────────── -->
-  <section class="hero">
-    <div class="hero-body">
-      <span class="hero-tag">業務の改善</span>
-      <h1 class="hero-h1">日本を明るく元気にしたい。</h1>
-      <p class="hero-sub">現場が本来の価値を発揮できる仕組みを、ITでつくります。</p>
-      <div class="hero-btns">
-        <a href="service.html" class="hero-btn hero-btn--primary">サービスを見る</a>
-        <a href="contact.html" class="hero-btn hero-btn--ghost">相談する</a>
+<!-- ─────────────────────────────────────────────
+     HERO
+───────────────────────────────────────────── -->
+<section class="hero-gradient relative overflow-hidden pt-36 pb-28 px-6">
+  <!-- Decorative blobs -->
+  <div class="hero-blob w-96 h-96 bg-ocean-100/60 top-0 right-0 -translate-y-1/3 translate-x-1/3" style="position:absolute;"></div>
+  <div class="hero-blob w-72 h-72 bg-blue-50 bottom-0 left-10" style="position:absolute;"></div>
+
+  <div class="relative max-w-4xl mx-auto">
+    <div class="reveal mb-8">
+      <span class="text-xs font-medium text-ocean-600 bg-ocean-50 border border-ocean-100 px-4 py-1.5 rounded-full tracking-widest">
+        中小企業の現場改善パートナー
+      </span>
+    </div>
+
+    <h1 class="reveal reveal-delay-1 text-4xl md:text-[50px] font-semibold leading-tight text-gray-900 mb-8">
+      日本を明るく元気にする。<br>
+      <span class="text-ocean-800">現場が本来の価値を発揮できる<br>仕組みを、ITでつくります。</span>
+    </h1>
+
+    <p class="reveal reveal-delay-2 text-lg text-ink-light leading-relaxed max-w-2xl mb-10">
+      「なんとかしたい」と思いながらも、<br>
+      忙しさに追われて改善できない日々が続いていませんか？<br><br>
+      問題は、頑張りが足りないのではありません。<br>
+      <strong class="text-ink font-medium">仕組みに、問題があるのです。</strong>
+    </p>
+
+    <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 mb-16">
+      <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-ocean-700 hover:bg-ocean-800 text-white px-8 py-4 rounded-xl font-medium transition-all hover:shadow-lg hover:-translate-y-0.5 duration-200">
+        まずは話してみる
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+      <a href="#services" class="inline-flex items-center justify-center gap-2 border border-gray-300 text-ink-light px-8 py-4 rounded-xl hover:border-ocean-300 hover:text-ocean-700 transition-colors duration-200">
+        サービスを見る
+      </a>
+    </div>
+
+    <div class="reveal reveal-delay-4 pt-10 border-t border-gray-100 flex flex-wrap gap-10">
+      <div>
+        <p class="text-2xl font-bold text-ocean-800">初回無料</p>
+        <p class="text-xs text-ink-muted mt-1">まず話を聞かせてください</p>
+      </div>
+      <div>
+        <p class="text-2xl font-bold text-ocean-800">小規模から</p>
+        <p class="text-xs text-ink-muted mt-1">大きな投資は後で</p>
+      </div>
+      <div>
+        <p class="text-2xl font-bold text-ocean-800">IT知識不問</p>
+        <p class="text-xs text-ink-muted mt-1">現場の言葉で話せます</p>
       </div>
     </div>
-    <div class="hero-scroll">
-      <span>scroll</span>
-      <span class="hero-scroll-line"></span>
-    </div>
-  </section>
+  </div>
+</section>
 
 
-  <!-- ▸ STORY ─────────────────────────── -->
-  <section class="story-sec">
-    <div class="wrap--narrow">
-      <div class="story-aside">
-        <img src="assets/story-meeting.png" alt="会議シーン" class="story-image">
-      </div>
-      <p class="story-text">
-        現場がうまく動かないとき、
-        誰かの能力や努力の問題にされてしまうことがあります。<br><br>
-
-        でも実際には、
-        仕組みが少し噛み合っていないだけ、ということも少なくありません。<br><br>
-
-        ITを導入したのに、うまく使われない。
-        現場と経営の意図が、どこかでズレてしまう。
-        気づけば、元のやり方に戻ってしまう。<br><br>
-
-        そんな場面を、これまで何度も見てきました。<br><br>
-
-        だからこそ、
-        現場が自然と動き出す「構造」を整えることに向き合っています。<br><br>
-
-        無理に変えるのではなく、
-        小さな変化が積み重なって、気づけば前に進んでいる。<br><br>
-
-        そんな状態を、一緒につくっていきます。<br><br>
-
-        弊社は、そのための仕組みづくりを一緒に伴走する会社です。
+<!-- ─────────────────────────────────────────────
+     EMPATHY — 共感セクション
+───────────────────────────────────────────── -->
+<section class="bg-white py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal">
+      <p class="label">こんなことで悩んでいませんか</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
+        「なんとかしたい」——<br>その気持ち、受け取りました。
+      </h2>
+      <p class="text-ink-light max-w-xl mb-12">
+        どれかひとつでも思い当たることがあれば、<br>
+        あなたの現場はきっと改善できます。
       </p>
     </div>
-  </section>
 
-
-  <!-- ▸ SELECT ─────────────────────────── -->
-  <section class="select-sec">
-    <div class="wrap">
-      <span class="sec-question reveal">こうした不安を感じたことはありませんか。</span>
-      <div class="select-grid">
-        <a class="sel-card reveal" href="#statement">
-          <!-- モニターに警告 / IT導入したが動かない -->
-          <svg class="card-icon" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="2" y1="27" x2="46" y2="27" stroke="currentColor" stroke-width="1" stroke-opacity="0.3"/>
-            <line x1="21" y1="32" x2="21" y2="37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="31" y1="32" x2="31" y2="37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="14" y1="37" x2="38" y2="37" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M17 23 L24 9 L31 23 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-            <line x1="24" y1="13" x2="24" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="24" cy="21" r="0.9" fill="currentColor"/>
-          </svg>
-          <div class="sel-content">
-            <span class="sel-num">01</span>
-            <span class="sel-text">進めようとしているこの取り組み、<br>本当にうまくいくのか。</span>
-          </div>
-          <span class="sel-arrow">↓</span>
-        </a>
-        <a class="sel-card reveal d1" href="#statement">
-          <!-- スマホ＋Zzz / ツールが眠っている -->
-          <svg class="card-icon" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="12" y="2" width="22" height="40" rx="3" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="12" y1="9"  x2="34" y2="9"  stroke="currentColor" stroke-width="1" stroke-opacity="0.3"/>
-            <line x1="12" y1="36" x2="34" y2="36" stroke="currentColor" stroke-width="1" stroke-opacity="0.3"/>
-            <path d="M19 22 Q23 17 27 22 Q23 26 19 22 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            <path d="M36 13 L43 13 L36 20 L43 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M38 6 L44 6 L38 11 L44 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
-          </svg>
-          <div class="sel-content">
-            <span class="sel-num">02</span>
-            <span class="sel-text">IT導入して終わりにならず、<br>きちんと現場に定着するのか。</span>
-          </div>
-          <span class="sel-arrow">↓</span>
-        </a>
-        <a class="sel-card reveal d2" href="#statement">
-          <!-- 虫眼鏡に？/ 問題が見えない -->
-          <svg class="card-icon" viewBox="0 0 52 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="21" cy="19" r="13" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="30" y1="29" x2="44" y2="43" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M17 15 C17 12 19 10 21 10 C23 10 25 12 25 14 C25 16 23 17 21 18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <line x1="21" y1="18.5" x2="21" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="21" cy="24" r="1" fill="currentColor"/>
-          </svg>
-          <div class="sel-content">
-            <span class="sel-num">03</span>
-            <span class="sel-text">そもそも、<br>何が問題なのか分からない。</span>
-          </div>
-          <span class="sel-arrow">↓</span>
-        </a>
+    <div class="reveal grid md:grid-cols-2 gap-4 mb-12">
+      <div class="pain-card p-6">
+        <p class="text-ink leading-relaxed">
+          システムを入れたのに、<br>
+          <strong class="font-medium">現場がかえって忙しくなった。</strong>
+        </p>
       </div>
-      <div class="bridge reveal">
-        <p class="bridge-line">
-          その原因は、人ではなく<em>"構造"</em>かもしれません。
+      <div class="pain-card p-6">
+        <p class="text-ink leading-relaxed">
+          できる人に仕事が集中しすぎて、<br>
+          <strong class="font-medium">その人が倒れたら機能しない。</strong>
+        </p>
+      </div>
+      <div class="pain-card p-6">
+        <p class="text-ink leading-relaxed">
+          改善したいのに、<br>
+          <strong class="font-medium">どこから手をつければいいかわからない。</strong>
+        </p>
+      </div>
+      <div class="pain-card p-6">
+        <p class="text-ink leading-relaxed">
+          システム会社と話しても、<br>
+          <strong class="font-medium">なんかかみ合わない、伝わらない。</strong>
+        </p>
+      </div>
+      <div class="pain-card p-6">
+        <p class="text-ink leading-relaxed">
+          忙しすぎて、<br>
+          <strong class="font-medium">改善のことを考える余裕すらない。</strong>
+        </p>
+      </div>
+      <div class="pain-card p-6">
+        <p class="text-ink leading-relaxed">
+          DXとか言われても、<br>
+          <strong class="font-medium">うちには大げさすぎる気がする。</strong>
         </p>
       </div>
     </div>
-  </section>
 
-
-  <!-- ▸ BRIDGE STORY ──────────────────── -->
-  <section class="bridge-story-sec">
-    <div class="wrap--narrow">
-      <p class="bridge-story-text">
-        では、どうすればいいのか。<br><br>
-
-        やり方を変えても、うまくいかない。
-        人を変えても、また同じことが起きる。<br><br>
-
-        そんな経験はありませんか。<br><br>
-
-        一見すると、
-        やり方や人に問題があるように見えます。<br><br>
-
-        でも実際には、
-        同じような課題が繰り返し起きている。<br><br>
-
-        そのとき見直すべきなのが、
-        「構造」です。
+    <div class="reveal bg-ocean-50 border border-ocean-100 rounded-2xl px-8 py-7">
+      <p class="text-ocean-900 text-lg text-center leading-relaxed">
+        それは、あなたの努力が足りないのではありません。<br>
+        <strong class="font-semibold">仕組みが、あなたの現場に合っていないだけです。</strong>
       </p>
     </div>
-  </section>
+  </div>
+</section>
 
 
-  <!-- ▸ STATEMENT ──────────────────────── -->
-  <section class="stmt-sec" id="statement">
-    <div class="wrap--narrow">
-      <span class="stmt-eyebrow reveal">root cause</span>
-      <p class="stmt-text reveal">
-        問題は、<br>
-        能力ではなく<br>
-        <span class="blue">構造</span>にある。
+<!-- ─────────────────────────────────────────────
+     PHILOSOPHY — 考え方
+───────────────────────────────────────────── -->
+<section class="bg-ocean-900 py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="text-ocean-300 text-xs font-medium tracking-widest flex items-center gap-2 mb-4">
+        <span class="inline-block w-5 h-px bg-ocean-400"></span>わたしたちの考え方
       </p>
-      <p class="stmt-note reveal">
-        構造が変わると、行動が変わる。<br>
-        行動が変わると、意識が変わる。<br>
-        意識が変わると、前向きな循環が生まれる。
+      <h2 class="text-3xl md:text-4xl font-semibold text-white">
+        3つのことを、大切にしています。
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="reveal">
+        <div class="text-5xl font-light text-ocean-400/60 mb-5 leading-none">01</div>
+        <h3 class="text-xl font-semibold text-white mb-4">問題は「人」ではなく<br>「構造」にある</h3>
+        <p class="text-ocean-200 text-sm leading-relaxed">
+          頑張っているのに結果が出ない。それは個人の問題ではなく、仕組みや業務の流れに原因があることがほとんどです。責める前に、構造を見直す。そこから始めます。
+        </p>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <div class="text-5xl font-light text-ocean-400/60 mb-5 leading-none">02</div>
+        <h3 class="text-xl font-semibold text-white mb-4">ITは目的ではなく<br>手段です</h3>
+        <p class="text-ocean-200 text-sm leading-relaxed">
+          「システムを作る」ことが目標ではありません。現場が楽になること、人が本来の仕事に戻れること。それが目標です。効果がなければ、アナログも迷わず選びます。
+        </p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="text-5xl font-light text-ocean-400/60 mb-5 leading-none">03</div>
+        <h3 class="text-xl font-semibold text-white mb-4">小さく試して<br>確かめながら進む</h3>
+        <p class="text-ocean-200 text-sm leading-relaxed">
+          最初から大きな投資はしません。小さく動かして、現場で確認して、うまくいったら広げる。そのサイクルを一緒に回します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     SERVICES — サービス
+───────────────────────────────────────────── -->
+<section id="services" class="bg-white py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="label">サービス</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">3つのかかわり方</h2>
+      <p class="text-ink-light max-w-xl">
+        状況や課題に合わせて、最適な関わり方を選べます。<br>
+        「どれがいいかわからない」場合は、まず相談から。
       </p>
     </div>
-  </section>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- サービス 1 -->
+      <div class="service-card reveal border border-gray-200 rounded-2xl p-8">
+        <div class="w-11 h-11 bg-ocean-50 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-ocean-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </div>
+        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">月額 / スポット</p>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">ITなんでも相談</h3>
+        <p class="text-sm text-ink-light leading-relaxed mb-6">
+          「こんなこと聞いていいの？」というレベルの相談から。IT全般の壁打ち相手として、気軽に使ってください。
+        </p>
+        <ul class="text-sm text-ink-muted space-y-2">
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 月額顧問プラン</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> スポット相談（1回〜）</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> ツール選定・比較</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 小規模改善サポート</li>
+        </ul>
+      </div>
+
+      <!-- サービス 2 （推奨） -->
+      <div class="service-card reveal reveal-delay-1 border-2 border-ocean-500 rounded-2xl p-8 relative shadow-md">
+        <div class="absolute -top-3.5 left-6">
+          <span class="bg-ocean-500 text-white text-xs font-medium px-3 py-1 rounded-full">もっとも選ばれています</span>
+        </div>
+        <div class="w-11 h-11 bg-ocean-50 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-ocean-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+        </div>
+        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">3ヶ月〜 / 月額</p>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">伴走型改善支援</h3>
+        <p class="text-sm text-ink-light leading-relaxed mb-6">
+          課題整理から小規模PoCの実施、検証、定着まで。一緒に走りながら、現場に合った改善を積み上げます。
+        </p>
+        <ul class="text-sm text-ink-muted space-y-2">
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 課題整理・ROI設計</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 小規模PoCの実施</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 効果検証・改善サイクル</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 定着支援</li>
+        </ul>
+      </div>
+
+      <!-- サービス 3 -->
+      <div class="service-card reveal reveal-delay-2 border border-gray-200 rounded-2xl p-8">
+        <div class="w-11 h-11 bg-ocean-50 rounded-xl flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-ocean-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
+        </div>
+        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">プロジェクト単位</p>
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">本格開発支援</h3>
+        <p class="text-sm text-ink-light leading-relaxed mb-6">
+          PoCで効果を確認できたら、本格的なシステム開発へ。信頼できる開発パートナーと連携し、コストを抑えながら質の高い開発を実現します。
+        </p>
+        <ul class="text-sm text-ink-muted space-y-2">
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 要件整理・共通言語化</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 開発PM代行</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> Miichisoft連携開発</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 品質管理・納品支援</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 
-  <!-- ▸ PHILOSOPHY ─────────────────────── -->
-  <section class="phil-sec">
-    <div class="wrap">
-      <span class="sec-kicker reveal">philosophy</span>
-      <div class="phil-grid">
-        <div class="phil-item reveal">
-          <span class="phil-num">01</span>
-          <span class="phil-word">構造</span>
-          <p class="phil-desc">仕組みを変える</p>
+<!-- ─────────────────────────────────────────────
+     PROCESS — 進め方
+───────────────────────────────────────────── -->
+<section id="process" class="bg-gray-50 py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="label">進め方</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">こんなふうに進めます</h2>
+      <p class="text-ink-light max-w-xl">
+        最初の一歩は「ヒアリング」から。<br>
+        整理されていなくても、「なんかうまくいっていない」だけでも大丈夫です。
+      </p>
+    </div>
+
+    <!-- Desktop: 4+4 grid -->
+    <div class="hidden md:block">
+      <!-- Row 1 -->
+      <div class="grid grid-cols-4 gap-0 mb-2">
+        <div class="reveal flex items-center">
+          <div class="step-num bg-ocean-700 text-white">1</div>
+          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
         </div>
-        <div class="phil-item reveal d1">
-          <span class="phil-num">02</span>
-          <span class="phil-word">行動</span>
-          <p class="phil-desc">人が自然と動く</p>
+        <div class="reveal reveal-delay-1 flex items-center">
+          <div class="step-num bg-ocean-700 text-white">2</div>
+          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
         </div>
-        <div class="phil-item reveal d2">
-          <span class="phil-num">03</span>
-          <span class="phil-word">意識</span>
-          <p class="phil-desc">文化が育つ</p>
+        <div class="reveal reveal-delay-2 flex items-center">
+          <div class="step-num bg-ocean-600 text-white">3</div>
+          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
         </div>
-        <div class="phil-item reveal d3">
-          <span class="phil-num">04</span>
-          <span class="phil-word">循環</span>
-          <p class="phil-desc">組織が自走する</p>
+        <div class="reveal reveal-delay-3 flex items-center">
+          <div class="step-num bg-ocean-600 text-white">4</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-4 gap-6 mb-10">
+        <div class="reveal pt-4">
+          <h3 class="font-medium text-ink mb-1.5">ヒアリング</h3>
+          <p class="text-sm text-ink-muted leading-relaxed">整理されていなくてOK。まず話を聞きます。</p>
+        </div>
+        <div class="reveal reveal-delay-1 pt-4">
+          <h3 class="font-medium text-ink mb-1.5">現状整理</h3>
+          <p class="text-sm text-ink-muted leading-relaxed">業務フローや課題を一緒に可視化します。</p>
+        </div>
+        <div class="reveal reveal-delay-2 pt-4">
+          <h3 class="font-medium text-ink mb-1.5">真の課題整理</h3>
+          <p class="text-sm text-ink-muted leading-relaxed">症状ではなく根本原因を探ります。</p>
+        </div>
+        <div class="reveal reveal-delay-3 pt-4">
+          <h3 class="font-medium text-ink mb-1.5">ROI仮説</h3>
+          <p class="text-sm text-ink-muted leading-relaxed">「やってみる価値があるか」を数字で考えます。</p>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="grid grid-cols-4 gap-0 mb-2">
+        <div class="reveal flex items-center">
+          <div class="step-num bg-ocean-500 text-white">5</div>
+          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
+        </div>
+        <div class="reveal reveal-delay-1 flex items-center">
+          <div class="step-num bg-ocean-500 text-white">6</div>
+          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
+        </div>
+        <div class="reveal reveal-delay-2 flex items-center">
+          <div class="step-num bg-ocean-400 text-white">7</div>
+          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
+        </div>
+        <div class="reveal reveal-delay-3 flex items-center">
+          <div class="step-num bg-ocean-300 text-white">8</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-4 gap-6">
+        <div class="reveal pt-4">
+          <h3 class="font-medium text-ink mb-1.5">小規模PoC</h3>
+          <p class="text-sm text-ink-muted leading-relaxed">まず小さく試します。大きな投資は後で。</p>
+        </div>
+        <div class="reveal reveal-delay-1 pt-4">
+          <h3 class="font-medium text-ink mb-1.5">検証</h3>
+          <p class="text-sm text-ink-muted leading-relaxed">現場で使えるか、効果が出るかを確認します。</p>
+        </div>
+        <div class="reveal reveal-delay-2 pt-4">
+          <h3 class="font-medium text-ink mb-1.5">本格導入判断</h3>
+          <p class="text-sm text-ink-muted leading-relaxed">効果が確認できた場合のみ、スケールを検討。</p>
+        </div>
+        <div class="reveal reveal-delay-3 pt-4">
+          <h3 class="font-medium text-ink mb-1.5">定着支援</h3>
+          <p class="text-sm text-ink-muted leading-relaxed">現場になじむまで、そばにいます。</p>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- Mobile: vertical list -->
+    <div class="md:hidden space-y-6">
+      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-700 text-white flex-shrink-0">1</div><div><h3 class="font-medium text-ink mb-1">ヒアリング</h3><p class="text-sm text-ink-muted">整理されていなくてOK。まず話を聞きます。</p></div></div>
+      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-700 text-white flex-shrink-0">2</div><div><h3 class="font-medium text-ink mb-1">現状整理</h3><p class="text-sm text-ink-muted">業務フローや課題を一緒に可視化します。</p></div></div>
+      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-600 text-white flex-shrink-0">3</div><div><h3 class="font-medium text-ink mb-1">真の課題整理</h3><p class="text-sm text-ink-muted">症状ではなく根本原因を探ります。</p></div></div>
+      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-600 text-white flex-shrink-0">4</div><div><h3 class="font-medium text-ink mb-1">ROI仮説</h3><p class="text-sm text-ink-muted">やってみる価値があるかを数字で考えます。</p></div></div>
+      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-500 text-white flex-shrink-0">5</div><div><h3 class="font-medium text-ink mb-1">小規模PoC</h3><p class="text-sm text-ink-muted">まず小さく試します。大きな投資は後で。</p></div></div>
+      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-500 text-white flex-shrink-0">6</div><div><h3 class="font-medium text-ink mb-1">検証</h3><p class="text-sm text-ink-muted">現場で使えるか、効果が出るかを確認します。</p></div></div>
+      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-400 text-white flex-shrink-0">7</div><div><h3 class="font-medium text-ink mb-1">本格導入判断</h3><p class="text-sm text-ink-muted">効果が確認できた場合のみ、スケールを検討。</p></div></div>
+      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-300 text-white flex-shrink-0">8</div><div><h3 class="font-medium text-ink mb-1">定着支援</h3><p class="text-sm text-ink-muted">現場になじむまで、そばにいます。</p></div></div>
+    </div>
+  </div>
+</section>
 
 
-  <!-- ▸ VALUE ──────────────────────────── -->
-  <section class="val-sec">
-    <div class="wrap">
-      <span class="sec-kicker reveal">what we do</span>
-      <div class="val-grid">
-        <div class="val-card reveal">
-          <span class="val-big-num">01</span>
-          <span class="val-title">現場と経営をつなぐ。</span>
-          <p class="val-desc">経営の意図を現場の言葉に。現場の課題を経営の視点に変換します。</p>
+<!-- ─────────────────────────────────────────────
+     CASES — ダミー事例
+───────────────────────────────────────────── -->
+<section class="bg-white py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal mb-14">
+      <p class="label">支援事例（イメージ）</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">こんな改善をしてきました</h2>
+      <p class="text-ink-light text-sm">※ 下記はイメージです。実際の支援内容に基づき構成しています。</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal bg-gray-50 rounded-2xl p-7 border border-gray-100">
+        <div class="flex items-center gap-2 mb-5">
+          <span class="text-xs bg-ocean-100 text-ocean-700 px-2.5 py-1 rounded-full font-medium">製造業</span>
+          <span class="text-xs text-ink-muted">従業員 30名</span>
         </div>
-        <div class="val-card reveal d1">
-          <span class="val-big-num">02</span>
-          <span class="val-title">使われる仕組みを設計する。</span>
-          <p class="val-desc">導入して終わりではなく、日常に溶け込む設計を一緒に考えます。</p>
+        <p class="text-sm font-medium text-ink mb-3">課題</p>
+        <p class="text-sm text-ink-light leading-relaxed mb-5">
+          手書きの作業日報をExcelに転記する作業に毎日2時間。担当者が休むと誰も対応できなかった。
+        </p>
+        <p class="text-sm font-medium text-ink mb-3">結果</p>
+        <p class="text-sm text-ocean-700 font-medium leading-relaxed">
+          タブレット入力＋自動集計の仕組みを導入。月間残業時間が約20時間削減。
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-1 bg-gray-50 rounded-2xl p-7 border border-gray-100">
+        <div class="flex items-center gap-2 mb-5">
+          <span class="text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-medium">小売業</span>
+          <span class="text-xs text-ink-muted">従業員 15名</span>
         </div>
-        <div class="val-card reveal d2">
-          <span class="val-big-num">03</span>
-          <span class="val-title">本来の価値を発揮できる状態をつくる。</span>
-          <p class="val-desc">ツールは手段です。目的は、あなたの組織が本来持つ力を引き出すことです。</p>
+        <p class="text-sm font-medium text-ink mb-3">課題</p>
+        <p class="text-sm text-ink-light leading-relaxed mb-5">
+          在庫管理がアナログで、欠品・過剰在庫が頻発。発注判断が経験と勘に依存していた。
+        </p>
+        <p class="text-sm font-medium text-ink mb-3">結果</p>
+        <p class="text-sm text-ocean-700 font-medium leading-relaxed">
+          在庫可視化ツールの導入で欠品率が半減。ロス率も約30%改善。
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-2 bg-gray-50 rounded-2xl p-7 border border-gray-100">
+        <div class="flex items-center gap-2 mb-5">
+          <span class="text-xs bg-purple-100 text-purple-700 px-2.5 py-1 rounded-full font-medium">サービス業</span>
+          <span class="text-xs text-ink-muted">従業員 50名</span>
         </div>
+        <p class="text-sm font-medium text-ink mb-3">課題</p>
+        <p class="text-sm text-ink-light leading-relaxed mb-5">
+          問い合わせ対応が特定の担当者に集中。その人のスケジュールで業務が止まる状況だった。
+        </p>
+        <p class="text-sm font-medium text-ink mb-3">結果</p>
+        <p class="text-sm text-ocean-700 font-medium leading-relaxed">
+          FAQ整備と簡易チャット導入で担当者の対応件数が約半分に。他の業務に集中できるように。
+        </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 
-  <!-- ▸ CTA ───────────────────────────── -->
-  <section class="cta-sec">
-    <div class="wrap">
-      <span class="cta-eyebrow reveal">next step</span>
-      <h2 class="cta-heading reveal">もし少しでも共感していただけたなら。</h2>
-      <p class="cta-sub reveal">
-        言語化できていなくても大丈夫です。<br>まず話を聞かせてください。
+<!-- ─────────────────────────────────────────────
+     ABOUT — 代表メッセージ
+───────────────────────────────────────────── -->
+<section id="about" class="bg-ocean-50 py-24 px-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="reveal mb-12">
+      <p class="label">代表メッセージ</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900">
+        なぜ、この仕事を<br>しているのか。
+      </h2>
+    </div>
+
+    <div class="reveal space-y-7 text-ink-light leading-relaxed">
+      <p class="text-lg text-ink">
+        日本には、素晴らしい仕事をしている中小企業がたくさんあります。<br>
+        地域に根ざして、誠実に、何十年もお客様と向き合ってきた会社たちです。
       </p>
-      <div class="cta-btns reveal">
-        <a href="service.html" class="btn btn--ghost">サービスを見る</a>
-        <a href="contact.html" class="btn btn--white">相談する</a>
+      <p>
+        でも、現場を見ると、頑張っている人が疲れ果てているケースがあまりに多い。<br>
+        その多くは「能力の問題」ではありません。<br>
+        仕事の流れや情報の持ち方、役割の分担など、<strong class="text-ink font-medium">仕組みの問題</strong>です。
+      </p>
+      <p>
+        ITを使えば、すべて解決できるとは思っていません。<br>
+        でも、ちゃんと使えれば、<strong class="text-ink font-medium">頑張る人に仕事が集中する構造を変えることができます。</strong><br>
+        普通の人が、普通に力を発揮できる状態を作れます。
+      </p>
+
+      <!-- Pull quote -->
+      <blockquote class="border-l-4 border-ocean-500 pl-6 py-2 my-8">
+        <p class="text-ocean-900 text-lg font-medium italic">
+          「システムを売りたいのではありません。<br>
+          現場が少しでも楽になることを目指しています。」
+        </p>
+      </blockquote>
+
+      <p>
+        だから、まずは話を聞かせてください。<br>
+        整理されていなくて、大丈夫です。<br>
+        「なんかうまくいっていない」という感覚だけでも、そこから一緒に考えることができます。
+      </p>
+    </div>
+
+    <div class="reveal mt-12 pt-8 border-t border-ocean-200">
+      <p class="text-ink-muted text-sm mb-1">株式会社 業務の改善　代表取締役</p>
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-full bg-ocean-200 flex items-center justify-center text-ocean-600 text-xl font-medium">山</div>
+        <div>
+          <p class="text-lg font-semibold text-ink">山田 太郎（仮）</p>
+          <p class="text-sm text-ink-muted">IT歴 20年 / 中小企業診断士（仮）</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 
-  <!-- ▸ FOOTER ─────────────────────────── -->
-  <footer class="footer">
-    <div class="wrap">
-      <div class="footer-inner">
-        <img src="assets/GyokaiLogoYoko.svg" alt="株式会社 業務の改善" class="footer-logo">
-        <span class="footer-copy">© 株式会社 業務の改善</span>
+<!-- ─────────────────────────────────────────────
+     FAQ — よくある質問
+───────────────────────────────────────────── -->
+<section class="bg-white py-24 px-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="reveal mb-12">
+      <p class="label">よくある質問</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900">
+        相談前の不安、解消します。
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
+        <summary class="flex items-center justify-between px-6 py-5">
+          <span class="font-medium text-ink">Q. 相談だけでもいいですか？</span>
+          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-ink-light leading-relaxed">
+          もちろんです。まずは状況を整理するだけでも構いません。相談したからといって、契約を強要することはありません。
+        </div>
+      </details>
+
+      <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
+        <summary class="flex items-center justify-between px-6 py-5">
+          <span class="font-medium text-ink">Q. 小さな会社でも対応してもらえますか？</span>
+          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-ink-light leading-relaxed">
+          はい。むしろ中小企業・小規模事業者の方の支援が中心です。会社の規模ではなく、「本気で改善したい」という気持ちを大切にしています。
+        </div>
+      </details>
+
+      <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
+        <summary class="flex items-center justify-between px-6 py-5">
+          <span class="font-medium text-ink">Q. IT知識がなくても大丈夫ですか？</span>
+          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-ink-light leading-relaxed">
+          まったく問題ありません。「ITのことはよくわからない」という状態でのご相談が、むしろ多いです。専門用語を使わず、現場の言葉で話し合います。
+        </div>
+      </details>
+
+      <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
+        <summary class="flex items-center justify-between px-6 py-5">
+          <span class="font-medium text-ink">Q. 費用はどのくらいかかりますか？</span>
+          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-ink-light leading-relaxed">
+          状況やサービス内容によって異なります。初回ヒアリングは無料です。その後、状況に合わせた見積もりをご提示します。押し売りは一切しません。
+        </div>
+      </details>
+
+      <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
+        <summary class="flex items-center justify-between px-6 py-5">
+          <span class="font-medium text-ink">Q. 今すぐ導入するつもりはないのですが…</span>
+          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-ink-light leading-relaxed">
+          それで全く構いません。「今後どうすればいいか整理したい」という段階の相談も多いです。まずは現状を一緒に整理するだけで、見えてくるものがあります。
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     CONTACT — お問い合わせ
+───────────────────────────────────────────── -->
+<section id="contact" class="bg-ocean-900 py-24 px-6">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal text-center mb-12">
+      <p class="text-ocean-300 text-xs font-medium tracking-widest flex items-center justify-center gap-2 mb-4">
+        <span class="inline-block w-5 h-px bg-ocean-400"></span>お問い合わせ<span class="inline-block w-5 h-px bg-ocean-400"></span>
+      </p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-white mb-5">
+        まず、話してみませんか。
+      </h2>
+      <p class="text-ocean-200 leading-relaxed">
+        「整理できていない」「何から話せばいいかわからない」<br>
+        そんな状態でも大丈夫です。<br>
+        一緒に整理することから始めましょう。
+      </p>
+    </div>
+
+    <form class="reveal bg-white rounded-2xl p-8 md:p-10" onsubmit="handleSubmit(event)">
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label class="block text-sm font-medium text-ink mb-2">
+            お名前 <span class="text-red-400">*</span>
+          </label>
+          <input type="text" required placeholder="山田 太郎"
+            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-ink mb-2">会社名</label>
+          <input type="text" placeholder="株式会社○○"
+            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all">
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-ink mb-2">
+          メールアドレス <span class="text-red-400">*</span>
+        </label>
+        <input type="email" required placeholder="yamada@example.com"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all">
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-ink mb-2">
+          気になっていること・相談したいこと
+        </label>
+        <textarea rows="5" placeholder="どんな小さなことでも構いません。「なんとかしたい」という気持ちだけでも大丈夫です。"
+          class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all resize-none"></textarea>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-ocean-700 hover:bg-ocean-800 text-white py-4 rounded-xl font-medium transition-all hover:shadow-lg duration-200">
+        送信する
+      </button>
+
+      <p class="text-xs text-gray-400 text-center mt-4 leading-relaxed">
+        営業の連絡はしません。<br>まずはお話を聞かせてください。
+      </p>
+    </form>
+
+    <!-- Success message (hidden) -->
+    <div id="form-success" class="hidden text-center text-white mt-8">
+      <div class="text-5xl mb-4">✓</div>
+      <p class="text-xl font-medium mb-2">送信しました。ありがとうございます。</p>
+      <p class="text-ocean-300 text-sm">3営業日以内にご連絡いたします。</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────────── -->
+<footer class="bg-gray-900 py-14 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between gap-8 mb-10">
+      <div>
+        <div class="text-xs text-gray-500 mb-1">株式会社</div>
+        <div class="text-xl font-bold text-white mb-3">業務の改善</div>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          現場が本来の価値を発揮できる仕組みを、<br>ITでつくります。
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-10">
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">サービス</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#services" class="hover:text-white transition-colors">ITなんでも相談</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">伴走型改善支援</a></li>
+            <li><a href="#services" class="hover:text-white transition-colors">本格開発支援</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">会社情報</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#about" class="hover:text-white transition-colors">代表メッセージ</a></li>
+            <li><a href="#process" class="hover:text-white transition-colors">進め方</a></li>
+            <li><a href="#contact" class="hover:text-white transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">その他</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-white transition-colors">プライバシーポリシー</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">特定商取引法に基づく表記</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </footer>
+    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p class="text-xs text-gray-600">〒100-0000　東京都○○区○○ ○丁目○番○号（仮）</p>
+      <p class="text-xs text-gray-600">© 2026 株式会社 業務の改善. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
 
-  <script>
-    // ── Header scroll effect ──────────────
-    const header = document.getElementById('js-header');
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 56);
-    }, { passive: true });
+<!-- ─────────────────────────────────────────────
+     Floating CTA (mobile only)
+───────────────────────────────────────────── -->
+<div class="floating-cta md:hidden">
+  <a href="#contact"
+    class="flex items-center gap-2 bg-ocean-700 text-white text-sm font-medium px-6 py-3.5 rounded-full shadow-xl hover:bg-ocean-800 transition-all">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    </svg>
+    まず相談してみる
+  </a>
+</div>
 
-    // ── Scroll reveal ─────────────────────
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  </script>
+<!-- ─────────────────────────────────────────────
+     JavaScript
+───────────────────────────────────────────── -->
+<script>
+  // ── Mobile menu
+  const toggle = document.getElementById('mobile-toggle')
+  const menu   = document.getElementById('mobile-menu')
+  toggle.addEventListener('click', () => menu.classList.toggle('hidden'))
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')))
+
+  // ── Header shadow on scroll
+  const header = document.getElementById('site-header')
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow-md', window.scrollY > 20)
+  })
+
+  // ── Scroll reveal (Intersection Observer)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible')
+        observer.unobserve(e.target)
+      }
+    })
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+
+  // ── Contact form (PoC: no actual submission)
+  function handleSubmit(e) {
+    e.preventDefault()
+    const form    = e.target
+    const success = document.getElementById('form-success')
+    form.style.opacity = '0'
+    form.style.transition = 'opacity 0.4s'
+    setTimeout(() => {
+      form.style.display = 'none'
+      success.classList.remove('hidden')
+    }, 400)
+  }
+
+  // ── Smooth anchor navigation accounting for fixed header
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href')
+      if (id === '#') return
+      const target = document.querySelector(id)
+      if (!target) return
+      e.preventDefault()
+      const top = target.getBoundingClientRect().top + window.scrollY - 72
+      window.scrollTo({ top, behavior: 'smooth' })
+    })
+  })
+</script>
 
 </body>
 </html>
