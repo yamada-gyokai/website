@@ -14,6 +14,7 @@ const REPO_ROOT = path.join(__dirname, '..');
 const REQUESTS_DIR = path.join(__dirname, 'requests');
 const LATEST_DIFF = path.join(REQUESTS_DIR, 'latest_diff.txt');
 const LATEST_REQUEST = path.join(REQUESTS_DIR, 'latest_request.txt');
+const LATEST_COMMIT = path.join(REQUESTS_DIR, 'latest_commit.txt');
 
 fs.mkdirSync(REQUESTS_DIR, { recursive: true });
 
@@ -64,6 +65,35 @@ function validateDiff(diffText) {
     const stderr = e.stderr != null ? String(e.stderr) : '';
     return { ok: false, error: stderr.trim() || e.message };
   }
+}
+
+function extractSummaryFromClaudeOutput(text) {
+  if (typeof text !== 'string') {
+    return '';
+  }
+  const m = text.match(/\[SUMMARY\]\s*([\s\S]*?)\s*\[\/SUMMARY\]/i);
+  return m ? m[1].trim() : '';
+}
+
+function extractCommitMessage(text) {
+  if (typeof text !== 'string') {
+    return '';
+  }
+  const m = text.match(/\[COMMIT\]\s*([\s\S]*?)\s*\[\/COMMIT\]/i);
+  return m ? m[1].trim().split('\n')[0].trim() : '';
+}
+
+/** /ai ok 用。latest_commit.txt が無い・空のときのみ fallback */
+function readCommitMessageForOk() {
+  try {
+    const msg = fs.readFileSync(LATEST_COMMIT, 'utf-8').trim();
+    if (msg) {
+      return msg;
+    }
+  } catch {
+    // fall through
+  }
+  return 'AI変更';
 }
 
 function extractDiffFromClaudeOutput(text) {
@@ -171,8 +201,9 @@ app.post('/webhook', (req, res) => {
   // OK（commit処理）
   // =========================
   if (text.trim().toLowerCase() === 'ok') {
+    const commitMsg = readCommitMessageForOk();
     exec(
-      `cd ${shellQuote(REPO_ROOT)} && git diff --quiet || (git add . && git commit -m "AI変更" && git push origin main)`,
+      `cd ${shellQuote(REPO_ROOT)} && git diff --quiet || (git add . && git commit -m ${shellQuote(commitMsg)} && git push origin main)`,
       (err, stdout, stderr) => {
         if (err) {
           console.error('commit/pushエラー:', err);
@@ -334,8 +365,9 @@ app.post('/webhook', (req, res) => {
   // 通常AI処理
   // =========================
 
-  // 差分リセット
+  // 差分・commit message リセット
   fs.writeFileSync(LATEST_DIFF, '');
+  fs.writeFileSync(LATEST_COMMIT, '');
 
   // 即時レスポンス（Slackエラー防止）
   res.json({
@@ -358,14 +390,25 @@ ${text}
 ・指示が曖昧または意味をなさない場合は、変更せず理由を説明する
 ・変更対象は指示内容に含まれる範囲に限定する
 
-【追加要件】
-・出力は unified diff のみ
-・diff --git から始まる内容以外は一切出力しない
-・説明文、補足、コメントは禁止
+【出力形式】（厳守・この順序のみ）
+[SUMMARY]
+ユーザーの指示をどう解釈したか、何をどのファイルのどこへ変更するかを3〜5文で簡潔に書く
+[/SUMMARY]
+
+[COMMIT]
+feat: 変更内容（50文字程度・feat/fix/style/refactor 等の接頭辞推奨）
+[/COMMIT]
+
+（空行1行）
+
+diff --git から始まる unified diff
+
+【diffの制約】
 ・複数のdiffは禁止（必ず1つ）
 ・差分は必ず前後3行以上の文脈を含める
 ・単一行だけの差分は禁止
 ・@@ の範囲は最低でも5行以上含める
+・[SUMMARY][COMMIT]ブロック以外に説明文・補足・コメントは禁止
 `;
 
   fs.writeFileSync(LATEST_REQUEST, content);
@@ -382,22 +425,29 @@ ${text}
 
       console.log('Claude出力:\n', stdout);
 
+      const summary = extractSummaryFromClaudeOutput(stdout);
+      const commitMessage = extractCommitMessage(stdout);
       const diffPayload = extractDiffFromClaudeOutput(stdout);
       try {
         fs.writeFileSync(LATEST_DIFF, diffPayload);
+        fs.writeFileSync(LATEST_COMMIT, commitMessage);
         console.log('差分ファイル更新完了');
+        console.log('commit message:', commitMessage || '(未設定→ok時は AI変更)');
         console.log('差分:\n', diffPayload);
       } catch (e) {
-        console.error('差分書き込みエラー:', e);
+        console.error('差分/commit message書き込みエラー:', e);
       }
 
-      // Slackへ結果返却
+      // Slackへ理解要約を返却（diffは latest_diff.txt のみ。apply 前の認識合わせ用）
       if (responseUrl) {
         const parsedUrl = new URL(responseUrl);
+        const slackText = summary
+          ? `*理解確認*\n${summary}\n\n問題なければ \`/ai apply\` を実行してください。`
+          : '理解要約を取得できませんでした。内容を確認のうえ、必要なら再度 /ai を実行してください。';
 
         const postData = JSON.stringify({
           response_type: 'in_channel',
-          text: stdout
+          text: slackText
         });
 
         const slackOptions = {
