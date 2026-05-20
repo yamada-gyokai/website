@@ -186,6 +186,36 @@
       background-position: center;
     }
 
+    /* 進め方ミニフロー */
+    .mini-flow {
+      border-top: 1px solid #e5edf7;
+      padding-top: 22px;
+      margin-top: 28px;
+    }
+    .mini-flow-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #6b7a90;
+      margin-bottom: 10px;
+    }
+    .mini-step {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #2952b8;
+      background: #f0f6ff;
+      border: 1px solid #deeaff;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+    .mini-arrow {
+      color: #85afff;
+      font-size: 0.85rem;
+      font-weight: 300;
+    }
+
     .step-connector {
       display: flex;
       justify-content: center;
@@ -242,14 +272,14 @@
      HERO
 ───────────────────────────────────────────── -->
 <section class="pt-36 pb-20 px-6 bg-white">
-  <div class="max-w-3xl mx-auto">
-    <div class="reveal">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal max-w-2xl">
       <p class="label">サービス</p>
       <h1 class="serif text-3xl md:text-4xl font-semibold text-gray-900 leading-snug mb-8">
         改善は、段階を踏んで<br>
         進めるのが<span class="text-ocean-700">一番早い。</span>
       </h1>
-      <p class="text-ink-light leading-relaxed text-base max-w-xl">
+      <p class="text-ink-light leading-relaxed text-base">
         最初から大きく進めようとすると、ほとんどの場合うまくいきません。<br>
         まず課題と進め方を整理して、小さく試して、手応えが出たら本格導入へ。<br><br>
         サービスはその流れに沿ったフェーズ別の支援です。<br>
@@ -264,8 +294,8 @@
      FLOW OVERVIEW
 ───────────────────────────────────────────── -->
 <section class="pb-14 px-6 bg-white">
-  <div class="max-w-3xl mx-auto">
-    <div class="reveal grid grid-cols-3 gap-4 md:gap-8 relative">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal grid grid-cols-3 gap-4 md:gap-8 relative max-w-2xl">
       <div class="hidden md:block absolute top-[22px] left-[calc(16.6%+22px)] right-[calc(16.6%+22px)] h-0.5 bg-ocean-100 z-0"></div>
 
       <div class="flex flex-col items-center text-center relative z-10">
@@ -290,42 +320,12 @@
 </section>
 
 <!-- ─────────────────────────────────────────────
-     リソース投資 — コラム（FLOW直後・前提思想）
-───────────────────────────────────────────── -->
-<div class="py-12 px-6 bg-white">
-  <div class="max-w-md mx-auto reveal">
-    <div class="border-l-4 border-ocean-300 pl-8 bg-ocean-50 rounded-r-2xl py-8 pr-7">
-      <p class="text-xs font-medium text-ocean-600 tracking-widest mb-5">リソース投資について</p>
-      <p class="serif text-base font-semibold text-ocean-900 leading-relaxed mb-6">
-        この会社の挑戦を、<br>
-        一緒に前へ進めたい。
-      </p>
-      <p class="text-sm text-ink-light leading-relaxed mb-4">
-        関わっている中で、「これは深いところで支えたい」と感じる会社に出会うことがあります。
-      </p>
-      <p class="text-sm text-ink-light leading-relaxed mb-4">
-        うまくいったら日本が少し良くなる。そう感じられる、本気で取り組んでいる会社です。
-      </p>
-      <p class="text-sm text-ink-light leading-relaxed mb-4">
-        そういう場合に限って、時間・知見・改善力を通常とは別の形で先行投資することがあります。「応援したい」という気持ちから始まること。成果につながったとき、その価値に見合った形で対価をいただくことを前提に。
-      </p>
-      <p class="text-sm text-ink-light leading-relaxed">
-        支援する・される、ではなく、<br>
-        一緒に未来を作るパートナーとして関わる。そういう考え方です。<br><br>
-        もし興味があれば、相談の中でお話しできればと思っています。
-      </p>
-    </div>
-  </div>
-</div>
-
-
-<!-- ─────────────────────────────────────────────
      STEP 1 — ITなんでも相談
 ───────────────────────────────────────────── -->
 <section id="step1" class="py-24 px-6 bg-ocean-50">
-  <div class="max-w-3xl mx-auto">
+  <div class="max-w-5xl mx-auto">
 
-    <div class="reveal">
+    <div class="reveal max-w-2xl">
       <div class="step-badge">
         <div class="num bg-ocean-700">1</div>
         <span class="word">STEP 1</span>
@@ -333,7 +333,7 @@
       <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-4">
         ITなんでも相談
       </h2>
-      <p class="text-ink-light text-sm leading-relaxed max-w-lg">
+      <p class="text-ink-light text-sm leading-relaxed">
         「整理できていない」状態でも構いません。<br>
         経営・現場・ITを横断しながら、一緒に整理していきます。
       </p>
@@ -342,7 +342,7 @@
     <!-- この状態になります -->
     <div class="reveal reveal-delay-1 mt-12">
       <p class="outcome-label">この状態になります</p>
-      <div class="grid sm:grid-cols-2 gap-4">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
         <div class="state-card">
           <p class="state-title">課題が、整理されている。</p>
@@ -354,7 +354,7 @@
           <p class="state-body">次に何をすればいいかが、具体的に見えている。ぼんやりした不安が、動ける手順に変わっている。</p>
         </div>
 
-        <div class="state-card sm:col-span-2">
+        <div class="state-card">
           <p class="state-title">「やる価値があるか」が、判断できる。</p>
           <p class="state-body">見切り発車でなく、根拠を持って「やる・やらない・後でやる」を決められる状態になっている。</p>
         </div>
@@ -363,7 +363,7 @@
     </div>
 
     <!-- こんな場合に（secondary） -->
-    <div class="means-block reveal reveal-delay-2">
+    <div class="means-block reveal reveal-delay-2 max-w-2xl">
       <p class="means-label">こんな場合に</p>
       <ul class="check-list">
         <li>ITを使って改善したいが、何から始めればいいかわからない</li>
@@ -371,6 +371,18 @@
         <li>アプリやシステムを作りたいが、どう設計すればゴールに辿り着けるかわからない</li>
         <li>課題が整理できておらず、対策が中途半端になっている</li>
       </ul>
+    </div>
+
+    <!-- 進め方のイメージ -->
+    <div class="mini-flow reveal reveal-delay-3 max-w-2xl">
+      <p class="mini-flow-label">進め方のイメージ</p>
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="mini-step">ヒアリング</span>
+        <span class="mini-arrow">→</span>
+        <span class="mini-step">課題整理</span>
+        <span class="mini-arrow">→</span>
+        <span class="mini-step">方針確認</span>
+      </div>
     </div>
 
   </div>
@@ -389,9 +401,9 @@
      STEP 2 — 伴走支援
 ───────────────────────────────────────────── -->
 <section id="step2" class="py-24 px-6 bg-white">
-  <div class="max-w-3xl mx-auto">
+  <div class="max-w-5xl mx-auto">
 
-    <div class="reveal">
+    <div class="reveal max-w-2xl">
       <div class="step-badge">
         <div class="num bg-ocean-600">2</div>
         <span class="word">STEP 2</span>
@@ -399,7 +411,7 @@
       <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-4">
         伴走支援
       </h2>
-      <p class="text-ink-light text-sm leading-relaxed max-w-lg">
+      <p class="text-ink-light text-sm leading-relaxed">
         定期的に一緒に動きながら、目指す成果に向けて前へ進めます。<br>
         「整理はできた、でも動けない」そこから先を支援します。
       </p>
@@ -408,7 +420,7 @@
     <!-- この状態になります -->
     <div class="reveal reveal-delay-1 mt-12">
       <p class="outcome-label">この状態になります</p>
-      <div class="grid sm:grid-cols-2 gap-4">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
         <div class="state-card on-white">
           <p class="state-title">小さく、試せている。</p>
@@ -444,7 +456,7 @@
     </div>
 
     <!-- そのためにやること（secondary） -->
-    <div class="means-block reveal reveal-delay-2">
+    <div class="means-block reveal reveal-delay-2 max-w-2xl">
       <p class="means-label">そのためにやること</p>
       <div class="means-list">
         <span class="means-tag">PoCデモの設計・実施</span>
@@ -458,13 +470,25 @@
     </div>
 
     <!-- 大切にしていること -->
-    <div class="reveal reveal-delay-3 mt-10 bg-ocean-50 rounded-2xl p-7">
+    <div class="reveal reveal-delay-3 mt-8 max-w-2xl bg-ocean-50 rounded-2xl p-7">
       <p class="text-xs font-medium text-ocean-600 tracking-widest mb-3">大切にしていること</p>
       <p class="text-sm text-ink-light leading-relaxed">
         改善を代わりにやることが目的ではありません。<br>
         担当者や現場の方々が、自分たちで改善を回せる状態を目指します。<br><br>
         最終的には、現場の方々が開発会社ときちんと意思疎通を取りながら進められる状態を作ることを、ゴールのひとつにしています。
       </p>
+    </div>
+
+    <!-- 進め方のイメージ -->
+    <div class="mini-flow reveal reveal-delay-3 max-w-2xl">
+      <p class="mini-flow-label">進め方のイメージ</p>
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="mini-step">PoC</span>
+        <span class="mini-arrow">→</span>
+        <span class="mini-step">現場確認</span>
+        <span class="mini-arrow">→</span>
+        <span class="mini-step">ROI確認</span>
+      </div>
     </div>
 
   </div>
@@ -483,9 +507,9 @@
      STEP 3 — 開発・導入支援
 ───────────────────────────────────────────── -->
 <section id="step3" class="py-24 px-6 bg-ocean-50">
-  <div class="max-w-3xl mx-auto">
+  <div class="max-w-5xl mx-auto">
 
-    <div class="reveal">
+    <div class="reveal max-w-2xl">
       <div class="step-badge">
         <div class="num bg-ocean-500">3</div>
         <span class="word">STEP 3</span>
@@ -493,7 +517,7 @@
       <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-4">
         開発・導入支援
       </h2>
-      <p class="text-ink-light text-sm leading-relaxed max-w-lg">
+      <p class="text-ink-light text-sm leading-relaxed">
         PoCで手応えが見えたものを、本格導入できる形へ整えます。<br>
         「これなら本格導入したい」と判断できたタイミングで進めます。それより前には、無理に進めません。
       </p>
@@ -502,7 +526,7 @@
     <!-- この状態になります -->
     <div class="reveal reveal-delay-1 mt-12">
       <p class="outcome-label">この状態になります</p>
-      <div class="grid sm:grid-cols-2 gap-4">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
         <div class="state-card">
           <p class="state-title">現場が、使いこなしている。</p>
@@ -528,7 +552,7 @@
     </div>
 
     <!-- そのためにやること（secondary） -->
-    <div class="means-block reveal reveal-delay-2">
+    <div class="means-block reveal reveal-delay-2 max-w-2xl">
       <p class="means-label">そのためにやること</p>
       <div class="means-list">
         <span class="means-tag">要件整理・共通言語化</span>
@@ -542,8 +566,52 @@
       </p>
     </div>
 
+    <!-- 進め方のイメージ -->
+    <div class="mini-flow reveal reveal-delay-3 max-w-2xl">
+      <p class="mini-flow-label">進め方のイメージ</p>
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="mini-step">本格導入</span>
+        <span class="mini-arrow">→</span>
+        <span class="mini-step">定着</span>
+        <span class="mini-arrow">→</span>
+        <span class="mini-step">継続運用</span>
+      </div>
+    </div>
+
   </div>
 </section>
+
+
+<!-- ─────────────────────────────────────────────
+     リソース投資 — コラム（STEP後・CTA前）
+───────────────────────────────────────────── -->
+<div class="py-16 px-6 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal max-w-md">
+      <div class="border-l-4 border-ocean-300 pl-8 bg-ocean-50 rounded-r-2xl py-8 pr-7">
+        <p class="text-xs font-medium text-ocean-600 tracking-widest mb-5">リソース投資について</p>
+        <p class="serif text-base font-semibold text-ocean-900 leading-relaxed mb-6">
+          この会社の挑戦を、<br>
+          一緒に前へ進めたい。
+        </p>
+        <p class="text-sm text-ink-light leading-relaxed mb-4">
+          関わっている中で、「これは深いところで支えたい」と感じる会社に出会うことがあります。
+        </p>
+        <p class="text-sm text-ink-light leading-relaxed mb-4">
+          うまくいったら日本が少し良くなる。そう感じられる、本気で取り組んでいる会社です。
+        </p>
+        <p class="text-sm text-ink-light leading-relaxed mb-4">
+          そういう場合に限って、時間・知見・改善力を通常とは別の形で先行投資することがあります。「応援したい」という気持ちから始まること。成果につながったとき、その価値に見合った形で対価をいただくことを前提に。
+        </p>
+        <p class="text-sm text-ink-light leading-relaxed">
+          支援する・される、ではなく、<br>
+          一緒に未来を作るパートナーとして関わる。そういう考え方です。<br><br>
+          もし興味があれば、相談の中でお話しできればと思っています。
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- ─────────────────────────────────────────────
