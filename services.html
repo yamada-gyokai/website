@@ -95,11 +95,78 @@
       color: #2952b8;
     }
 
+    /* 状態カード */
+    .state-card {
+      background: #fff;
+      border: 1.5px solid #b8d0ff;
+      border-top: 3px solid #3a6fd8;
+      border-radius: 14px;
+      padding: 22px 22px;
+    }
+    .state-card.on-white {
+      background: #f0f6ff;
+      border-color: #b8d0ff;
+      border-top-color: #3a6fd8;
+    }
+    .state-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e3e96;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .state-body {
+      font-size: 0.78rem;
+      color: #6b7a90;
+      line-height: 1.8;
+    }
+
+    /* 状態見出し */
+    .outcome-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: #1e3e96;
+      background: #deeaff;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    /* 手段ブロック */
+    .means-block {
+      border-top: 1px solid #e5edf7;
+      padding-top: 28px;
+      margin-top: 28px;
+    }
+    .means-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #6b7a90;
+      margin-bottom: 14px;
+    }
+    .means-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .means-tag {
+      font-size: 0.78rem;
+      color: #4a5a72;
+      background: #f8faff;
+      border: 1px solid #deeaff;
+      padding: 5px 14px;
+      border-radius: 9999px;
+    }
+
     .check-list li {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #4a5a72;
       line-height: 1.75;
       margin-bottom: 8px;
@@ -119,27 +186,12 @@
       background-position: center;
     }
 
-    .value-tag {
-      display: inline-block;
-      background: #f0f6ff;
-      border: 1px solid #b8d0ff;
-      color: #1e3e96;
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 6px 16px;
-      border-radius: 9999px;
-      letter-spacing: 0.05em;
-      margin-bottom: 24px;
-    }
-
     .step-connector {
       display: flex;
       justify-content: center;
       padding: 0;
     }
-    .step-connector svg {
-      color: #b8d0ff;
-    }
+    .step-connector svg { color: #b8d0ff; }
 
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #f0f4f8; }
@@ -211,31 +263,28 @@
 <!-- ─────────────────────────────────────────────
      FLOW OVERVIEW
 ───────────────────────────────────────────── -->
-<section class="pb-10 px-6 bg-white">
+<section class="pb-14 px-6 bg-white">
   <div class="max-w-3xl mx-auto">
     <div class="reveal grid grid-cols-3 gap-4 md:gap-8 relative">
-
-      <!-- connector line (desktop) -->
       <div class="hidden md:block absolute top-[22px] left-[calc(16.6%+22px)] right-[calc(16.6%+22px)] h-0.5 bg-ocean-100 z-0"></div>
 
       <div class="flex flex-col items-center text-center relative z-10">
-        <div class="w-11 h-11 rounded-full bg-ocean-700 text-white flex items-center justify-center text-base font-bold mb-3">1</div>
+        <a href="#step1" class="w-11 h-11 rounded-full bg-ocean-700 text-white flex items-center justify-center text-base font-bold mb-3 hover:opacity-80 transition-opacity">1</a>
         <p class="text-sm font-medium text-ink leading-snug">ITなんでも<br class="md:hidden">相談</p>
         <p class="text-xs text-ink-muted mt-1 hidden md:block">課題と進め方が見える</p>
       </div>
 
       <div class="flex flex-col items-center text-center relative z-10">
-        <div class="w-11 h-11 rounded-full bg-ocean-600 text-white flex items-center justify-center text-base font-bold mb-3">2</div>
+        <a href="#step2" class="w-11 h-11 rounded-full bg-ocean-600 text-white flex items-center justify-center text-base font-bold mb-3 hover:opacity-80 transition-opacity">2</a>
         <p class="text-sm font-medium text-ink leading-snug">伴走支援</p>
         <p class="text-xs text-ink-muted mt-1 hidden md:block">実際に前へ進める</p>
       </div>
 
       <div class="flex flex-col items-center text-center relative z-10">
-        <div class="w-11 h-11 rounded-full bg-ocean-500 text-white flex items-center justify-center text-base font-bold mb-3">3</div>
+        <a href="#step3" class="w-11 h-11 rounded-full bg-ocean-500 text-white flex items-center justify-center text-base font-bold mb-3 hover:opacity-80 transition-opacity">3</a>
         <p class="text-sm font-medium text-ink leading-snug">開発・<br class="md:hidden">導入支援</p>
         <p class="text-xs text-ink-muted mt-1 hidden md:block">本格運用・定着まで</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -246,6 +295,7 @@
 ───────────────────────────────────────────── -->
 <section id="step1" class="py-24 px-6 bg-ocean-50">
   <div class="max-w-3xl mx-auto">
+
     <div class="reveal">
       <div class="step-badge">
         <div class="num bg-ocean-700">1</div>
@@ -254,43 +304,51 @@
       <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-4">
         ITなんでも相談
       </h2>
-      <p class="value-tag">価値：課題と進め方が見える</p>
+      <p class="text-ink-light text-sm leading-relaxed max-w-lg">
+        「整理できていない」状態でも構いません。<br>
+        経営・現場・ITを横断しながら、一緒に整理していきます。
+      </p>
     </div>
 
-    <div class="reveal reveal-delay-1 grid md:grid-cols-2 gap-10 mt-2">
-      <!-- こんな場合に -->
-      <div>
-        <p class="text-xs font-medium text-ocean-600 tracking-widest mb-4">こんな場合に</p>
-        <ul class="check-list">
-          <li>ITで改善したいが、何から始めればいいかわからない</li>
-          <li>AIを社内でどう使えばいいか整理できていない</li>
-          <li>アプリやシステムを作りたいが、どう設計すればゴールに辿り着けるかわからない</li>
-          <li>課題が整理できておらず、対策が中途半端になっている</li>
-        </ul>
-      </div>
+    <!-- この状態になります -->
+    <div class="reveal reveal-delay-1 mt-12">
+      <p class="outcome-label">この状態になります</p>
+      <div class="grid sm:grid-cols-2 gap-4">
 
-      <!-- 内容とゴール -->
-      <div class="space-y-8">
-        <div>
-          <p class="text-xs font-medium text-ocean-600 tracking-widest mb-4">内容</p>
-          <p class="text-sm text-ink-light leading-relaxed">
-            経営・現場・ITを横断して、何を解決すべきか、どこから進めるべきかを整理します。<br><br>
-            「整理されていない」状態でも大丈夫です。話しながら一緒に見えてくることがほとんどです。
-          </p>
+        <div class="state-card">
+          <p class="state-title">課題が、整理されている。</p>
+          <p class="state-body">何が問題で、何から始めればいいかが見えている。「なんとなくうまくいっていない」から抜け出せる。</p>
         </div>
-        <div class="border-l-4 border-ocean-300 pl-5 py-1">
-          <p class="text-xs font-medium text-ocean-600 tracking-widest mb-2">目指す状態</p>
-          <p class="text-sm font-medium text-ocean-900 leading-relaxed">
-            目指すゴールに向けて、どう進めればよいかが見えている。
-          </p>
+
+        <div class="state-card">
+          <p class="state-title">進め方に、迷いがなくなっている。</p>
+          <p class="state-body">次に何をすればいいかが、具体的に見えている。ぼんやりした不安が、動ける手順に変わっている。</p>
         </div>
+
+        <div class="state-card sm:col-span-2">
+          <p class="state-title">「やる価値があるか」が、判断できる。</p>
+          <p class="state-body">見切り発車でなく、根拠を持って「やる・やらない・後でやる」を決められる状態になっている。</p>
+        </div>
+
       </div>
     </div>
+
+    <!-- こんな場合に（secondary） -->
+    <div class="means-block reveal reveal-delay-2">
+      <p class="means-label">こんな場合に</p>
+      <ul class="check-list">
+        <li>ITを使って改善したいが、何から始めればいいかわからない</li>
+        <li>AIを社内でどう活用すればいいか整理できていない</li>
+        <li>アプリやシステムを作りたいが、どう設計すればゴールに辿り着けるかわからない</li>
+        <li>課題が整理できておらず、対策が中途半端になっている</li>
+      </ul>
+    </div>
+
   </div>
 </section>
 
 <!-- Step connector -->
-<div class="step-connector py-4 bg-white">
+<div class="step-connector py-5 bg-white">
   <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
     <line x1="12" y1="0" x2="12" y2="20" stroke="currentColor" stroke-width="2"/>
     <polyline points="6,16 12,24 18,16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -303,6 +361,7 @@
 ───────────────────────────────────────────── -->
 <section id="step2" class="py-24 px-6 bg-white">
   <div class="max-w-3xl mx-auto">
+
     <div class="reveal">
       <div class="step-badge">
         <div class="num bg-ocean-600">2</div>
@@ -311,51 +370,79 @@
       <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-4">
         伴走支援
       </h2>
-      <p class="value-tag">価値：成果へ向けて実際に前へ進められる</p>
+      <p class="text-ink-light text-sm leading-relaxed max-w-lg">
+        定期的に一緒に動きながら、目指す成果に向けて前へ進めます。<br>
+        「整理はできた、でも動けない」そこから先を支援します。
+      </p>
     </div>
 
-    <div class="reveal reveal-delay-1 mt-2 space-y-10">
-      <!-- 内容 -->
-      <div>
-        <p class="text-xs font-medium text-ocean-600 tracking-widest mb-4">内容</p>
-        <p class="text-sm text-ink-light leading-relaxed mb-6">
-          定期的なミーティングを行いながら、目指す成果に向けてフォローアップします。<br>
-          必要に応じて以下のような支援も行います。
-        </p>
-        <ul class="check-list">
-          <li>PoCデモの設計・実施</li>
-          <li>ROI設計（投資対効果の見積もり）</li>
-          <li>データ分析・業務フロー整理</li>
-          <li>要件整理と共通言語づくり</li>
-          <li>AI活用の設計・試作</li>
-          <li>開発会社との調整・ブリッジ</li>
-        </ul>
-      </div>
+    <!-- この状態になります -->
+    <div class="reveal reveal-delay-1 mt-12">
+      <p class="outcome-label">この状態になります</p>
+      <div class="grid sm:grid-cols-2 gap-4">
 
-      <!-- 大切にしていること -->
-      <div class="bg-ocean-50 rounded-2xl p-7">
-        <p class="text-xs font-medium text-ocean-600 tracking-widest mb-4">大切にしていること</p>
-        <p class="text-sm text-ink-light leading-relaxed mb-4">
-          改善を代わりにやることが目的ではありません。<br>
-          担当者や現場の方々が、自分たちで改善を回せる状態を目指します。
-        </p>
-        <p class="text-sm text-ink-light leading-relaxed">
-          最終的には、現場の方々が開発会社ときちんと意思疎通を取りながら進められる状態を作ることを、ゴールのひとつにしています。
-        </p>
-      </div>
+        <div class="state-card on-white">
+          <p class="state-title">小さく、試せている。</p>
+          <p class="state-body">大きな投資なしに、まず動くものを現場で確かめられている。失敗してもやり直せる規模で進んでいる。</p>
+        </div>
 
-      <div class="border-l-4 border-ocean-300 pl-5 py-1">
-        <p class="text-xs font-medium text-ocean-600 tracking-widest mb-2">目指す状態</p>
-        <p class="text-sm font-medium text-ocean-900 leading-relaxed">
-          PoCで手応えや成果が確認でき、<br>現場と経営が「次へ進みたい」と思える状態。
-        </p>
+        <div class="state-card on-white">
+          <p class="state-title">現場が、前向きになっている。</p>
+          <p class="state-body">「やらされている」感がなく、自分たちで改善を進める感覚が生まれている。</p>
+        </div>
+
+        <div class="state-card on-white">
+          <p class="state-title">ROIが、見えてきた。</p>
+          <p class="state-body">「やる価値があるかどうか」が、感覚ではなく数字で判断できるようになっている。</p>
+        </div>
+
+        <div class="state-card on-white">
+          <p class="state-title">成果が、確認できた。</p>
+          <p class="state-body">PoCの結果として、効果の手応えが現場にある。「これは使える」という感覚が生まれている。</p>
+        </div>
+
+        <div class="state-card on-white">
+          <p class="state-title">「本格導入したい」が、見えている。</p>
+          <p class="state-body">経営と現場の両方が「次へ進みたい」と思える状態になっている。無理に進めず、判断ができている。</p>
+        </div>
+
+        <div class="state-card on-white">
+          <p class="state-title">開発会社との会話が、整理されている。</p>
+          <p class="state-body">何を作りたいかを、相手に伝えられる状態になっている。「かみ合わない」が減っている。</p>
+        </div>
+
       </div>
     </div>
+
+    <!-- そのためにやること（secondary） -->
+    <div class="means-block reveal reveal-delay-2">
+      <p class="means-label">そのためにやること</p>
+      <div class="means-list">
+        <span class="means-tag">PoCデモの設計・実施</span>
+        <span class="means-tag">ROI設計</span>
+        <span class="means-tag">データ分析</span>
+        <span class="means-tag">業務フロー整理</span>
+        <span class="means-tag">要件整理・共通言語づくり</span>
+        <span class="means-tag">AI活用の設計・試作</span>
+        <span class="means-tag">開発会社との調整・ブリッジ</span>
+      </div>
+    </div>
+
+    <!-- 大切にしていること -->
+    <div class="reveal reveal-delay-3 mt-10 bg-ocean-50 rounded-2xl p-7">
+      <p class="text-xs font-medium text-ocean-600 tracking-widest mb-3">大切にしていること</p>
+      <p class="text-sm text-ink-light leading-relaxed">
+        改善を代わりにやることが目的ではありません。<br>
+        担当者や現場の方々が、自分たちで改善を回せる状態を目指します。<br><br>
+        最終的には、現場の方々が開発会社ときちんと意思疎通を取りながら進められる状態を作ることを、ゴールのひとつにしています。
+      </p>
+    </div>
+
   </div>
 </section>
 
 <!-- Step connector -->
-<div class="step-connector py-4 bg-ocean-50">
+<div class="step-connector py-5 bg-ocean-50">
   <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
     <line x1="12" y1="0" x2="12" y2="20" stroke="currentColor" stroke-width="2"/>
     <polyline points="6,16 12,24 18,16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -368,6 +455,7 @@
 ───────────────────────────────────────────── -->
 <section id="step3" class="py-24 px-6 bg-ocean-50">
   <div class="max-w-3xl mx-auto">
+
     <div class="reveal">
       <div class="step-badge">
         <div class="num bg-ocean-500">3</div>
@@ -376,44 +464,55 @@
       <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-4">
         開発・導入支援
       </h2>
-      <p class="value-tag">価値：本格運用・定着までつなげる</p>
+      <p class="text-ink-light text-sm leading-relaxed max-w-lg">
+        PoCで手応えが見えたものを、本格導入できる形へ整えます。<br>
+        「これなら本格導入したい」と判断できたタイミングで進めます。それより前には、無理に進めません。
+      </p>
     </div>
 
-    <div class="reveal reveal-delay-1 grid md:grid-cols-2 gap-10 mt-2">
-      <!-- 内容 -->
-      <div class="space-y-8">
-        <div>
-          <p class="text-xs font-medium text-ocean-600 tracking-widest mb-4">内容</p>
-          <p class="text-sm text-ink-light leading-relaxed">
-            PoCで成果や手応えが見えたものを、本格導入できる形へ整えます。<br><br>
-            現場と経営が「これなら本格導入したい」と判断できたタイミングで進めます。それより前には、無理に進めません。
-          </p>
-        </div>
-        <ul class="check-list">
-          <li>要件整理・共通言語化</li>
-          <li>開発会社との連携・調整</li>
-          <li>品質確認・納品支援</li>
-          <li>現場への定着サポート</li>
-        </ul>
-      </div>
+    <!-- この状態になります -->
+    <div class="reveal reveal-delay-1 mt-12">
+      <p class="outcome-label">この状態になります</p>
+      <div class="grid sm:grid-cols-2 gap-4">
 
-      <!-- 大切にしていること + ゴール -->
-      <div class="space-y-8">
-        <div class="bg-white rounded-2xl p-6">
-          <p class="text-xs font-medium text-ocean-600 tracking-widest mb-3">大切にしていること</p>
-          <p class="text-sm text-ink-light leading-relaxed">
-            システムを作ることが目的ではありません。<br><br>
-            実際に使う人たちが、自信を持って本格導入したいと思える状態を作ること。それが大事だと考えています。
-          </p>
+        <div class="state-card">
+          <p class="state-title">現場が、使いこなしている。</p>
+          <p class="state-body">ツールが「あるだけ」にならず、日常の業務に自然に組み込まれている。</p>
         </div>
-        <div class="border-l-4 border-ocean-300 pl-5 py-1">
-          <p class="text-xs font-medium text-ocean-600 tracking-widest mb-2">目指す状態</p>
-          <p class="text-sm font-medium text-ocean-900 leading-relaxed">
-            現場が使いこなせて、成果として定着している。
-          </p>
+
+        <div class="state-card">
+          <p class="state-title">本格運用が、動いている。</p>
+          <p class="state-body">PoCの段階を超えて、実際のビジネスに組み込まれ、成果として機能している。</p>
         </div>
+
+        <div class="state-card">
+          <p class="state-title">「作ってよかった」が、出ている。</p>
+          <p class="state-body">成果として実感できる変化が、現場と経営の両方に見えている。</p>
+        </div>
+
+        <div class="state-card">
+          <p class="state-title">次の改善に、目が向いている。</p>
+          <p class="state-body">一つうまくいったことで、「次は何を改善できるか」が自然と見えてきている。</p>
+        </div>
+
       </div>
     </div>
+
+    <!-- そのためにやること（secondary） -->
+    <div class="means-block reveal reveal-delay-2">
+      <p class="means-label">そのためにやること</p>
+      <div class="means-list">
+        <span class="means-tag">要件整理・共通言語化</span>
+        <span class="means-tag">開発会社との連携・調整</span>
+        <span class="means-tag">品質確認・納品支援</span>
+        <span class="means-tag">現場への定着サポート</span>
+      </div>
+      <p class="text-xs text-ink-muted mt-5 leading-relaxed">
+        システムを作ることが目的ではありません。<br>
+        実際に使う人たちが、自信を持って「本格導入したい」と思える状態を作ることが大事だと考えています。
+      </p>
+    </div>
+
   </div>
 </section>
 
@@ -442,7 +541,7 @@
 
       <div class="bg-ocean-50 border border-ocean-100 rounded-2xl px-8 py-8 my-10">
         <p class="text-xs font-medium text-ocean-600 tracking-widest mb-5">リソース投資とは</p>
-        <ul class="check-list space-y-4">
+        <ul class="check-list">
           <li>単なる値引きや割引とは異なります</li>
           <li>将来の成長や成果を信じて、時間・知見・改善力を先行投資します</li>
           <li>事業が成長し成果につながった際には、その価値に見合った形で対価をいただくことを前提とします</li>
