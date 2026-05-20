@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代表について | 株式会社 業務の改善</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+            serif: ['"Noto Serif JP"', 'serif'],
+          },
+          colors: {
+            ink: { DEFAULT: '#2d3a50', light: '#4a5a72', muted: '#6b7a90' },
+            ocean: {
+              50:  '#f0f6ff',
+              100: '#deeaff',
+              200: '#b8d0ff',
+              300: '#85afff',
+              500: '#3a6fd8',
+              600: '#2952b8',
+              700: '#1e3e96',
+              800: '#152f78',
+              900: '#0e2058',
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; line-height: 1.85; background: #fff; }
+    h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #2952b8;
+      margin-bottom: 16px;
+    }
+    .label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #3a6fd8;
+    }
+
+    .prose-about p {
+      margin-bottom: 1.75rem;
+      font-size: 1rem;
+      line-height: 2;
+      color: #4a5a72;
+    }
+
+    .career-line {
+      border-left: 2px solid #deeaff;
+      padding-left: 24px;
+      position: relative;
+    }
+    .career-line::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3a6fd8;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f0f4f8; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- ─────────────────────────────────────────────
+     HEADER
+───────────────────────────────────────────── -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="group">
+      <div class="text-[10px] text-gray-400 leading-none mb-0.5">株式会社</div>
+      <div class="text-lg font-bold text-ocean-800 leading-none tracking-tight group-hover:text-ocean-700 transition-colors">業務の改善</div>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="index.html#services" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
+      <a href="index.html#process"  class="text-sm text-ink-light hover:text-ocean-700 transition-colors">進め方</a>
+      <a href="about.html"          class="text-sm text-ocean-700 font-medium border-b border-ocean-300 pb-0.5">代表について</a>
+      <a href="index.html#contact"  class="text-sm bg-ocean-700 hover:bg-ocean-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">
+        相談してみる
+      </a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 text-ink-muted hover:text-ocean-700 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-5">
+      <a href="index.html#services" class="text-sm text-ink-light">サービス</a>
+      <a href="index.html#process"  class="text-sm text-ink-light">進め方</a>
+      <a href="about.html"          class="text-sm text-ocean-700 font-medium">代表について</a>
+      <a href="index.html#contact"  class="text-sm bg-ocean-700 text-white py-3 px-6 rounded-full text-center font-medium">相談してみる</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ─────────────────────────────────────────────
+     SECTION 1: FIRST VIEW
+───────────────────────────────────────────── -->
+<section class="pt-36 pb-24 px-6 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal grid md:grid-cols-2 gap-16 items-center">
+
+      <!-- 写真 -->
+      <div class="order-2 md:order-1">
+        <img src="assets/kaizen_kng_1.jpg" alt="代表 山田建太郎"
+             class="w-full aspect-[3/4] rounded-2xl object-cover object-top">
+      </div>
+
+      <!-- テキスト -->
+      <div class="order-1 md:order-2">
+        <p class="label">代表について</p>
+        <h1 class="serif text-3xl md:text-4xl font-semibold text-gray-900 leading-snug mb-8">
+          仕組みが変わると、<br>
+          人も会社も、<br>
+          <span class="text-ocean-700">もっと成果が出る。</span>
+        </h1>
+        <p class="text-ink-light leading-relaxed text-base">
+          現場を見てきて、そう確信するようになりました。<br>
+          頑張っているのに、なぜか空回りしている。<br>
+          良い会社なのに、力を出しきれていない。<br><br>
+          そういう現場をなんとかしたくて、この仕事を続けています。
+        </p>
+        <div class="mt-8 pt-8 border-t border-gray-100">
+          <p class="text-xs text-ink-muted tracking-widest">山田 建太郎</p>
+          <p class="text-sm text-ink-light mt-1">株式会社 業務の改善 代表取締役</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     SECTION 2: 現場で見てきたこと
+───────────────────────────────────────────── -->
+<section class="py-28 px-6 bg-ocean-50">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal">
+      <p class="label">現場で見てきたこと</p>
+      <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-12">
+        良い会社が、<br>
+        力を出しきれていない。
+      </h2>
+    </div>
+
+    <div class="prose-about reveal reveal-delay-1">
+      <p>
+        関わってきた現場で、よく見る光景があります。
+      </p>
+      <p>
+        「改善したい」という気持ちはある。<br>
+        社員も頑張っている。<br>
+        いいサービスも、技術も、人もいる。<br>
+        でも、なぜか成果につながらない。
+      </p>
+      <p>
+        よく見ると、忙しすぎて改善する余力がない。<br>
+        何かを変えようとしても、どこから手をつければいいか分からない。<br>
+        ツールを入れてみたけれど、現場に定着しない。
+      </p>
+      <p>
+        「悪い会社」ではないんです。<br>
+        むしろ、真面目に取り組んでいる会社ほど、そうなりやすい。
+      </p>
+      <p>
+        本来持っているはずの力が、うまく発揮できていない状態。<br>
+        そこに手を入れることが、私の仕事だと思っています。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     SECTION 3: なぜこの仕事をしているのか
+───────────────────────────────────────────── -->
+<section class="py-28 px-6 bg-white">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal">
+      <p class="label">なぜこの仕事を</p>
+      <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-6">
+        「ITを売る仕事」から、<br>
+        「成果を出す仕事」へ。
+      </h2>
+      <p class="text-ink-light text-base mb-14">
+        今の考え方になるまでに、いくつかの経験がありました。
+      </p>
+    </div>
+
+    <div class="space-y-12">
+
+      <div class="reveal career-line">
+        <p class="text-xs text-ocean-600 font-medium tracking-widest mb-2">最初の仕事</p>
+        <p class="font-medium text-gray-900 mb-3">DTP・Web制作・デザイン</p>
+        <p class="text-ink-light text-sm leading-relaxed">
+          キャリアの出発点は、「つくる」仕事でした。
+          チラシ、Webサイト、印刷物。
+          伝えたいことが相手に届いたときの手応えを、この時期に知りました。
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-1 career-line">
+        <p class="text-xs text-ocean-600 font-medium tracking-widest mb-2">転機</p>
+        <p class="font-medium text-gray-900 mb-3">システム開発会社 COO</p>
+        <p class="text-ink-light text-sm leading-relaxed">
+          開発会社の経営側に立ったとき、いつの間にか現場が疲弊していました。
+          「便利なものをつくれば使ってもらえる」は幻想で、
+          現場に根付かないシステムに意味はない——そう気づいたのはこの時期です。
+          「どう作るか」よりも「何のために作るか」を問うようになりました。
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-2 career-line">
+        <p class="text-xs text-ocean-600 font-medium tracking-widest mb-2">現場との向き合い方</p>
+        <p class="font-medium text-gray-900 mb-3">業務改善・DX支援・地域活性化</p>
+        <p class="text-ink-light text-sm leading-relaxed">
+          立場を変えて、現場支援に入るようになりました。
+          中小企業、地域の事業者、行政との連携プロジェクト。
+          業種も規模もバラバラでしたが、どこも共通していたのは
+          「ツールではなく、使える状態をつくることが大事」ということでした。
+          手段を目的にしない。それが今のスタイルの出発点です。
+        </p>
+      </div>
+
+    </div>
+
+    <div class="reveal reveal-delay-3 mt-16 border-l-4 border-ocean-400 pl-8 py-2">
+      <p class="serif text-lg text-ocean-900 font-semibold leading-relaxed">
+        ITを売りたいわけではない。<br>
+        本来の力を発揮できる状態を、作りたい。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     SECTION 4: 改善のスタイル
+───────────────────────────────────────────── -->
+<section class="py-28 px-6 bg-ocean-900">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal">
+      <p class="label" style="color:#85afff;">改善のスタイル</p>
+      <h2 class="serif text-2xl md:text-3xl font-semibold text-white leading-snug mb-8">
+        小さく試して、<br>
+        成果が見えてから動く。
+      </h2>
+      <p class="text-ocean-200 leading-relaxed mb-12">
+        「まず大きな投資を」という話になりがちですが、
+        私はそのやり方をあまり勧めません。<br>
+        うまくいかなかった現場を、何度も見てきたからです。
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1 grid sm:grid-cols-2 gap-4 mb-12">
+      <div class="bg-ocean-800/60 rounded-xl p-6 border border-ocean-700">
+        <p class="text-white font-medium mb-2">まず動くものを試す</p>
+        <p class="text-ocean-300 text-sm leading-relaxed">
+          大規模開発の前に小さく動かして、効果を確かめる。
+          失敗しても、やり直しが利く規模でやる。
+        </p>
+      </div>
+      <div class="bg-ocean-800/60 rounded-xl p-6 border border-ocean-700">
+        <p class="text-white font-medium mb-2">ROIが見えてから拡張</p>
+        <p class="text-ocean-300 text-sm leading-relaxed">
+          投資対効果を一緒に確認してから、次のステップへ。
+          「なんとなく入れる」はしない。
+        </p>
+      </div>
+      <div class="bg-ocean-800/60 rounded-xl p-6 border border-ocean-700">
+        <p class="text-white font-medium mb-2">ITは手段であって目的でない</p>
+        <p class="text-ocean-300 text-sm leading-relaxed">
+          テクノロジーが先行すると、現場はついてこない。
+          業務の流れと目的を先に整理する。
+        </p>
+      </div>
+      <div class="bg-ocean-800/60 rounded-xl p-6 border border-ocean-700">
+        <p class="text-white font-medium mb-2">「作らない」選択肢もある</p>
+        <p class="text-ocean-300 text-sm leading-relaxed">
+          「それ、システムじゃなくていいかもしれません」と言えることも、
+          この仕事の大事な部分だと思っています。
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <p class="text-ocean-200 leading-relaxed">
+        大事なのは、現場が「使える」状態になること。<br>
+        そこに向けて、一緒に考えながら進めます。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     SECTION 5: 中小企業への想い
+───────────────────────────────────────────── -->
+<section class="py-28 px-6 bg-white">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal">
+      <p class="label">中小企業への想い</p>
+      <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug mb-12">
+        日本を支えているのは、<br>
+        こういう会社だと思っています。
+      </h2>
+    </div>
+
+    <div class="prose-about reveal reveal-delay-1">
+      <p>
+        関わってきた中小企業には、「いい会社」が多かった。
+      </p>
+      <p>
+        お客さんを大切にしている。<br>
+        現場の人たちが誠実に働いている。<br>
+        長年積み上げてきた技術や知見がある。
+      </p>
+      <p>
+        でも規模が小さいから、リソースが足りない。<br>
+        専門家を雇う余裕もない。<br>
+        「改善したいけど、どこに相談すればいいか分からない」という状況に、なりやすい。
+      </p>
+      <p>
+        そういう会社が、もっと成果を出せるようになったら、<br>
+        日本全体がもう少し元気になると思っています。
+      </p>
+      <p>
+        だから、本気で改善したいと思っている会社を、<br>
+        本気で支援したい。<br>
+        そういう気持ちで、この仕事をしています。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     SECTION 6: 締め
+───────────────────────────────────────────── -->
+<section class="py-28 px-6 bg-ocean-50">
+  <div class="max-w-2xl mx-auto">
+
+    <div class="reveal text-center mb-14">
+      <h2 class="serif text-2xl md:text-3xl font-semibold text-gray-900 leading-snug">
+        思想より、<br>
+        <span class="text-ocean-700">成果につながる改善</span>を。
+      </h2>
+    </div>
+
+    <div class="prose-about reveal reveal-delay-1 text-center">
+      <p>
+        難しいことを言いたいわけではありません。
+      </p>
+      <p>
+        現場が動きやすくなる。<br>
+        本来やるべき仕事に集中できる。<br>
+        少しずつ、成果が出てくる。
+      </p>
+      <p>
+        そういう変化を、一緒につくっていきたいと思っています。
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-2 mt-12 flex items-center gap-5 justify-center">
+      <img src="assets/kaizen_kng_1.jpg" alt="山田建太郎"
+           class="w-16 h-16 rounded-full object-cover object-top flex-shrink-0">
+      <div>
+        <p class="font-medium text-gray-900">山田 建太郎</p>
+        <p class="text-sm text-ink-muted mt-0.5">株式会社 業務の改善 代表取締役</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     COMPANY INFO
+───────────────────────────────────────────── -->
+<section class="py-24 px-6 bg-gray-50">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal">
+      <p class="label">会社概要</p>
+      <h2 class="serif text-xl font-semibold text-gray-900 mb-10">株式会社 業務の改善</h2>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <table class="w-full text-sm">
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="py-4 pr-8 text-ink-muted w-32 align-top">会社名</td>
+            <td class="py-4 text-ink">株式会社 業務の改善</td>
+          </tr>
+          <tr>
+            <td class="py-4 pr-8 text-ink-muted align-top">代表者</td>
+            <td class="py-4 text-ink">山田 建太郎</td>
+          </tr>
+          <tr>
+            <td class="py-4 pr-8 text-ink-muted align-top">設立</td>
+            <td class="py-4 text-ink">—</td>
+          </tr>
+          <tr>
+            <td class="py-4 pr-8 text-ink-muted align-top">所在地</td>
+            <td class="py-4 text-ink">—</td>
+          </tr>
+          <tr>
+            <td class="py-4 pr-8 text-ink-muted align-top">事業内容</td>
+            <td class="py-4 text-ink leading-relaxed">
+              業務改善支援 / DX推進支援<br>
+              ITシステム導入・活用支援<br>
+              組織運用改善
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     CTA
+───────────────────────────────────────────── -->
+<section class="py-24 px-6 bg-ocean-700">
+  <div class="max-w-2xl mx-auto text-center reveal">
+    <p class="text-ocean-200 text-sm tracking-widest mb-6">CONTACT</p>
+    <h2 class="serif text-2xl md:text-3xl font-semibold text-white mb-6 leading-snug">
+      「なんとなく、うまくいっていない」<br>
+      それだけでも、話せます。
+    </h2>
+    <p class="text-ocean-200 mb-10 leading-relaxed">
+      課題が整理されていなくても大丈夫です。<br>
+      まずは現状を聞かせてください。
+    </p>
+    <a href="index.html#contact"
+       class="inline-flex items-center gap-2 bg-white text-ocean-800 hover:bg-ocean-50 px-8 py-4 rounded-xl font-medium transition-colors">
+      話してみる
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────────── -->
+<footer class="bg-gray-900 py-10 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div>
+      <div class="text-[10px] text-gray-500 leading-none mb-0.5">株式会社</div>
+      <div class="text-base font-bold text-white leading-none tracking-tight">業務の改善</div>
+    </div>
+    <p class="text-xs text-gray-600">© 株式会社 業務の改善. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow-sm', window.scrollY > 20);
+  }, { passive: true });
+
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
