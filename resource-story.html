@@ -51,43 +51,50 @@
     .reveal-delay-1 { transition-delay: 0.12s; }
     .reveal-delay-2 { transition-delay: 0.24s; }
 
-    /* ─── story-specific ─── */
-    .story-label {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      color: #2952b8;
-      margin-bottom: 14px;
+    /* ─── Article typography ─── */
+    .s-heading {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2d3a50;
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
+    .s-heading .maru { color: #2952b8; margin-right: 2px; }
 
-    .story-body {
-      font-size: 0.9rem;
+    .s-body {
+      font-size: 0.88rem;
       color: #4a5a72;
-      line-height: 2.05;
+      line-height: 2.1;
     }
 
-    .story-quote {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #1e3e96;
-      line-height: 1.9;
+    .s-subhead {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #2952b8;
+      margin-bottom: 6px;
+    }
+
+    .s-note {
+      background: #f0f6ff;
       border-left: 3px solid #85afff;
-      padding: 4px 0 4px 20px;
-      margin: 28px 0;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.85rem;
+      color: #4a5a72;
+      line-height: 1.9;
+      margin: 20px 0;
     }
 
-    .story-num {
+    .s-num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: #deeaff;
       color: #2952b8;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       flex-shrink: 0;
       margin-top: 3px;
@@ -139,20 +146,23 @@
 
 
 <!-- ─────────────────────────────────────────────
-     HERO — カバー画像
+     HERO
+     元タイトル：「リソース投資が未来を開く / ～Paper message 代表・本山珠里さんインタビュー～」
 ───────────────────────────────────────────── -->
 <section class="relative pt-16">
-  <div class="relative h-[380px] md:h-[480px] overflow-hidden">
-    <!-- 差し替え時: src を実際の事例カバー画像に変更してください -->
+  <div class="relative h-[360px] md:h-[460px] overflow-hidden">
+    <!-- 差し替え: src を事例カバー画像に変更してください -->
     <img src="assets/papermessage_1.jpeg" alt="Paper message 店舗の様子" class="w-full h-full object-cover object-center">
-    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent"></div>
     <div class="absolute bottom-0 left-0 right-0 px-6 pb-10 md:pb-14">
       <div class="max-w-2xl mx-auto">
-        <p class="text-ocean-200 text-xs tracking-widest mb-4">RESOURCE STORY</p>
-        <h1 class="serif text-2xl md:text-3xl font-semibold text-white leading-snug">
-          地域の小さな挑戦に、<br>どう関わったのか。
-        </h1>
-        <p class="text-ocean-100/80 text-sm mt-3">Paper message 代表・本山珠里さんとの取り組みを通じて</p>
+        <p class="text-ocean-200 text-xs tracking-widest mb-4">リソース投資事例</p>
+        <p class="serif text-xl md:text-2xl font-semibold text-white leading-snug">
+          リソース投資が未来を開く
+        </p>
+        <p class="serif text-base md:text-lg text-ocean-100 mt-2 leading-snug">
+          〜Paper message 代表・本山珠里さんインタビュー〜
+        </p>
       </div>
     </div>
   </div>
@@ -160,210 +170,209 @@
 
 
 <!-- ─────────────────────────────────────────────
-     LEAD — 導入文
+     LEAD
+     ※ 本文はスクリーンショットから部分的に復元。要確認箇所にコメントあり。
 ───────────────────────────────────────────── -->
-<section class="py-14 px-6 bg-white">
-  <div class="max-w-2xl mx-auto reveal">
-    <p class="story-body">
-      中小企業が抱える課題は多面にわたります。限られたリソースの中でそれを解決するには、従来のコンサルティングや単純な外注とは異なる関わり方が必要になることがあります。
-    </p>
-    <p class="story-body mt-5">
-      「リソース投資」という、少し珍しい関わり方があります。まずは小さく、一緒に試しながら、段階的に前へ進める。成果につながったとき、その価値に見合った形で対価をいただくことを前提に。
-    </p>
-    <p class="story-body mt-5">
-      Paper message 代表・本山珠里さんとの取り組みを通じて、その実際をお伝えします。
-    </p>
+<section class="py-12 px-6 bg-white">
+  <div class="max-w-2xl mx-auto reveal s-body">
+    <!-- ※ 要確認: 以下の本文は画像から部分的に復元したものです。元テキストへ差し替えてください -->
+    <p>中小企業が抱える課題は、投資で多面にわたります。限られたリソースの中でこれを解決するには、従来のコンサルティングや単純な支援とは異なるアプローチが求められます。</p>
+    <p class="mt-4">そんな中、「リソース投資」という少し珍しいアプローチで企業課題を行う当社の取り組みをご紹介します。</p>
   </div>
 </section>
 
 
 <!-- ─────────────────────────────────────────────
-     Section 1: 「リソース投資」という関わり方
+     Section 1: ○「リソース投資」とは？
+     レイアウト: 左テキスト ＋ 右画像（元ページ参照）
+───────────────────────────────────────────── -->
+<section class="py-14 px-6 bg-white border-t border-gray-100">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal">
+      <h2 class="s-heading"><span class="maru">○</span>「リソース投資」とは？</h2>
+    </div>
+
+    <div class="reveal reveal-delay-1 md:flex gap-8 items-start">
+      <div class="s-body md:flex-1 space-y-5">
+        <!-- ※ 要確認: 以下の本文は画像から部分的に復元 -->
+        <p>「リソース投資」は、単なるコンサルティングやITツール導入とは一線を画するアプローチとします。知見や時間の先行投資する。そのアプローチは下記の通りです：</p>
+
+        <div class="space-y-5 mt-2">
+          <div>
+            <p class="s-subhead">※ トータルな視点での課題把握</p>
+            <!-- ※ 要確認: 以下の説明文を元テキストへ差し替えてください -->
+            <p>業務全体を俯瞰する目で、その企業の本質的な課題を理解します。表面的な問題だけでなく、根本的な課題も解決するために、関わり続けることを大切にします。</p>
+          </div>
+          <div>
+            <p class="s-subhead">※ 自分ごとして関わる姿勢</p>
+            <!-- ※ 要確認 -->
+            <p>お客様の課題を、「お客様の課題」として捉えること。委託や外注としてではなく、同じチームの一員として関わります。</p>
+          </div>
+          <div>
+            <p class="s-subhead">※ 価値創造を基礎とした支援</p>
+            <!-- ※ 要確認 -->
+            <p>「価値が生まれたとき、その価値に見合った対価をいただく」ことを前提に、先行投資として知見・時間・改善力を提供します。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側画像 -->
+      <div class="mt-8 md:mt-0 md:w-52 flex-shrink-0">
+        <!-- 差し替え: src を元ページの画像に変更してください -->
+        <img src="assets/papermessage_1.jpeg" alt="Paper message との取り組み" class="w-full rounded-xl object-cover aspect-[3/4]">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     Section 2: ○具体的な取り組みと成果
+     レイアウト: 上部に画像 → 番号付きリスト → 結びの文
 ───────────────────────────────────────────── -->
 <section class="py-14 px-6 bg-ocean-50">
   <div class="max-w-2xl mx-auto">
-
     <div class="reveal">
-      <p class="story-label">○ 「リソース投資」とは？</p>
-      <h2 class="serif text-xl font-semibold text-ink leading-snug mb-8">
-        支援でも、外注でもない。<br>一緒に前へ進む関わり方。
-      </h2>
+      <h2 class="s-heading"><span class="maru">○</span>具体的な取り組みと成果</h2>
     </div>
 
-    <div class="reveal reveal-delay-1 story-body space-y-5">
-      <p>「リソース投資」は、単なるコンサルティングやITツール導入とは一線を画します。時間・知見・改善力を先行投資する。そこには、その会社の可能性を信じているという前提があります。</p>
+    <!-- 上部画像 -->
+    <div class="reveal reveal-delay-1 mb-8">
+      <!-- 差し替え: 元ページの取り組み画像（スマートフォン画面＋店舗写真など）に変更してください -->
+      <img src="assets/papermessage_1.jpeg" alt="取り組みの様子" class="w-full rounded-xl object-cover max-h-64">
+      <p class="text-xs text-ink-muted text-center mt-2">実際の取り組みの様子</p>
+    </div>
 
-      <div class="mt-6 space-y-6">
-        <div>
-          <p class="text-xs font-medium text-ocean-600 tracking-wider mb-2">※ トータルな視点での課題把握</p>
-          <p>業務全体を俯瞰しながら、その会社の本質的な課題を理解すること。表面的な症状ではなく、なぜそうなっているかを一緒に整理していきます。</p>
+    <div class="reveal s-body space-y-5">
+      <div class="space-y-5">
+        <div class="flex gap-4 items-start">
+          <span class="s-num">1</span>
+          <div>
+            <p class="font-bold text-ink text-sm mb-1">在庫管理システムの導入</p>
+            <!-- ※ 要確認: 以下の説明文を元テキストへ差し替えてください -->
+            <p>ハードルを下げながら、在庫管理アプリを導入しました。手入力だった部分をシステム化し、現場のスタッフが使いやすい形へ整えました。</p>
+          </div>
         </div>
-        <div>
-          <p class="text-xs font-medium text-ocean-600 tracking-wider mb-2">※ 自分ごととして関わる姿勢</p>
-          <p>お客様の課題を、自分の課題として捉えること。「解決策を提供する側」ではなく、「一緒に解決していく仲間」として関わります。</p>
-        </div>
-        <div>
-          <p class="text-xs font-medium text-ocean-600 tracking-wider mb-2">※ 価値創造を基礎とした支援</p>
-          <p>「成果につながったとき、その価値に見合った形で対価をいただく」ことを前提に。お互いの姿勢が合ったとき、はじめて成立する関わりです。</p>
+
+        <div class="flex gap-4 items-start">
+          <span class="s-num">2</span>
+          <div>
+            <p class="font-bold text-ink text-sm mb-1">ホームページ定期運用への改善</p>
+            <!-- ※ 要確認 -->
+            <p>更新の頻度を改善し、オンライン集客力を高める取り組みをしました。無理なく続けられる仕組みを整えることを優先しました。</p>
+          </div>
         </div>
       </div>
-    </div>
 
+      <!-- ※ 要確認: 結びの文を元テキストへ差し替えてください -->
+      <p class="mt-2">この結果から、「リソース投資」は一歩ずつ着実に、むしろも会社との関係の可能性を開いています。</p>
+    </div>
   </div>
 </section>
 
 
 <!-- ─────────────────────────────────────────────
-     Section 2: 具体的な取り組み
+     Section 3: ○リソース投資を経て見えてきた課題
+     レイアウト: 左テキスト＋箇条書き ＋ 右画像
 ───────────────────────────────────────────── -->
-<section class="py-16 px-6 bg-white">
+<section class="py-14 px-6 bg-white">
   <div class="max-w-2xl mx-auto">
-
     <div class="reveal">
-      <p class="story-label">○ 具体的な取り組みと成果</p>
-      <h2 class="serif text-xl font-semibold text-ink leading-snug mb-8">
-        小さく始め、<br>積み重ねていった改善。
-      </h2>
-    </div>
-
-    <!-- 画像 -->
-    <div class="reveal reveal-delay-1 mb-10">
-      <!-- 差し替え時: src を取り組みの写真に変更してください -->
-      <img src="assets/papermessage_1.jpeg" alt="Paper message との取り組みの様子" class="w-full rounded-2xl object-cover max-h-72">
-      <p class="text-xs text-ink-muted text-center mt-3">Paper message 店舗での打ち合わせの様子</p>
-    </div>
-
-    <div class="reveal story-body space-y-5">
-      <p>まず取り組んだのは、現状の整理でした。何が課題で、何から始めると効果的か。一緒に考えながら、小さな一歩を踏み出しました。</p>
-
-      <div class="space-y-5 mt-2">
-        <div class="flex gap-4 items-start">
-          <span class="story-num">1</span>
-          <div>
-            <p class="font-medium text-ink text-sm mb-1.5">在庫管理システムの導入</p>
-            <p>手作業で管理していた在庫を、シンプルなシステムで一元管理できるよう整備。ハードルを下げながら、まず動くものを現場で確かめました。</p>
-          </div>
-        </div>
-        <div class="flex gap-4 items-start">
-          <span class="story-num">2</span>
-          <div>
-            <p class="font-medium text-ink text-sm mb-1.5">ホームページ定期運用への改善</p>
-            <p>外部への発信を少しずつ整えていく取り組み。更新しやすい仕組みをつくり、継続できる状態にすることを優先しました。</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="story-quote">
-        「これは、一緒に試しながら進めてみましょう。」<br>
-        そう言えたのは、結果より関係性を大切にしていたからだと思います。
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────
-     Section 3: 関わりの中で見えてきた課題
-───────────────────────────────────────────── -->
-<section class="py-16 px-6 bg-ocean-50">
-  <div class="max-w-2xl mx-auto">
-
-    <div class="reveal">
-      <p class="story-label">○ リソース投資を経て見えてきた課題</p>
-      <h2 class="serif text-xl font-semibold text-ink leading-snug mb-8">
-        関わるほどに、<br>見えてくるものがある。
-      </h2>
+      <h2 class="s-heading"><span class="maru">○</span>リソース投資を経て見えてきた課題</h2>
     </div>
 
     <div class="reveal reveal-delay-1 md:flex gap-8 items-start">
-      <div class="story-body space-y-4 md:flex-1">
-        <p>取り組みを進める中で、外から見ていては気づけなかった課題が少しずつ浮き上がってきました。</p>
-        <ul class="space-y-4 mt-2">
-          <li class="flex gap-3 items-start">
-            <span class="text-ocean-300 leading-none mt-1 flex-shrink-0">·</span>
-            <span><span class="font-medium text-ink">工数管理：</span>どこにどれだけ時間がかかっているか、把握しにくい状態でした。</span>
+      <div class="s-body md:flex-1 space-y-4">
+        <p>リソース投資によって取り組んだ結果、以下のような課題が見えてきました。</p>
+
+        <ul class="space-y-3 mt-1">
+          <li>
+            <span class="font-bold text-ink">・工数管理：</span><!-- ※ 要確認 -->作業スタッフの業務時間の把握が難しく、業務ごとの必要なプロセスが見えにくい状況でした。
           </li>
-          <li class="flex gap-3 items-start">
-            <span class="text-ocean-300 leading-none mt-1 flex-shrink-0">·</span>
-            <span><span class="font-medium text-ink">顧客管理：</span>お客様情報がばらばらに管理されており、継続的な関係づくりに課題がありました。</span>
+          <li>
+            <span class="font-bold text-ink">・顧客管理：</span><!-- ※ 要確認 -->チームとの連携が取りにくく、毎月ごとの入力作業による負荷が大きい。リアルタイムのデータを含む状況が分からない。
           </li>
-          <li class="flex gap-3 items-start">
-            <span class="text-ocean-300 leading-none mt-1 flex-shrink-0">·</span>
-            <span><span class="font-medium text-ink">売上データの一元化：</span>チャネルごとにデータが分散しており、全体像が見えにくい状況でした。</span>
+          <li>
+            <span class="font-bold text-ink">・売上データの一元化：</span><!-- ※ 要確認 -->日々のシステム化を行うことで、売上データを正確に把握できるようになります。
           </li>
-          <li class="flex gap-3 items-start">
-            <span class="text-ocean-300 leading-none mt-1 flex-shrink-0">·</span>
-            <span><span class="font-medium text-ink">属人化：</span>特定の人がいないと回らない業務が多く、安定的な運営の障壁になっていました。</span>
+          <li>
+            <span class="font-bold text-ink">・属人化：</span><!-- ※ 要確認 -->特定のスタッフに仕事が偏りすぎているため、業務の効率化が難しい状況でした。
           </li>
         </ul>
-        <p class="mt-2">現場に入ることで、はじめて解像度高く見えてきたものたちです。</p>
+
+        <!-- ※ 要確認: 以下の締め段落を元テキストへ差し替えてください -->
+        <div class="s-note">
+          <!-- ※ 要確認: ハイライトボックスの内容を元テキストへ差し替えてください -->
+          「改善という仕事を超えた、人と人のつながりが見えてきた」。そう語る中で、仕事と同時に、人生（業務）の全体像が変わっていくことを実感しています。
+        </div>
+
+        <!-- ※ 要確認: 締め段落 -->
+        <p>んんなく行くために大事なのは、人間とそれぞれの視点で、各々の方向の可能性をメディアへと変えていく。大切になっています。</p>
       </div>
 
-      <!-- 画像 -->
-      <div class="mt-8 md:mt-0 md:w-48 flex-shrink-0">
-        <!-- 差し替え時: src を課題整理の写真に変更してください -->
-        <img src="assets/papermessage_2.jpeg" alt="課題を整理している様子" class="w-full rounded-xl object-cover aspect-[3/4]">
+      <!-- 右側画像 -->
+      <div class="mt-8 md:mt-0 md:w-52 flex-shrink-0">
+        <!-- 差し替え: 元ページの右側画像（店舗内の棚など）に変更してください -->
+        <img src="assets/papermessage_2.jpeg" alt="店舗の様子" class="w-full rounded-xl object-cover aspect-[3/4]">
       </div>
     </div>
-
   </div>
 </section>
 
 
 <!-- ─────────────────────────────────────────────
-     Section 4: 共感と信頼
+     Section 4: ○「共感」と「信頼」が生む未来
+     レイアウト: 左画像 ＋ 右テキスト
 ───────────────────────────────────────────── -->
-<section class="py-16 px-6 bg-white">
+<section class="py-14 px-6 bg-ocean-50">
   <div class="max-w-2xl mx-auto">
-
     <div class="reveal">
-      <p class="story-label">○ 「共感」と「信頼」が生む未来</p>
-      <h2 class="serif text-xl font-semibold text-ink leading-snug mb-8">
-        この会社がうまくいくと、<br>自分もうれしい。
-      </h2>
+      <h2 class="s-heading"><span class="maru">○</span>「共感」と「信頼」が生む未来</h2>
     </div>
 
     <div class="reveal reveal-delay-1 md:flex gap-8 items-start">
-      <!-- 画像 -->
-      <div class="mb-8 md:mb-0 md:w-48 flex-shrink-0">
-        <!-- 差し替え時: src を対話の写真に変更してください -->
-        <img src="assets/papermessage_1.jpeg" alt="本山さんとの対話の様子" class="w-full rounded-xl object-cover aspect-[3/4] object-top">
+      <!-- 左側画像 -->
+      <div class="mb-6 md:mb-0 md:w-52 flex-shrink-0">
+        <!-- 差し替え: 元ページの左側画像（人物写真など）に変更してください -->
+        <img src="assets/papermessage_1.jpeg" alt="本山さんとの対話" class="w-full rounded-xl object-cover aspect-[3/4] object-top">
       </div>
 
-      <div class="story-body space-y-4">
-        <p>本山さんとのやりとりを重ねる中で、いつの間にか「この店がもっとうまくいってほしい」という気持ちが自然に生まれていました。</p>
-        <p>リソース投資は、支援でも施策でもありません。「同じ方向を向いて、一緒に歩く」ことから始まる関係性です。</p>
-        <div class="story-quote">
-          地域の小さな会社の挑戦を、自分ごととして応援したい。<br>
-          うまくいったら、日本が少し良くなる。そういう感覚で関われる仕事に、価値があると思っています。
-        </div>
+      <div class="s-body space-y-4">
+        <!-- ※ 要確認: 以下の本文全体を元テキストへ差し替えてください -->
+        <p>私たちは「地域の小さな会社の挑戦を応援する」という気持ちで、リソース投資に取り組んでいます。</p>
+        <p>本山さんとの関わりの中で、「この会社がうまくいくと、自分もうれしい」という気持ちが自然に生まれていました。</p>
+        <p>私たちが目指すのは、「支援する・される」ではなく、「一緒に未来を作るパートナー」として関わることです。</p>
+        <p>また、「成功するとこうなる」という話ではなく、その会社と一緒になって、地域や社会に新しい価値を提供していく。そのプロセス自体に、意味があると思っています。</p>
       </div>
     </div>
-
   </div>
 </section>
 
 
 <!-- ─────────────────────────────────────────────
-     Section 5: まとめ的振り返り
+     Section 5: ○まとめ：「リソース投資」の可能性
+     レイアウト: テキスト ＋ 右側画像
 ───────────────────────────────────────────── -->
-<section class="py-16 px-6 bg-ocean-50">
+<section class="py-14 px-6 bg-white">
   <div class="max-w-2xl mx-auto">
-
     <div class="reveal">
-      <p class="story-label">○ まとめ：「リソース投資」の可能性</p>
-      <h2 class="serif text-xl font-semibold text-ink leading-snug mb-8">
-        小さく始めたことが、<br>少しずつ形になっていく。
-      </h2>
+      <h2 class="s-heading"><span class="maru">○</span>まとめ：「リソース投資」の可能性</h2>
     </div>
 
-    <div class="reveal reveal-delay-1 story-body space-y-5">
-      <p>特別な成果があったわけではありません。在庫が少し整理できた、情報が少し見やすくなった。そういう小さな積み重ねが続いています。</p>
-      <p>でも、その過程で生まれた関係性や信頼は、単発の支援では生まれないものだと感じています。「また一緒に考えましょう」と自然に言える関係が、一番の財産かもしれません。</p>
-      <p>現場と向き合い、本気で挑んでいる会社と、この方法で一緒に進めることができたとき、関わりの質が全く違うものになる。そう実感しています。</p>
-    </div>
+    <div class="reveal reveal-delay-1 md:flex gap-8 items-start">
+      <div class="s-body space-y-4 md:flex-1">
+        <!-- ※ 要確認: 以下の本文全体を元テキストへ差し替えてください -->
+        <p>「リソース投資」は、中小企業が直面する課題を解決するための新しいアプローチです。一般的な支援の枠を超えて、深くコミットすることで、真の課題解決が可能になります。</p>
+        <p>新しいシステムやツールを導入し、新しいビジネスモデルを開発し、地域や社会に新しい価値を提供していく。そのような挑戦を続けている会社と、一緒に前へ進める。</p>
+        <p>これからも引き続き積み重ねながら、新しいリソース投資の取り組みについてお伝えしていければと思います。</p>
+      </div>
 
+      <!-- 右側画像 -->
+      <div class="mt-6 md:mt-0 md:w-48 flex-shrink-0">
+        <!-- 差し替え: 元ページの右側画像（店舗外観など）に変更してください -->
+        <img src="assets/papermessage_2.jpeg" alt="Paper message 店舗外観" class="w-full rounded-xl object-cover aspect-square">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -371,41 +380,41 @@
 <!-- ─────────────────────────────────────────────
      取材にご協力いただいた方々
 ───────────────────────────────────────────── -->
-<section class="py-16 px-6 bg-white border-t border-ocean-100">
+<section class="py-14 px-6 bg-ocean-50 border-t border-ocean-100">
   <div class="max-w-2xl mx-auto">
 
     <div class="reveal mb-10 text-center">
-      <p class="text-xs text-ink-muted tracking-widest">取材にご協力いただいた方々</p>
+      <p class="text-sm font-medium text-ink-muted tracking-widest">取材にご協力いただいた方々</p>
     </div>
 
     <div class="reveal reveal-delay-1 grid sm:grid-cols-2 gap-6">
       <!-- 語り手 -->
-      <div class="bg-ocean-50 rounded-2xl p-6">
-        <p class="text-xs text-ink-muted mb-4">語り手</p>
-        <!-- 差し替え時: この div を <img src="assets/motoyama.jpg" alt="本山珠里さん" class="w-14 h-14 rounded-full object-cover mb-4"> に置き換え -->
-        <div class="w-14 h-14 rounded-full bg-ocean-100 mb-4 flex items-center justify-center">
-          <svg class="w-6 h-6 text-ocean-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-          </svg>
+      <div class="bg-white rounded-2xl p-6 shadow-sm">
+        <p class="text-xs text-ink-muted mb-4 tracking-wider">語り手</p>
+        <!-- 差し替え: <img src="assets/motoyama.jpg" alt="本山珠里さん" class="w-16 h-16 rounded-full object-cover mb-4"> -->
+        <div class="w-16 h-16 rounded-full bg-ocean-100 mb-4 overflow-hidden">
+          <img src="assets/papermessage_1.jpeg" alt="本山珠里さん" class="w-full h-full object-cover object-top">
         </div>
-        <p class="text-xs text-ocean-600 font-medium mb-1">Paper message 代表</p>
+        <p class="text-xs text-ocean-600 font-medium mb-0.5">Paper message 事業代表</p>
         <p class="serif text-base font-semibold text-ink mb-3">本山 珠里 さん</p>
+        <!-- ※ 要確認: 以下の説明文を元テキストへ差し替えてください -->
         <p class="text-xs text-ink-muted leading-relaxed">
-          地域に根ざした小さなお店を営む中で、デジタル化への一歩を一緒に踏み出してくださいました。
+          Paper messageは、地域に根ざした会社です。デジタル化の必要性を感じながらも、どこから手をつければいいか分からない状況の中で、リソース投資という関わり方を通じて一緒に改善を進めてきました。
         </p>
       </div>
 
       <!-- 聞き手 -->
-      <div class="bg-ocean-50 rounded-2xl p-6">
-        <p class="text-xs text-ink-muted mb-4">聞き手</p>
-        <!-- 差し替え時: この div を <img src="assets/yuinawa.jpg" alt="ゆいなわさん" class="w-14 h-14 rounded-full object-cover mb-4"> に置き換え -->
-        <div class="w-14 h-14 rounded-full bg-ocean-100 mb-4 flex items-center justify-center">
-          <svg class="w-6 h-6 text-ocean-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="bg-white rounded-2xl p-6 shadow-sm">
+        <p class="text-xs text-ink-muted mb-4 tracking-wider">聞き手</p>
+        <!-- 差し替え: <img src="assets/yuinawa.jpg" alt="ゆいなわさん" class="w-16 h-16 rounded-full object-cover mb-4"> -->
+        <div class="w-16 h-16 rounded-full bg-ocean-100 mb-4 flex items-center justify-center">
+          <svg class="w-7 h-7 text-ocean-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
           </svg>
         </div>
-        <p class="text-xs text-ocean-600 font-medium mb-1">聞き手</p>
+        <p class="text-xs text-ocean-600 font-medium mb-0.5">聞き手</p>
         <p class="serif text-base font-semibold text-ink mb-3">ゆいなわ さん</p>
+        <!-- ※ 要確認: 以下の説明文を元テキストへ差し替えてください -->
         <p class="text-xs text-ink-muted leading-relaxed">
           取材・執筆を担当しました。現場の空気感をそのままお届けできればと思っています。
         </p>
@@ -417,16 +426,16 @@
 
 
 <!-- ─────────────────────────────────────────────
-     CTA — 静かなバージョン
+     CTA
 ───────────────────────────────────────────── -->
-<section class="py-20 px-6 bg-ocean-50">
+<section class="py-20 px-6 bg-white border-t border-ocean-100">
   <div class="max-w-xl mx-auto text-center reveal">
     <p class="text-ocean-500 text-xs tracking-widest mb-5">CONTACT</p>
     <h2 class="serif text-xl md:text-2xl font-semibold text-ink leading-snug mb-5">
       まずは整理からでも、<br>大丈夫です。
     </h2>
     <p class="text-sm text-ink-light leading-relaxed mb-8">
-      課題がまだはっきりしていなくても、「何かが変わる気がする」という感覚だけで十分です。<br>
+      課題がまだはっきりしていなくても大丈夫です。<br>
       一緒に現状を整理するところから始めましょう。
     </p>
     <a href="index.html#contact"
