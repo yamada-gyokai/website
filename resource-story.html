@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>リソース投資事例｜Paper message 本山珠里さん | 株式会社 業務の改善</title>
-  <meta name="description" content="株式会社 業務の改善 代表取締役「改善くん」が行っているリソース投資について、支援している 本山石材株式会社 Paper message 事業部 代表の 本山珠里さんにインタビューした記事です">
+  <meta name="description" content="株式会社 業務の改善 代表取締役「改善くん」が行っているリソース投資について、支援している 本山印刷株式会社 Paper message 事業部 代表の 本山珠里さんにインタビューした記事です">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -52,8 +52,6 @@
     .reveal-delay-1 { transition-delay: 0.12s; }
     .reveal-delay-2 { transition-delay: 0.24s; }
 
-    /* ── Article typography ── */
-    /* セクション見出し: 元ページの ○ 形式を踏襲 */
     .art-heading {
       font-size: 1.05rem;
       font-weight: 700;
@@ -63,7 +61,7 @@
       padding-bottom: 10px;
       border-bottom: 1px solid #deeaff;
     }
-    .art-heading .maru { color: #2952b8; margin-right: 4px; }
+    .art-heading .maru { color: #2952b8; margin-right: 2px; }
 
     .art-body {
       font-size: 0.88rem;
@@ -71,20 +69,15 @@
       line-height: 2.1;
     }
 
-    /* ※ サブ見出し */
     .art-sub {
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       font-weight: 700;
-      color: #2952b8;
-      margin-bottom: 5px;
-      margin-top: 20px;
+      color: #2d3a50;
+      margin-top: 22px;
+      margin-bottom: 6px;
     }
+    .art-sub .circle-num { color: #2952b8; margin-right: 4px; }
 
-    /* 箇条書き */
-    .art-bullet { padding-left: 1em; text-indent: -1em; }
-    .art-bullet::before { content: '・'; color: #85afff; }
-
-    /* 注記ボックス（元ページのハイライトボックスに対応） */
     .art-note {
       background: #f0f6ff;
       border-left: 3px solid #85afff;
@@ -94,23 +87,34 @@
       color: #4a5a72;
       line-height: 2;
       margin: 20px 0;
+      font-style: italic;
     }
 
-    /* 番号バッジ */
-    .art-num {
+    .art-bullet {
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+      margin-bottom: 12px;
+    }
+    .art-bullet::before { content: '・'; color: #3a6fd8; }
+
+    .art-item-head {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #2d3a50;
+      margin-bottom: 4px;
+    }
+
+    .cta-link {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: #deeaff;
+      gap: 4px;
+      font-size: 0.78rem;
       color: #2952b8;
-      font-size: 0.7rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 3px;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
+    .cta-link:hover { color: #1e3e96; }
 
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #f0f4f8; }
@@ -159,24 +163,16 @@
 
 <!-- ─────────────────────────────────────────────
      HERO
-     タイトル: HTMLのog:titleより確認
-     カバー画像: og:imageより確認 (外部URL / ローカルへの差し替え可)
 ───────────────────────────────────────────── -->
 <section class="relative pt-16">
   <div class="relative h-[360px] md:h-[460px] overflow-hidden">
-    <!--
-      og:image URL (元ページのHTMLより):
-      https://storage.googleapis.com/production-os-assets/assets/7fffacbe-fedc-449c-88db-c61fe3965410
-      ローカル画像に差し替える場合は assets/ 以下に配置して src を変更してください
-    -->
-    <img src="assets/papermessage_1.jpeg"
+    <img src="assets/papermessage_hero.jpeg"
          alt="Paper message 本山珠里さんインタビュー"
          class="w-full h-full object-cover object-center">
     <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent"></div>
     <div class="absolute bottom-0 left-0 right-0 px-6 pb-10 md:pb-14">
       <div class="max-w-2xl mx-auto">
         <p class="text-ocean-200 text-xs tracking-widest mb-4">リソース投資事例</p>
-        <!-- 元ページタイトル（HTMLのog:titleより確認） -->
         <p class="serif text-xl md:text-2xl font-semibold text-white leading-snug">
           リソース投資が未来を開く
         </p>
@@ -191,46 +187,48 @@
 
 <!-- ─────────────────────────────────────────────
      LEAD
-     ※ 本文: 元ページHTMLはCSRのため取得不可。
-       スクリーンショットより部分復元。実際のテキストへ差し替えてください。
 ───────────────────────────────────────────── -->
 <section class="py-12 px-6 bg-white">
   <div class="max-w-2xl mx-auto reveal art-body">
-    <p>中小企業が抱える課題は、投資で多面にわたります。限られたリソースの中でこれを解決するには、従来のコンサルティングや単純な支援とは異なるアプローチが求められます。</p>
-    <p class="mt-4">そんな中、「リソース投資」という少し珍しいアプローチで企業課題を行う当社の取り組みをご紹介します。</p>
+    <p>中小企業が抱える課題は、複雑で多岐にわたります。限られたリソースの中でこれらを解決するには、従来のコンサルティングや単発的な支援だけでは限界があります。</p>
+    <p class="mt-4">そんな中、「リソース投資」という新しいアプローチで企業支援を行う当社の取り組みをご紹介します。</p>
   </div>
 </section>
 
 
 <!-- ─────────────────────────────────────────────
-     ○「リソース投資」とは？
-     レイアウト: 左テキスト + 右画像（元ページより）
+     〇「リソース投資」とは？
+     レイアウト: 左テキスト + 右画像
 ───────────────────────────────────────────── -->
 <section class="py-14 px-6 bg-white border-t border-gray-100">
   <div class="max-w-2xl mx-auto">
 
     <div class="reveal">
-      <h2 class="art-heading"><span class="maru">○</span>「リソース投資」とは？</h2>
+      <h2 class="art-heading"><span class="maru">〇</span>「リソース投資」とは？</h2>
     </div>
 
     <div class="reveal reveal-delay-1 md:flex gap-8 items-start">
       <div class="art-body md:flex-1">
-        <p>「リソース投資」は、単なるコンサルティングやITツール導入とは一線を画するアプローチとします。知見や時間の先行投資する。そのアプローチは下記の通りです：</p>
+        <p>「リソース投資」は、単なるコンサルティングやアドバイスにとどまらず、当社が持つ知識やスキル、さらには時間や労力を無償・安価で提供する支援です。</p>
+        <p class="mt-3">このアプローチは以下の点で従来にあるものとは異なります：</p>
 
-        <p class="art-sub">※ トータルな視点での課題把握</p>
-        <p>業務全体を俯瞰する目で、その企業の本質的な課題を理解します。表面的な問題だけでなく、根本的な課題も解決するために、関わり続けることを大切にします。</p>
+        <p class="art-sub"><span class="circle-num">①</span>トータルな視点での課題解決</p>
+        <p>単一の問題だけでなく、会社全体を俯瞰しながら必要な改善策を提案します。</p>
+        <p class="mt-2">例えば、在庫管理の改善だけでなく、それに関連する工程管理や売上データの統合なども視野に入れています。</p>
 
-        <p class="art-sub">※ 自分ごとして関わる姿勢</p>
-        <p>お客様の課題を、「お客様の課題」として捉えること。委託や外注としてではなく、同じチームの一員として関わります。</p>
+        <p class="art-sub"><span class="circle-num">②</span>柔軟性と即応性</p>
+        <p>応急処置として短期的な解決策を提供しながら、中長期的な視点で計画を立てる柔軟性があります。</p>
+        <p class="mt-2">本山さんも「困った時にすぐ提案してくれる」と、その即応性を高く評価してくださいました。</p>
 
-        <p class="art-sub">※ 価値創造を基礎とした支援</p>
-        <p>「価値が生まれたとき、その価値に見合った対価をいただく」ことを前提に、先行投資として知見・時間・改善力を提供します。</p>
+        <p class="art-sub"><span class="circle-num">③</span>信頼関係を基盤とした支援</p>
+        <p>「1億円預けても大丈夫」と言っていただけるほど、本山さんとの深い信頼関係を築いています。</p>
+        <p class="mt-2">このような関係性こそが、「リソース投資」の基盤となっています。</p>
       </div>
 
       <!-- 右側画像 -->
       <div class="mt-8 md:mt-0 md:w-52 flex-shrink-0">
-        <img src="assets/papermessage_1.jpeg"
-             alt="Paper message との取り組み"
+        <img src="assets/papermessage_shop1.jpg"
+             alt="Paper message 店舗の様子"
              class="w-full rounded-xl object-cover aspect-[3/4]">
       </div>
     </div>
@@ -240,46 +238,46 @@
 
 
 <!-- ─────────────────────────────────────────────
-     ○具体的な取り組みと成果
-     レイアウト: 上部画像 → 番号付きリスト
+     〇具体的な取り組みと成果
+     画像: woodboard.jpg 背景 + papermessage_app.jpeg 縦長・全体表示
 ───────────────────────────────────────────── -->
 <section class="py-14 px-6 bg-ocean-50">
   <div class="max-w-2xl mx-auto">
 
     <div class="reveal">
-      <h2 class="art-heading"><span class="maru">○</span>具体的な取り組みと成果</h2>
+      <h2 class="art-heading"><span class="maru">〇</span>具体的な取り組みと成果</h2>
     </div>
 
-    <!-- 上部画像 -->
-    <div class="reveal reveal-delay-1 mb-8">
-      <!--
-        元ページの画像（スクリーンショット確認: スマートフォン画面 + 店舗写真）
-        差し替え時: src を適切な取り組み画像に変更してください
-      -->
-      <img src="assets/papermessage_1.jpeg"
-           alt="取り組みの様子"
-           class="w-full rounded-xl object-cover max-h-64">
-      <p class="text-xs text-ink-muted text-center mt-2">実際の取り組みの様子</p>
+    <!-- woodboard背景 + アプリ画像（縦長・全体表示） -->
+    <div class="reveal reveal-delay-1 mb-2 relative rounded-t-xl overflow-hidden" style="min-height: 320px;">
+      <img src="assets/woodboard.jpg"
+           alt=""
+           class="absolute inset-0 w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/25"></div>
+      <div class="relative flex items-center justify-center p-6" style="min-height: 320px;">
+        <img src="assets/papermessage_app.jpeg"
+             alt="実際に構築した在庫管理アプリ"
+             class="max-h-72 md:max-h-80 w-auto object-contain rounded-xl shadow-2xl">
+      </div>
     </div>
+    <p class="text-xs text-ink-muted text-center py-2.5 mb-8 bg-ocean-100/60 rounded-b-xl">実際に構築した在庫管理アプリ</p>
 
     <div class="reveal art-body space-y-5">
-      <div class="flex gap-4 items-start">
-        <span class="art-num">1</span>
-        <div>
-          <p class="font-bold text-ink text-sm mb-1">在庫管理システムの導入</p>
-          <p>ハードルを下げながら、在庫管理アプリを導入しました。手入力だった部分をシステム化し、現場のスタッフが使いやすい形へ整えました。</p>
-        </div>
+      <p>今回、本山印刷で実施したポイントです。</p>
+
+      <div>
+        <p class="art-item-head">1. 在庫管理システムの導入</p>
+        <p>手書きメモとスプレッドシートでの在庫管理から脱却し、ノーコードで構築した在庫管理アプリを導入しました。</p>
+        <p class="mt-2">現場でも運用しやすく、業務効率が大幅に向上しました。</p>
       </div>
 
-      <div class="flex gap-4 items-start">
-        <span class="art-num">2</span>
-        <div>
-          <p class="font-bold text-ink text-sm mb-1">ホームページ定期運用への改善</p>
-          <p>更新の頻度を改善し、オンライン集客力を高める取り組みをしました。無理なく続けられる仕組みを整えることを優先しました。</p>
-        </div>
+      <div>
+        <p class="art-item-head">2. ホームページ正常運用への調整</p>
+        <p>旧来のサイトでは独自ドメインとの紐づけが不十分でしたが、適切な調整を実施。</p>
+        <p class="mt-2">これにより検索エンジンにも正しく表示されるようになり、オンライン集客力が向上しました。</p>
       </div>
 
-      <p class="mt-2">この結果から、「リソース投資」は一歩ずつ着実に、むしろも会社との関係の可能性を開いています。</p>
+      <p>これらの取り組みは、「リソース投資」の一部にすぎません。<br>私たちはお客様ごとの課題に寄り添いながら、より良い解決策を提案しています。</p>
     </div>
 
   </div>
@@ -287,46 +285,53 @@
 
 
 <!-- ─────────────────────────────────────────────
-     ○リソース投資を経て見えてきた課題
-     レイアウト: テキスト+箇条書き + 右画像
+     〇リソース投資を経て見えてきた課題
+     レイアウト: 左テキスト + 右画像
 ───────────────────────────────────────────── -->
 <section class="py-14 px-6 bg-white">
   <div class="max-w-2xl mx-auto">
 
     <div class="reveal">
-      <h2 class="art-heading"><span class="maru">○</span>リソース投資を経て見えてきた課題</h2>
+      <h2 class="art-heading"><span class="maru">〇</span>リソース投資を経て見えてきた課題</h2>
     </div>
 
     <div class="reveal reveal-delay-1 md:flex gap-8 items-start">
       <div class="art-body md:flex-1">
-        <p>リソース投資によって取り組んだ結果、以下のような課題が見えてきました。</p>
+        <p>リソース投資によって明らかになった課題もあります。<br>以下は、本山さんの会社が抱える主な問題です。</p>
 
-        <ul class="mt-4 space-y-3">
-          <li class="art-bullet">
-            <span class="font-bold text-ink">工数管理：</span>作業スタッフの業務時間の把握が難しく、業務ごとの必要なプロセスが見えにくい状況でした。
+        <ul class="mt-5 space-y-4">
+          <li>
+            <p class="art-bullet art-item-head">工程管理</p>
+            <p class="pl-5 text-sm">作業スケジュールや進捗状況が可視化されておらず、在庫管理にも悪影響</p>
           </li>
-          <li class="art-bullet">
-            <span class="font-bold text-ink">顧客管理：</span>チームとの連携が取りにくく、毎月ごとの入力作業による負荷が大きい。リアルタイムのデータを含む状況が分からない。
+          <li>
+            <p class="art-bullet art-item-head">勤怠管理</p>
+            <p class="pl-5 text-sm">タイムカードを手作業で集計し、給与計算ソフトに入力する非効率なプロセス</p>
           </li>
-          <li class="art-bullet">
-            <span class="font-bold text-ink">売上データの一元化：</span>日々のシステム化を行うことで、売上データを正確に把握できるようになります。
+          <li>
+            <p class="art-bullet art-item-head">売上データの一元化</p>
+            <p class="pl-5 text-sm">店舗レジとオンラインショップ間でデータが連携していないため、リアルタイム分析が難しい</p>
           </li>
-          <li class="art-bullet">
-            <span class="font-bold text-ink">属人化：</span>特定のスタッフに仕事が偏りすぎているため、業務の効率化が難しい状況でした。
+          <li>
+            <p class="art-bullet art-item-head">属人化の弊害</p>
+            <p class="pl-5 text-sm">特定のスタッフしか対応できない業務が多く、全体的な効率性を欠いている</p>
           </li>
         </ul>
 
-        <div class="art-note mt-6">
-          「改善という仕事を超えた、人と人のつながりが見えてきた」。そう語る中で、仕事と同時に、人生（業務）の全体像が変わっていくことを実感しています。
-        </div>
+        <p class="mt-5">これらは中小企業に共通する課題でもあり、「リソース不足」と「属人化」がその根本原因となっています。</p>
 
-        <p class="mt-4">うまく行くために大事なのは、人間とそれぞれの視点で、各々の方向の可能性をメディアへと変えていく。大切になっています。</p>
+        <p class="mt-4">本山さんはこれらの課題について3年計画での解決を目指しています。<br>
+        1年目に計画立案、2年目に実行、3年目に検証というサイクルで進行し、KPI（重要業績評価指標）を設定して進捗を管理していく予定です。</p>
+
+        <div class="art-note">
+          「地図を描くことで初めて次へ進める」と語る本山さんの姿勢は、多くの中小企業が参考にすべきモデルケースと言えるでしょう。
+        </div>
       </div>
 
       <!-- 右側画像 -->
       <div class="mt-8 md:mt-0 md:w-48 flex-shrink-0">
-        <img src="assets/papermessage_2.jpeg"
-             alt="店舗の様子"
+        <img src="assets/papermessage_shop2.jpg"
+             alt="Paper message 店舗の様子"
              class="w-full rounded-xl object-cover aspect-[3/4]">
       </div>
     </div>
@@ -336,29 +341,28 @@
 
 
 <!-- ─────────────────────────────────────────────
-     ○「共感」と「信頼」が生む未来
+     〇「共感」と「信頼」が生む未来
      レイアウト: 左画像 + 右テキスト
 ───────────────────────────────────────────── -->
 <section class="py-14 px-6 bg-ocean-50">
   <div class="max-w-2xl mx-auto">
 
     <div class="reveal">
-      <h2 class="art-heading"><span class="maru">○</span>「共感」と「信頼」が生む未来</h2>
+      <h2 class="art-heading"><span class="maru">〇</span>「共感」と「信頼」が生む未来</h2>
     </div>
 
     <div class="reveal reveal-delay-1 md:flex gap-8 items-start">
       <!-- 左側画像 -->
       <div class="mb-6 md:mb-0 md:w-48 flex-shrink-0">
         <img src="assets/papermessage_1.jpeg"
-             alt="本山さんとの対話"
+             alt="本山さんとの対話の様子"
              class="w-full rounded-xl object-cover aspect-[3/4] object-top">
       </div>
 
       <div class="art-body space-y-4">
-        <p>私たちは「地域の小さな会社の挑戦を応援する」という気持ちで、リソース投資に取り組んでいます。</p>
-        <p>本山さんとの関わりの中で、「この会社がうまくいくと、自分もうれしい」という気持ちが自然に生まれていました。</p>
-        <p>私たちが目指すのは、「支援する・される」ではなく、「一緒に未来を作るパートナー」として関わることです。</p>
-        <p>また、「成功するとこうなる」という話ではなく、その会社と一緒になって、地域や社会に新しい価値を提供していく。そのプロセス自体に、意味があると思っています。</p>
+        <p>本山さんは、「自分たちの価値観や思いを共有できる人と取り組みたい」という強い思いをお持ちです。<br>「リソース投資」は単なるビジネス支援ではなく、人と人との信頼関係から成り立つものです。</p>
+        <p>本山さん自身も、「改善王なら」と心から納得した上で進められる点が、この取り組みの大きな魅力だと感じています。</p>
+        <p>また、本山さんは「自分たちだけでは気づけない視点やアイデア」を得られることにも感謝しています。<br>それは改善王だからこその経験、視点があるからこそ成せることであると言えます。</p>
       </div>
     </div>
 
@@ -367,27 +371,26 @@
 
 
 <!-- ─────────────────────────────────────────────
-     ○まとめ：「リソース投資」の可能性
-     レイアウト: テキスト + 右画像
+     〇まとめ：「リソース投資」の可能性
+     レイアウト: 左テキスト + 右画像
 ───────────────────────────────────────────── -->
 <section class="py-14 px-6 bg-white">
   <div class="max-w-2xl mx-auto">
 
     <div class="reveal">
-      <h2 class="art-heading"><span class="maru">○</span>まとめ：「リソース投資」の可能性</h2>
+      <h2 class="art-heading"><span class="maru">〇</span>まとめ：「リソース投資」の可能性</h2>
     </div>
 
     <div class="reveal reveal-delay-1 md:flex gap-8 items-start">
       <div class="art-body space-y-4 md:flex-1">
-        <p>「リソース投資」は、中小企業が直面する課題を解決するための新しいアプローチです。一般的な支援の枠を超えて、深くコミットすることで、真の課題解決が可能になります。</p>
-        <p>新しいシステムやツールを導入し、新しいビジネスモデルを開発し、地域や社会に新しい価値を提供していく。そのような挑戦を続けている会社と、一緒に前へ進める。</p>
-        <p>これからも引き続き積み重ねながら、新しいリソース投資の取り組みについてお伝えしていければと思います。</p>
+        <p>「リソース投資」は、中小企業支援における新しい可能性を示しています。<br>一歩踏み込んだ形で企業と向き合い、その成長を共に歩むこのアプローチは、多くの中小企業が抱える課題解決への道筋となります。<br>本山印刷での取り組みは、その成功事例として今後さらに注目されるでしょう。</p>
+        <p>このような信頼関係と柔軟性に基づく支援モデルが広まれば、新たなビジネスチャンスや持続可能な成長へつながる未来が待っています。<br>当社はこれからも「リソース投資」を通じて、多くのお客様とともに未来を切り開いていきます。</p>
       </div>
 
       <!-- 右側画像 -->
       <div class="mt-6 md:mt-0 md:w-44 flex-shrink-0">
-        <img src="assets/papermessage_2.jpeg"
-             alt="Paper message 店舗外観"
+        <img src="assets/papermessage_shop3.jpeg"
+             alt="Paper message 店舗の様子"
              class="w-full rounded-xl object-cover aspect-square">
       </div>
     </div>
@@ -398,8 +401,6 @@
 
 <!-- ─────────────────────────────────────────────
      取材にご協力いただいた方々
-     会社名: 元ページHTMLのog:descriptionより確認
-     「本山石材株式会社 Paper message 事業部 代表の 本山珠里さん」
 ───────────────────────────────────────────── -->
 <section class="py-14 px-6 bg-ocean-50 border-t border-ocean-100">
   <div class="max-w-2xl mx-auto">
@@ -410,43 +411,40 @@
 
     <div class="reveal reveal-delay-1 grid sm:grid-cols-2 gap-6">
 
-      <!-- 語り手 -->
+      <!-- 話し手 -->
       <div class="bg-white rounded-2xl p-6 shadow-sm">
-        <p class="text-xs text-ink-muted mb-4 tracking-wider">語り手</p>
-        <!--
-          差し替え: 本山珠里さんの写真
-          <img src="assets/motoyama.jpg" alt="本山珠里さん" class="w-16 h-16 rounded-full object-cover mb-4">
-        -->
+        <p class="text-xs text-ink-muted mb-4 tracking-wider">話し手</p>
         <div class="w-16 h-16 rounded-full mb-4 overflow-hidden bg-ocean-100">
-          <img src="assets/papermessage_1.jpeg"
+          <img src="assets/motoyama-san.jpg"
                alt="本山珠里さん"
-               class="w-full h-full object-cover object-top">
+               class="w-full h-full object-cover">
         </div>
-        <!-- 会社名: og:descriptionより確認 -->
-        <p class="text-xs text-ocean-600 font-medium mb-0.5">本山石材株式会社 Paper message 事業部 代表</p>
+        <p class="text-xs text-ocean-600 font-medium mb-0.5">Paper message 事業部 代表</p>
         <p class="serif text-base font-semibold text-ink mb-3">本山 珠里 さん</p>
         <p class="text-xs text-ink-muted leading-relaxed">
-          Paper messageは、地域に根ざした会社です。デジタル化の必要性を感じながらも、どこから手をつければいいか分からない状況の中で、リソース投資という関わり方を通じて一緒に改善を進めてきました。
+          本山印刷株式会社の取締役であり、Paper message事業部の代表を務める。2000年に入社し、印刷会社の強みを活かしたペーパーアイテム専門店を展開。デザインから販売まで一貫して手掛け、ユニークな紙製品の開発に力を入れているほか、ネットショップの運営にも注力し、全国への販路拡大を目指している。印刷の魅力や可能性を広めるため、ワークショップやイベントも積極的に開催し、多くの人々に楽しさや新しい発見を伝える活動に取り組んでおり、その情熱は業界や地域全体に良い影響を与えている。
         </p>
+        <a href="https://www.papermessage.jp/" target="_blank" rel="noopener" class="cta-link mt-4 inline-flex">
+          詳しくはこちら →
+        </a>
       </div>
 
       <!-- 聞き手 -->
       <div class="bg-white rounded-2xl p-6 shadow-sm">
         <p class="text-xs text-ink-muted mb-4 tracking-wider">聞き手</p>
-        <!--
-          差し替え: ゆいなわさんの写真
-          <img src="assets/yuinawa.jpg" alt="ゆいなわさん" class="w-16 h-16 rounded-full object-cover mb-4">
-        -->
-        <div class="w-16 h-16 rounded-full mb-4 bg-ocean-100 flex items-center justify-center">
-          <svg class="w-7 h-7 text-ocean-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-          </svg>
+        <div class="w-16 h-16 rounded-full mb-4 overflow-hidden bg-ocean-100">
+          <img src="assets/yuinawa-san.jpg"
+               alt="ゆいなわさん"
+               class="w-full h-full object-cover">
         </div>
-        <p class="text-xs text-ocean-600 font-medium mb-0.5">聞き手</p>
+        <p class="text-xs text-ocean-600 font-medium mb-0.5">「聞く人」</p>
         <p class="serif text-base font-semibold text-ink mb-3">ゆいなわ さん</p>
         <p class="text-xs text-ink-muted leading-relaxed">
-          取材・執筆を担当しました。現場の空気感をそのままお届けできればと思っています。
+          「聞く人」として多彩な現場を経験し、対話を通じて相手が「本当に大切なこと」に気づくきっかけを提供する、聞くことのスペシャリスト。ポッドキャスト番組「聞く人ラジオ」では約130名のゲストと深い対話を展開し、多様な価値観や物語を届けている。前職の会員制図書館「アカデミーヒルズ」での司書経験や、舞台俳優、焼き鳥店店長、キャバクラのボーイなど多彩な職歴を活かし、インタビューやポッドキャスト制作、社内ラジオ運営など幅広い事業に取り組む柔軟性と創造性が特徴。
         </p>
+        <a href="https://yuinawa.com/" target="_blank" rel="noopener" class="cta-link mt-4 inline-flex">
+          詳しくはこちら →
+        </a>
       </div>
 
     </div>
