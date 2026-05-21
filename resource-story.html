@@ -255,9 +255,31 @@
            class="absolute inset-0 w-full h-full object-cover">
       <div class="absolute inset-0 bg-black/25"></div>
       <div class="relative flex items-center justify-center p-6" style="min-height: 320px;">
-        <img src="assets/papermessage_app.jpeg"
-             alt="実際に構築した在庫管理アプリ"
-             class="max-h-72 md:max-h-80 w-auto object-contain rounded-xl shadow-2xl">
+        <!-- スマホフレーム -->
+        <div style="
+          background: #111;
+          border-radius: 36px;
+          padding: 10px 8px;
+          box-shadow: 0 0 0 2px #333, 0 24px 48px rgba(0,0,0,0.6), inset 0 0 0 1px #444;
+          position: relative;
+          display: inline-block;
+        ">
+          <!-- 上部ノッチ風ライン -->
+          <div style="
+            width: 50px; height: 5px;
+            background: #333; border-radius: 3px;
+            margin: 0 auto 8px;
+          "></div>
+          <img src="assets/papermessage_app.jpeg"
+               alt="実際に構築した在庫管理アプリ"
+               style="max-height: 280px; width: auto; display: block; border-radius: 4px;">
+          <!-- 下部ホームバー風ライン -->
+          <div style="
+            width: 40px; height: 4px;
+            background: #444; border-radius: 2px;
+            margin: 8px auto 0;
+          "></div>
+        </div>
       </div>
     </div>
     <p class="text-xs text-ink-muted text-center py-2.5 mb-8 bg-ocean-100/60 rounded-b-xl">実際に構築した在庫管理アプリ</p>
