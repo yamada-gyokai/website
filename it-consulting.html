@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITなんでも相談 | 株式会社 業務の改善</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+            serif: ['"Noto Serif JP"', 'serif'],
+          },
+          colors: {
+            ink: { DEFAULT: '#2d3a50', light: '#4a5a72', muted: '#6b7a90' },
+            ocean: {
+              50:  '#f0f6ff',
+              100: '#deeaff',
+              200: '#b8d0ff',
+              300: '#85afff',
+              500: '#3a6fd8',
+              600: '#2952b8',
+              700: '#1e3e96',
+              800: '#152f78',
+              900: '#0e2058',
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; line-height: 1.85; background: #fff; }
+    h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #2952b8;
+      margin-bottom: 16px;
+    }
+    .label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #3a6fd8;
+    }
+
+    .state-card {
+      background: #fff;
+      border: 1.5px solid #b8d0ff;
+      border-top: 3px solid #3a6fd8;
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .state-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e3e96;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .state-body {
+      font-size: 0.78rem;
+      color: #6b7a90;
+      line-height: 1.8;
+    }
+
+    .outcome-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: #1e3e96;
+      background: #deeaff;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: #4a5a72;
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+    .check-list li::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 18px;
+      background: #deeaff;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233a6fd8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-size: 12px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .mini-flow-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: #6b7a90;
+      margin-bottom: 10px;
+    }
+    .mini-step {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #2952b8;
+      background: #f0f6ff;
+      border: 1px solid #deeaff;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+    .mini-arrow { color: #85afff; font-size: 0.85rem; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f0f4f8; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- ─────────────────────────────────────────────
+     HEADER
+───────────────────────────────────────────── -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="group">
+      <img src="assets/GyokaiLogoYoko.svg" alt="株式会社 業務の改善" class="h-10 w-auto">
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="services.html"      class="text-sm text-ocean-700 font-medium border-b border-ocean-300 pb-0.5">サービス</a>
+      <a href="index.html#process" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">進め方</a>
+      <a href="about.html"         class="text-sm text-ink-light hover:text-ocean-700 transition-colors">代表について</a>
+      <a href="index.html#contact" class="text-sm bg-ocean-700 hover:bg-ocean-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">
+        相談してみる
+      </a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 text-ink-muted hover:text-ocean-700 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-5">
+      <a href="services.html"      class="text-sm text-ocean-700 font-medium">サービス</a>
+      <a href="index.html#process" class="text-sm text-ink-light">進め方</a>
+      <a href="about.html"         class="text-sm text-ink-light">代表について</a>
+      <a href="index.html#contact" class="text-sm bg-ocean-700 text-white py-3 px-6 rounded-full text-center font-medium">相談してみる</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ─────────────────────────────────────────────
+     HERO
+───────────────────────────────────────────── -->
+<section class="pt-36 pb-20 px-6 bg-white">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <a href="services.html" class="text-xs text-ink-muted hover:text-ocean-600 transition-colors">サービス</a>
+        <span class="text-ink-muted text-xs">/</span>
+        <span class="text-xs text-ocean-600 font-medium">ITなんでも相談</span>
+      </div>
+      <p class="label">月額 / スポット</p>
+      <h1 class="serif text-3xl md:text-4xl font-semibold text-gray-900 leading-snug mb-8">
+        「整理されていない」<br>から始まっていい。
+      </h1>
+      <p class="text-ink-light leading-relaxed text-base mb-6">
+        「どこから手をつければいいかわからない」という状態でも、まったく構いません。<br>
+        「こんなこと聞いていいの？」というレベルの話でも、大丈夫です。
+      </p>
+      <p class="text-ink-light leading-relaxed text-base">
+        ITのことを現場の言葉で話しながら、一緒に整理します。<br>
+        まず話すだけでも、見えてくることがあります。
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     こういう状態に
+───────────────────────────────────────────── -->
+<section class="py-20 px-6 bg-ocean-50">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal mb-10">
+      <p class="outcome-label">この状態になります</p>
+    </div>
+
+    <div class="reveal grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div class="state-card">
+        <p class="state-title">課題が、整理されている。</p>
+        <p class="state-body">何が問題で、何から始めればいいかが見えている。「なんとなくうまくいっていない」から抜け出せる。</p>
+      </div>
+
+      <div class="state-card reveal-delay-1">
+        <p class="state-title">進め方に、迷いがなくなっている。</p>
+        <p class="state-body">次に何をすればいいかが、具体的に見えている。ぼんやりした不安が、動ける手順に変わっている。</p>
+      </div>
+
+      <div class="state-card reveal-delay-2">
+        <p class="state-title">「やる価値があるか」が、判断できる。</p>
+        <p class="state-body">見切り発車でなく、根拠を持って「やる・やらない・後でやる」を決められる状態になっている。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     こんな場合に
+───────────────────────────────────────────── -->
+<section class="py-20 px-6 bg-white">
+  <div class="max-w-2xl mx-auto">
+
+    <div class="reveal mb-8">
+      <h2 class="serif text-xl font-semibold text-gray-900 mb-2">こんな場合に</h2>
+      <p class="text-sm text-ink-muted">どれかひとつでも思い当たれば、相談の入口になります。</p>
+    </div>
+
+    <ul class="check-list reveal space-y-1">
+      <li>ITを使って改善したいが、何から始めればいいかわからない</li>
+      <li>AIを社内でどう活用すればいいか整理できていない</li>
+      <li>アプリやシステムを作りたいが、どう設計すればゴールに辿り着けるかわからない</li>
+      <li>課題が整理できておらず、対策が中途半端になっている</li>
+      <li>IT会社と話しても、かみ合わない・伝わらないと感じている</li>
+    </ul>
+
+    <div class="reveal mt-10 bg-ocean-50 border border-ocean-100 rounded-2xl px-8 py-7">
+      <p class="text-sm text-ink-light leading-relaxed">
+        「整理できていない」「何から話せばいいかわからない」——<br>
+        そんな状態でも大丈夫です。むしろ、そこから一緒に整理することが、この相談の使い方です。
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     どう進むか
+───────────────────────────────────────────── -->
+<section class="py-20 px-6 bg-ocean-50">
+  <div class="max-w-2xl mx-auto">
+
+    <div class="reveal mb-8">
+      <h2 class="serif text-xl font-semibold text-gray-900 mb-2">進め方のイメージ</h2>
+      <p class="text-sm text-ink-muted">まず話を聞くことから始まります。整理されていなくていい。</p>
+    </div>
+
+    <div class="reveal flex items-center gap-3 flex-wrap mb-10">
+      <span class="mini-step">ヒアリング</span>
+      <span class="mini-arrow">→</span>
+      <span class="mini-step">課題整理</span>
+      <span class="mini-arrow">→</span>
+      <span class="mini-step">方針確認</span>
+    </div>
+
+    <div class="reveal space-y-4 text-sm text-ink-light leading-relaxed">
+      <p>
+        <strong class="font-medium text-ink">ヒアリング：</strong>整理されていなくてOK。「なんとなくうまくいっていない」だけでも構いません。まず話を聞きます。
+      </p>
+      <p>
+        <strong class="font-medium text-ink">課題整理：</strong>聞いた内容をもとに、業務フローや課題を一緒に可視化します。症状ではなく、構造から見ます。
+      </p>
+      <p>
+        <strong class="font-medium text-ink">方針確認：</strong>「やる価値があるか」「どこから始めるか」を整理します。見切り発車を防ぎ、動ける状態にします。
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     CTA
+───────────────────────────────────────────── -->
+<section class="py-24 px-6 bg-ocean-700">
+  <div class="max-w-2xl mx-auto text-center reveal">
+    <p class="text-ocean-200 text-sm tracking-widest mb-6">CONTACT</p>
+    <h2 class="serif text-2xl md:text-3xl font-semibold text-white mb-6 leading-snug">
+      まずは整理からでも、<br>大丈夫です。
+    </h2>
+    <p class="text-ocean-200 mb-10 leading-relaxed">
+      「こんなこと相談していいの？」と思っていても、構いません。<br>
+      話しながら整理することから、始められます。初回は無料です。
+    </p>
+    <a href="index.html#contact"
+       class="inline-flex items-center gap-2 bg-white text-ocean-800 hover:bg-ocean-50 px-8 py-4 rounded-xl font-medium transition-colors">
+      話してみる
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────────── -->
+<footer class="bg-gray-900 py-14 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between gap-8 mb-10">
+      <div>
+        <div class="text-xs text-gray-500 mb-1">株式会社</div>
+        <div class="text-xl font-bold text-white mb-3">業務の改善</div>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          現場が本来の価値を発揮できる仕組みを、<br>ITでつくります。
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-10">
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">サービス</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="it-consulting.html" class="hover:text-white transition-colors text-white">ITなんでも相談</a></li>
+            <li><a href="support.html"       class="hover:text-white transition-colors">伴走型改善支援</a></li>
+            <li><a href="development.html"   class="hover:text-white transition-colors">本格開発支援</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">会社情報</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="about.html"         class="hover:text-white transition-colors">代表について</a></li>
+            <li><a href="index.html#process" class="hover:text-white transition-colors">進め方</a></li>
+            <li><a href="index.html#contact" class="hover:text-white transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6">
+      <p class="text-xs text-gray-600">© 2026 株式会社 業務の改善. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow-sm', window.scrollY > 20);
+  }, { passive: true });
+
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
