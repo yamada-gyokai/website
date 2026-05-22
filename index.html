@@ -132,6 +132,39 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #f0f4f8; }
     ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+
+    /* News card */
+    .news-card {
+      background: #fff;
+      border: 1px solid #e5edf7;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .news-card:hover {
+      box-shadow: 0 6px 24px rgba(41, 82, 184, 0.08);
+      transform: translateY(-2px);
+    }
+    .news-card-thumb {
+      height: 160px;
+      background: #f0f6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .news-card-body { padding: 20px 22px 24px; }
+    .news-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .news-category { font-size: 0.7rem; font-weight: 500; color: #2952b8; letter-spacing: 0.08em; }
+    .news-date { font-size: 0.7rem; color: #6b7a90; }
+    .news-card-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2d3a50;
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .news-card-excerpt { font-size: 0.8rem; color: #6b7a90; line-height: 1.85; }
   </style>
 </head>
 
@@ -728,6 +761,48 @@
         </div>
       </details>
     </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     NEWS & TOPICS
+───────────────────────────────────────────── -->
+<section class="bg-ocean-50 py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal mb-12">
+      <p class="label">NEWS &amp; TOPICS</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-semibold text-gray-900 mb-4">最近の取り組み</h2>
+      <p class="text-ink-light text-sm max-w-md leading-relaxed">
+        改善の記録や、現場で考えていることを、少しずつ掲載しています。
+      </p>
+    </div>
+
+    <!-- 記事グリッド — 将来 JSON / GAS から動的生成予定 -->
+    <div id="news-grid" class="grid md:grid-cols-2 gap-5">
+
+      <article class="news-card reveal" data-slug="homepage-renewal">
+        <a href="articles/homepage-renewal.html" class="block group">
+          <div class="news-card-thumb">
+            <img src="assets/GyokaiLogo.svg" alt="" class="h-14 w-14 opacity-20">
+          </div>
+          <div class="news-card-body">
+            <div class="news-card-meta">
+              <span class="news-category">サイトについて</span>
+              <span class="news-date">2026年5月</span>
+            </div>
+            <h3 class="news-card-title group-hover:text-ocean-700 transition-colors duration-200">
+              ホームページをリニューアルしています
+            </h3>
+            <p class="news-card-excerpt">
+              「IT会社のサイト」ではなく、"成果につながる状態を作る" を整理するサイトへ、少しずつ作り直しています。
+            </p>
+          </div>
+        </a>
+      </article>
+
+    </div>
+    <!-- /news-grid -->
   </div>
 </section>
 
