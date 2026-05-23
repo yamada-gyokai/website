@@ -4,16 +4,17 @@
 // =============================================================================
 //
 // 【事前準備: Advanced Google Services の有効化】
-//   このスクリプトは Drive API（Advanced Google Services）を使用します。
-//   以下の手順で有効化してください:
+//   このスクリプトは Drive API（Advanced Google Services）を使います。
+//   必ず以下の手順で有効化してから実行してください:
+//
 //     1. Apps Script エディタ左メニューの「サービス」横の「+」をクリック
-//     2. 一覧から「Drive API」を選択
-//     3. 「追加」ボタンをクリック
-//     4. 左メニューに「Drive v2」または「Drive v3」が表示されれば成功
+//     2. 一覧から「Drive API」を選択（バージョンは v2 のまま変更しない）
+//     3. 「追加」をクリック
+//     4. 左メニューに「Drive」が表示されれば成功
 //
 // 【実行手順】
 //   1. 上記の Drive API を有効化する（初回のみ）
-//   2. CONFIG の各値を書き換える
+//   2. CONFIG の値を確認・必要なら書き換える
 //   3. 上部ドロップダウンで「main」を選択
 //   4. ▶ 実行 をクリック
 //   5. 初回のみ「権限の確認」ダイアログが出る → 「許可」を押す
@@ -23,21 +24,20 @@
 
 
 // =============================================================================
-// ▼▼▼ ここだけ書き換えて実行する ▼▼▼
+// ▼▼▼ CONFIG: 記事ごとにここだけ書き換えて実行する ▼▼▼
 // =============================================================================
 
 var CONFIG = {
 
-  // 変換したい Google Docs の URL をそのまま貼る
-  DOC_URL: "https://docs.google.com/document/d/ここにURLを貼る/edit",
+  // 変換したい Google Docs の URL
+  DOC_URL: "https://docs.google.com/document/d/1p1H-MzngzKkgsXyyMcFTkKvym9i1JxxGx5N01C6ULTI/edit",
 
   // article-template.html を Google Drive にアップロードしたときのファイルID
-  // Drive の共有URL: https://drive.google.com/file/d/【この部分】/view
-  TEMPLATE_FILE_ID: "ここにファイルIDを貼る",
+  // Drive URL: https://drive.google.com/file/d/【この部分】/view
+  TEMPLATE_FILE_ID: "1dhOSgOEvGjA5Zbt5dThaNgO5q16ZXRne",
 
   // 生成した HTML を保存するフォルダID
-  // 空文字 "" にするとマイドライブ直下に保存される
-  OUTPUT_FOLDER_ID: "",
+  OUTPUT_FOLDER_ID: "1k4LkETfYEP4Idqhno9CcHjNdKcm964cX",
 
   // 生成ファイルの名前（.html は自動付与される）
   SLUG: "homepage-renewal",
@@ -51,7 +51,7 @@ var CONFIG = {
   // カテゴリ名（パンくず・記事メタに使われる）
   CATEGORY: "サイトについて",
 
-  // リード文（記事冒頭の1〜2文。Google Docs の冒頭文とは別に手動で入力する）
+  // リード文（記事冒頭の1〜2文）
   LEAD: "サイトを作り直しています。以前のサイトは「IT会社のホームページ」に見えていました。それが、私たちがやっていることとは少しずれていると気づいたので、作り直すことにしました。"
 
 };
@@ -65,7 +65,7 @@ var CONFIG = {
 
 // =============================================================================
 // メイン実行関数
-// GAS 上部ドロップダウンで「main」を選んで ▶ 実行する
+// ドロップダウンで「main」を選んで ▶ 実行する
 // =============================================================================
 
 function main() {
@@ -132,32 +132,37 @@ function extractDocId(url) {
 // STEP 2: Google Docs を HTML 文字列として取得する
 // =============================================================================
 //
-// 【重要】DriveApp.getAs("text/html") は Google Docs ネイティブファイルに非対応。
-//   "Converting from application/vnd.google-apps.document to text/html
-//    is not supported." エラーが発生するため、Drive API の exportLinks を使う。
+// 【なぜ DriveApp.getAs() を使わないか】
+//   DriveApp.getFileById(id).getAs("text/html") は Google Docs ネイティブファイルに非対応。
+//   実行すると "Converting from application/vnd.google-apps.document to text/html
+//   is not supported." エラーが発生する。
+//
+// 【この関数でやっていること】
+//   Drive API v2 の exportLinks を使い、Google Docs を HTML として取得する。
+//   exportLinks は「このファイルを○○形式でダウンロードするURL」の一覧。
+//   OAuth トークン付きで fetch することで、認証済みのダウンロードが可能になる。
 //
 // 【必要な設定】
-//   Apps Script エディタ → サービス「+」→「Drive API」を追加する。
-//   追加後に Drive.Files.get() が使えるようになる。
-//
-// 処理の流れ:
-//   1. Drive.Files.get() でファイルの exportLinks を取得する
-//   2. exportLinks["text/html"] でエクスポート用URLを取り出す
-//   3. UrlFetchApp.fetch() で OAuth 認証しながら HTML をダウンロードする
+//   Advanced Google Services → Drive API を有効化する（ファイル冒頭参照）。
+//   有効化後に Drive.Files.get() が使えるようになる。
 //
 function getDocAsHtml(docId) {
 
-  // Drive API でファイルのエクスポートリンク一覧を取得する
-  // （Drive API が Advanced Google Services で有効になっている必要がある）
-  var fileInfo = Drive.Files.get(docId, { fields: "exportLinks" });
+  // Drive API v2 でファイルのエクスポートリンク一覧を取得する
+  var fileInfo = Drive.Files.get(docId);
 
-  // text/html 形式のエクスポート URL を取り出す
-  var exportUrl = fileInfo.exportLinks["text/html"];
-  if (!exportUrl) {
-    throw new Error("text/html のエクスポートURLが取得できませんでした。ファイルが Google Docs 形式か確認してください。");
+  // exportLinks から text/html 形式の URL を取り出す
+  var exportLinks = fileInfo["exportLinks"];
+  if (!exportLinks) {
+    throw new Error("exportLinks が取得できませんでした。Drive API が有効か、ファイルが Google Docs 形式か確認してください。");
   }
 
-  // OAuth トークンで認証してHTMLをダウンロードする
+  var exportUrl = exportLinks["text/html"];
+  if (!exportUrl) {
+    throw new Error("text/html のエクスポートURLがありません。ファイルが Google Docs 形式か確認してください。");
+  }
+
+  // OAuth トークンで認証しながら HTML をダウンロードする
   var response = UrlFetchApp.fetch(exportUrl, {
     headers: {
       Authorization: "Bearer " + ScriptApp.getOAuthToken()
@@ -165,10 +170,10 @@ function getDocAsHtml(docId) {
     muteHttpExceptions: true
   });
 
-  // レスポンスコードを確認する（200以外はエラー）
+  // HTTP ステータスを確認する（200 以外はエラー）
   var statusCode = response.getResponseCode();
   if (statusCode !== 200) {
-    throw new Error("HTML取得に失敗しました。レスポンスコード: " + statusCode + " / URL: " + exportUrl);
+    throw new Error("HTML の取得に失敗しました。ステータスコード: " + statusCode);
   }
 
   return response.getContentText("UTF-8");
@@ -181,13 +186,13 @@ function getDocAsHtml(docId) {
 // STEP 3: HTML クリーニングのパイプライン
 // =============================================================================
 //
-// Google Docs からエクスポートされた HTML には不要な情報が大量に含まれる。
-// 以下の順で不要部分を取り除き、article.css 用の class を付与する:
+// Google Docs からエクスポートされた HTML には大量の不要情報が含まれる。
+// 以下の順で処理し、article.css で使える形にする:
 //
 //   (1) <body> の中身だけを取り出す
 //   (2) <style> <script> ブロックを削除する
-//   (3) <span> タグを削除する（中身は残す）
-//   (4) class / id / style などの属性を削除する（href, src, alt は残す）
+//   (3) <span> タグを削除する（中身のテキストは残す）
+//   (4) class / id / style などの属性を全削除する（href, src, alt は残す）
 //   (5) h1 / h2 / p などに article-* の semantic class を付与する
 //   (6) 空の <p> タグを削除する
 //
@@ -214,7 +219,7 @@ function extractBody(html) {
 }
 
 
-// (2) <style>...</style> と <script>...</script> ブロックを丸ごと削除する
+// (2) <style>...</style> と <script>...</script> を丸ごと削除する
 function removeBlockTags(html) {
   html = html.replace(/<style[\s\S]*?<\/style>/gi, "");
   html = html.replace(/<script[\s\S]*?<\/script>/gi, "");
@@ -255,7 +260,7 @@ function stripAttributes(html) {
       return "<img" + src + alt + ">";
     }
 
-    // それ以外のタグ: 属性を全削除する（自己終了タグは /> を保持する）
+    // その他のタグ: 属性を全削除（自己終了タグは /> を保持する）
     if (selfClose.trim()) {
       return "<" + tag + " />";
     }
@@ -278,7 +283,7 @@ function addSemanticClasses(html) {
 }
 
 
-// (6) 空の <p> タグ（中身が空白や &nbsp; だけのもの）を削除する
+// (6) 空の <p> タグ（中身が空白や &nbsp; だけ）を削除する
 function removeEmptyParagraphs(html) {
   return html.replace(/<p[^>]*>(\s|&nbsp;)*<\/p>/gi, "");
 }
@@ -290,12 +295,11 @@ function removeEmptyParagraphs(html) {
 // STEP 4: article-template.html を Drive から読み込む
 // =============================================================================
 //
-// 事前に article-template.html を Google Drive にアップロードし、
-// そのファイルID を CONFIG.TEMPLATE_FILE_ID に設定しておく。
+// CONFIG.TEMPLATE_FILE_ID に設定したファイルを読み込む。
 //
 // ファイルID の確認方法:
-//   Drive でファイルを右クリック →「リンクを取得」→
-//   https://drive.google.com/file/d/【ここ】/view の「ここ」部分
+//   Drive でファイルを右クリック →「リンクをコピー」→
+//   URL の /file/d/ の直後にある文字列がファイルID
 //
 function loadTemplate(fileId) {
   var file = DriveApp.getFileById(fileId);
@@ -309,15 +313,15 @@ function loadTemplate(fileId) {
 // STEP 5: テンプレートのプレースホルダに値を差し込む
 // =============================================================================
 //
-// article-template.html 内のプレースホルダ一覧:
-//   {{PAGE_TITLE}}          → <title> タグ内のタイトル
-//   {{TITLE}}               → <h1>・パンくずのタイトル（複数箇所）
-//   {{CATEGORY}}            → カテゴリ名（複数箇所）
-//   {{DATE}}                → 公開日
-//   {{LEAD}}                → リード文（1〜2文）
-//   <!-- ARTICLE_CONTENT --> → Google Docs 本文（クリーニング済み）
+// article-template.html 内のプレースホルダ:
+//   {{PAGE_TITLE}}           → <title> タグ内のタイトル
+//   {{TITLE}}                → <h1>・パンくずのタイトル（複数箇所）
+//   {{CATEGORY}}             → カテゴリ名（複数箇所）
+//   {{DATE}}                 → 公開日
+//   {{LEAD}}                 → リード文
+//   <!-- ARTICLE_CONTENT --> → Google Docs の本文（クリーニング済み）
 //
-// また、テンプレートは root 相対パスで書かれているため、
+// テンプレートは root 相対パスで書かれているため、
 // articles/ サブディレクトリ用に ../ へ変換する。
 //
 function buildArticleHtml(template, cleanedContent, config) {
@@ -331,7 +335,7 @@ function buildArticleHtml(template, cleanedContent, config) {
   html = html.split("{{DATE}}").join(config.DATE);
   html = html.split("{{LEAD}}").join(config.LEAD);
 
-  // 本文を差し込む（1箇所のみなので replace で十分）
+  // 本文を差し込む（1箇所のみ）
   html = html.replace("<!-- ARTICLE_CONTENT -->", cleanedContent);
 
   // パスを articles/ サブディレクトリ用に修正する
@@ -342,8 +346,8 @@ function buildArticleHtml(template, cleanedContent, config) {
 
 
 // テンプレートの root 相対パスを articles/ 用の ../ に変換する
-// 例: href="article.css" → href="../article.css"
-// 例: src="assets/logo.svg" → src="../assets/logo.svg"
+// 例: href="article.css"     → href="../article.css"
+// 例: src="assets/logo.svg"  → src="../assets/logo.svg"
 function fixPaths(html) {
   html = html.replace(/href="article\.css"/g,       "href=\"../article.css\"");
   html = html.replace(/src="assets\//g,             "src=\"../assets/");
@@ -364,9 +368,9 @@ function fixPaths(html) {
 // STEP 6: 完成した HTML を Google Drive に保存する
 // =============================================================================
 //
-// CONFIG.OUTPUT_FOLDER_ID が空文字の場合はマイドライブ直下に保存される。
+// CONFIG.OUTPUT_FOLDER_ID のフォルダに保存する。
 // ファイル名は CONFIG.SLUG + ".html" になる。
-// 保存後にログに Drive の URL が表示される。
+// 保存後、実行ログに Drive の URL が表示される。
 //
 function saveHtmlToDrive(html, slug, folderId) {
   var fileName = slug + ".html";
