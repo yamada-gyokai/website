@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【記事タイトル】 | 株式会社 業務の改善</title>
+  <title>{{PAGE_TITLE}} | 株式会社 業務の改善</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -124,27 +124,22 @@
       <div class="reveal flex items-center gap-2 text-xs text-ink-muted mb-8">
         <a href="index.html" class="hover:text-ocean-600 transition-colors">ホーム</a>
         <span>/</span>
-        <a href="#" class="hover:text-ocean-600 transition-colors">【カテゴリ名】</a>
+        <a href="#" class="hover:text-ocean-600 transition-colors">{{CATEGORY}}</a>
         <span>/</span>
-        <span class="text-ink">【記事タイトル（短縮）】</span>
+        <span class="text-ink">{{TITLE}}</span>
       </div>
 
       <!-- メタ情報 -->
       <div class="article-meta reveal">
-        <span class="article-category">改善の話</span>
-        <span class="article-date">2026年5月22日</span>
+        <span class="article-category">{{CATEGORY}}</span>
+        <span class="article-date">{{DATE}}</span>
       </div>
 
       <!-- タイトル -->
-      <h1 class="article-h1 reveal">
-        ここに記事のタイトルが入ります。<br>
-        2行になっても読みやすい長さで。
-      </h1>
+      <h1 class="article-h1 reveal">{{TITLE}}</h1>
 
       <!-- リード文 -->
-      <p class="article-lead reveal">
-        この記事では、○○について整理します。「どこから始めればいいかわからない」という状態の方に向けて、現場での経験をもとに書いています。難しい言葉は使いません。まず読んでみてください。
-      </p>
+      <p class="article-lead reveal">{{LEAD}}</p>
 
       <!-- ヒーロー画像（任意） -->
       <!-- 画像がある場合はコメントアウトを外す
@@ -157,69 +152,7 @@
 
       <!-- 本文 -->
       <div class="article-content">
-
-        <h2 class="article-h2 reveal">はじめに：なぜこの話をするのか</h2>
-
-        <p class="article-body reveal">
-          本文がここに入ります。Noto Serif JP の読みやすいセリフ体で、ゆったりとした行間で表示されます。改善王サイトらしい、静かで落ち着いた読書体験を目指しています。
-        </p>
-
-        <p class="article-body reveal">
-          段落はこのように続きます。行間は広めに設定されているため、長文でも疲れにくい読み心地になっています。テキストの色も真っ黒ではなく、目に優しい ink-light（#4a5a72）を使っています。
-        </p>
-
-        <!-- 引用ブロック -->
-        <blockquote class="article-quote reveal">
-          <p>「ITを売りたいわけではありません。構造が変われば、人は自然と動けます。」</p>
-        </blockquote>
-
-        <h2 class="article-h2 reveal">本題：○○について考える</h2>
-
-        <p class="article-body reveal">
-          セクションはこのように h2 で区切ります。h2 の下には薄い border-bottom が引かれ、セクションの区切りが視覚的にわかるようになっています。
-        </p>
-
-        <h3 class="article-h3 reveal">小見出し：具体的な話</h3>
-
-        <p class="article-body reveal">
-          h3 はより細かい内容の整理に使います。フォントはサンセリフで、h2 より控えめなサイズです。
-        </p>
-
-        <!-- 記事内画像 -->
-        <img
-          src="assets/papermessage_1.jpeg"
-          alt="記事内の画像サンプル"
-          class="article-image reveal">
-        <span class="article-caption reveal">画像のキャプションがここに入ります。小さめで控えめな表示です。</span>
-
-        <p class="article-body reveal">
-          画像の後も本文は続きます。画像は角丸・弱いシャドウで処理されており、主張しすぎない扱いになっています。
-        </p>
-
-        <hr class="article-divider reveal">
-
-        <h2 class="article-h2 reveal">まとめ：整理すると見えてくること</h2>
-
-        <p class="article-body reveal">
-          最後のセクションです。記事を読み終えた時に「静かに整理されていく」感覚が残るような記事体験を目指しています。
-        </p>
-
-        <p class="article-body reveal">
-          長文でも読み疲れない、改善王サイトらしい記事の世界観です。
-        </p>
-
-        <!-- 記事末尾 CTA（任意） -->
-        <div class="article-cta reveal">
-          <p class="article-cta-title">この記事について、話してみませんか。</p>
-          <p class="article-cta-body">
-            「自分たちの現場に当てはまるかも」と感じたら、<br>
-            まずは気軽に相談してみてください。初回は無料です。
-          </p>
-          <a href="index.html#contact" class="article-cta-link">
-            相談してみる →
-          </a>
-        </div>
-
+        <!-- ARTICLE_CONTENT -->
       </div>
       <!-- /article-content -->
 
