@@ -14,6 +14,14 @@
 //   4. 初回のみ「権限の確認」ダイアログが出る → 「許可」を押す
 //   5. 実行ログに「STEP6 完了: Drive に保存しました」が出れば成功
 //
+// 【Google Docs の書き方ルール】
+//   Google Docs には「本文だけ」を書く。
+//   以下はテンプレート（CONFIG）が自動で挿入するため、Docs には書かない:
+//     - カテゴリ名
+//     - 公開日
+//     - リード文
+//   Docs で使う見出しは H2・H3 のみ。H1 は Docs のタイトルのみ（自動除去される）。
+//
 // =============================================================================
 
 
@@ -106,11 +114,7 @@ function main() {
 // =============================================================================
 // STEP 1: Google Docs URL から docId を抽出する
 // =============================================================================
-//
-// 対応 URL 形式:
-//   https://docs.google.com/document/d/xxxxx/edit
-//   https://docs.google.com/document/d/xxxxx/edit?usp=sharing
-//
+
 function extractDocId(url) {
   var match = url.match(/\/document\/d\/([a-zA-Z0-9_-]+)/);
   if (!match) {
@@ -126,13 +130,8 @@ function extractDocId(url) {
 // STEP 2: Google Docs を HTML 文字列として取得する
 // =============================================================================
 //
-// Google Docs の export エンドポイントを直接 fetch する方式。
-// Drive API の exportLinks を使う方式は GAS のバージョン差異で
-// 動作しない場合があるため、この URL 直接方式を使う。
-//
-// 認証は ScriptApp.getOAuthToken() で取得した OAuth トークンを使う。
-// DriveApp がスコープ内にある（loadTemplate / saveHtmlToDrive で使用）ため、
-// Drive 読み取り権限は自動的に付与される。
+// Google Docs export エンドポイントを直接 fetch する。
+// Drive API の exportLinks 方式は GAS バージョン差異で不安定なため使わない。
 //
 function getDocAsHtml(docId) {
 
@@ -165,25 +164,31 @@ function getDocAsHtml(docId) {
 // STEP 3: HTML クリーニングのパイプライン
 // =============================================================================
 //
-// Google Docs からエクスポートされた HTML には大量の不要情報が含まれる。
-// 以下の順で処理し、article.css で使える形にする:
-//
-//   (1) <body> の中身だけを取り出す
-//   (2) <style> <script> ブロックを削除する
-//   (3) <span> タグを削除する（中身のテキストは残す）
-//   (4) class / id / style などの属性を全削除する（href, src, alt は残す）
-//   (5) h1 / h2 / p などに article-* の semantic class を付与する
-//   (6) 空の <p> タグを削除する
+// 処理順序:
+//   (1)  extractBody()            — <body> の中身だけ取り出す
+//   (2)  removeGoogleDocsMeta()   — H1タイトル・先頭メタ段落を除去する
+//   (3)  removeHrTags()           — Google Docs 由来の不要な罫線を除去する
+//   (4)  removeBlockTags()        — <style> <script> を除去する
+//   (5)  removeSpans()            — <span> タグを除去する（中身は残す）
+//   (6)  stripAttributes()        — 属性を除去する（href, src, alt は残す）
+//   (7)  removeEmptyDivs()        — 空の div・<div><br></div> を除去する
+//   (8)  removeRedundantBreaks()  — 不要な <br> を除去する
+//   (9)  addSemanticClasses()     — article-* の semantic class を付与する
+//   (10) removeEmptyParagraphs()  — 空の <p> を除去する
 //
 function cleanDocHtml(rawHtml) {
   var html = rawHtml;
   html = extractBody(html);            // (1)
-  html = removeBlockTags(html);        // (2)
-  html = removeSpans(html);            // (3)
-  html = stripAttributes(html);        // (4)
-  html = addSemanticClasses(html);     // (5)
-  html = removeEmptyParagraphs(html);  // (6)
-  html = html.replace(/\n{3,}/g, "\n\n"); // 連続する空行を整理する
+  html = removeGoogleDocsMeta(html);   // (2)
+  html = removeHrTags(html);           // (3)
+  html = removeBlockTags(html);        // (4)
+  html = removeSpans(html);            // (5)
+  html = stripAttributes(html);        // (6)
+  html = removeEmptyDivs(html);        // (7)
+  html = removeRedundantBreaks(html);  // (8)
+  html = addSemanticClasses(html);     // (9)
+  html = removeEmptyParagraphs(html);  // (10)
+  html = html.replace(/\n{3,}/g, "\n\n");
   return html.trim();
 }
 
@@ -198,7 +203,43 @@ function extractBody(html) {
 }
 
 
-// (2) <style>...</style> と <script>...</script> を丸ごと削除する
+// (2) Google Docs のメタ情報を除去する
+//
+// Google Docs は以下を自動で挿入する:
+//   - ドキュメントタイトルを <h1> として body 冒頭に出力する
+//   - body 冒頭の段落にカテゴリ・日付・リードなどが含まれる場合がある
+//
+// 処理:
+//   A) 最初の <h1>...</h1> を削除する（ドキュメントタイトル）
+//   B) 最初の <h2>/<h3> が来る前にある全 <p> タグを削除する
+//      （テンプレート側で挿入済みのメタ段落の重複を防ぐ）
+//
+function removeGoogleDocsMeta(html) {
+
+  // A) 最初の H1 を削除する
+  html = html.replace(/<h1[^>]*>[\s\S]*?<\/h1>/i, "");
+
+  // B) 最初の H2/H3 が来る前の P タグを全て削除する
+  var firstContentIndex = html.search(/<h[23][^>]*>/i);
+  if (firstContentIndex > 0) {
+    var beforeContent = html.substring(0, firstContentIndex);
+    var fromContent   = html.substring(firstContentIndex);
+    beforeContent = beforeContent.replace(/<p[^>]*>[\s\S]*?<\/p>/gi, "");
+    html = beforeContent + fromContent;
+  }
+
+  return html;
+}
+
+
+// (3) <hr> タグを全て除去する
+//     Google Docs が生成する不要な罫線・セパレータを取り除く
+function removeHrTags(html) {
+  return html.replace(/<hr[^>]*\/?>/gi, "");
+}
+
+
+// (4) <style>...</style> と <script>...</script> を丸ごと削除する
 function removeBlockTags(html) {
   html = html.replace(/<style[\s\S]*?<\/style>/gi, "");
   html = html.replace(/<script[\s\S]*?<\/script>/gi, "");
@@ -206,7 +247,7 @@ function removeBlockTags(html) {
 }
 
 
-// (3) <span class="..."> タグだけ削除し、中身のテキストは残す
+// (5) <span class="..."> タグだけ削除し、中身のテキストは残す
 //     Google Docs はスタイル付きテキストを span で大量にラップするため
 function removeSpans(html) {
   html = html.replace(/<span[^>]*>/gi, "");
@@ -215,7 +256,7 @@ function removeSpans(html) {
 }
 
 
-// (4) 全タグから属性を削除する
+// (6) 全タグから属性を削除する
 //     例外: <a> の href と <img> の src・alt は残す
 function stripAttributes(html) {
   return html.replace(/<([a-zA-Z][a-zA-Z0-9]*)([^>]*?)(\s*\/?)>/g, function(fullMatch, tag, attrs, selfClose) {
@@ -248,7 +289,32 @@ function stripAttributes(html) {
 }
 
 
-// (5) タグに article.css の semantic class を付与する
+// (7) 空の div を除去する
+//     Google Docs が生成する <div><br></div> や <div></div> を取り除く
+function removeEmptyDivs(html) {
+  // <div><br></div> を削除する
+  html = html.replace(/<div>\s*<br\s*\/?>\s*<\/div>/gi, "");
+  // 完全に空の <div></div> を削除する
+  html = html.replace(/<div>\s*<\/div>/gi, "");
+  return html;
+}
+
+
+// (8) 不要な <br> を除去する
+//     段落の先頭・末尾・連続する <br> を整理する
+function removeRedundantBreaks(html) {
+  // <p> の直後の <br> を削除する（段落冒頭の空行）
+  html = html.replace(/(<p>)\s*<br\s*\/?>/gi, "$1");
+  // </p> の直前の <br> を削除する（段落末尾の空行）
+  html = html.replace(/<br\s*\/?>\s*(<\/p>)/gi, "$1");
+  // 連続する <br> を1つにまとめる
+  html = html.replace(/(<br\s*\/?>(\s*)){2,}/gi, "<br>");
+  return html;
+}
+
+
+// (9) タグに article.css の semantic class を付与する
+//     article-divider は hr 除去済みなので実質マッチしないが念のため残す
 function addSemanticClasses(html) {
   html = html.replace(/<h1>/gi,         "<h1 class=\"article-h1 reveal\">");
   html = html.replace(/<h2>/gi,         "<h2 class=\"article-h2 reveal\">");
@@ -262,7 +328,7 @@ function addSemanticClasses(html) {
 }
 
 
-// (6) 空の <p> タグ（中身が空白や &nbsp; だけ）を削除する
+// (10) 空の <p> タグ（中身が空白や &nbsp; だけ）を削除する
 function removeEmptyParagraphs(html) {
   return html.replace(/<p[^>]*>(\s|&nbsp;)*<\/p>/gi, "");
 }
@@ -273,13 +339,7 @@ function removeEmptyParagraphs(html) {
 // =============================================================================
 // STEP 4: article-template.html を Drive から読み込む
 // =============================================================================
-//
-// CONFIG.TEMPLATE_FILE_ID に設定したファイルを読み込む。
-//
-// ファイルID の確認方法:
-//   Drive でファイルを右クリック →「リンクをコピー」→
-//   URL の /file/d/ の直後にある文字列がファイルID
-//
+
 function loadTemplate(fileId) {
   var file = DriveApp.getFileById(fileId);
   return file.getBlob().getDataAsString("UTF-8");
@@ -300,14 +360,10 @@ function loadTemplate(fileId) {
 //   {{LEAD}}                 → リード文
 //   <!-- ARTICLE_CONTENT --> → Google Docs の本文（クリーニング済み）
 //
-// テンプレートは root 相対パスで書かれているため、
-// articles/ サブディレクトリ用に ../ へ変換する。
-//
 function buildArticleHtml(template, cleanedContent, config) {
   var html = template;
 
   // split + join で全出現箇所を一括置換する
-  // （String.replace() はデフォルトで最初の1件しか置換しないため）
   html = html.split("{{PAGE_TITLE}}").join(config.TITLE);
   html = html.split("{{TITLE}}").join(config.TITLE);
   html = html.split("{{CATEGORY}}").join(config.CATEGORY);
@@ -325,8 +381,6 @@ function buildArticleHtml(template, cleanedContent, config) {
 
 
 // テンプレートの root 相対パスを articles/ 用の ../ に変換する
-// 例: href="article.css"     → href="../article.css"
-// 例: src="assets/logo.svg"  → src="../assets/logo.svg"
 function fixPaths(html) {
   html = html.replace(/href="article\.css"/g,       "href=\"../article.css\"");
   html = html.replace(/src="assets\//g,             "src=\"../assets/");
@@ -346,11 +400,7 @@ function fixPaths(html) {
 // =============================================================================
 // STEP 6: 完成した HTML を Google Drive に保存する
 // =============================================================================
-//
-// CONFIG.OUTPUT_FOLDER_ID のフォルダに保存する。
-// ファイル名は CONFIG.SLUG + ".html" になる。
-// 保存後、実行ログに Drive の URL が表示される。
-//
+
 function saveHtmlToDrive(html, slug, folderId) {
   var fileName = slug + ".html";
   var blob = Utilities.newBlob(html, "text/html; charset=utf-8", fileName);
