@@ -3,22 +3,16 @@
 // 株式会社 業務の改善 — Google Docs → article HTML 生成スクリプト
 // =============================================================================
 //
-// 【事前準備: Advanced Google Services の有効化】
-//   このスクリプトは Drive API（Advanced Google Services）を使います。
-//   必ず以下の手順で有効化してから実行してください:
-//
-//     1. Apps Script エディタ左メニューの「サービス」横の「+」をクリック
-//     2. 一覧から「Drive API」を選択（バージョンは v2 のまま変更しない）
-//     3. 「追加」をクリック
-//     4. 左メニューに「Drive」が表示されれば成功
+// 【必要な設定】
+//   Advanced Google Services の有効化は不要。
+//   DriveApp と UrlFetchApp のみ使用（どちらも GAS 標準サービス）。
 //
 // 【実行手順】
-//   1. 上記の Drive API を有効化する（初回のみ）
-//   2. CONFIG の値を確認・必要なら書き換える
-//   3. 上部ドロップダウンで「main」を選択
-//   4. ▶ 実行 をクリック
-//   5. 初回のみ「権限の確認」ダイアログが出る → 「許可」を押す
-//   6. 実行ログに「STEP6 完了: Drive に保存しました」が出れば成功
+//   1. CONFIG の値を確認・必要なら書き換える
+//   2. 上部ドロップダウンで「main」を選択
+//   3. ▶ 実行 をクリック
+//   4. 初回のみ「権限の確認」ダイアログが出る → 「許可」を押す
+//   5. 実行ログに「STEP6 完了: Drive に保存しました」が出れば成功
 //
 // =============================================================================
 
@@ -132,51 +126,36 @@ function extractDocId(url) {
 // STEP 2: Google Docs を HTML 文字列として取得する
 // =============================================================================
 //
-// 【なぜ DriveApp.getAs() を使わないか】
-//   DriveApp.getFileById(id).getAs("text/html") は Google Docs ネイティブファイルに非対応。
-//   実行すると "Converting from application/vnd.google-apps.document to text/html
-//   is not supported." エラーが発生する。
+// Google Docs の export エンドポイントを直接 fetch する方式。
+// Drive API の exportLinks を使う方式は GAS のバージョン差異で
+// 動作しない場合があるため、この URL 直接方式を使う。
 //
-// 【この関数でやっていること】
-//   Drive API v2 の exportLinks を使い、Google Docs を HTML として取得する。
-//   exportLinks は「このファイルを○○形式でダウンロードするURL」の一覧。
-//   OAuth トークン付きで fetch することで、認証済みのダウンロードが可能になる。
-//
-// 【必要な設定】
-//   Advanced Google Services → Drive API を有効化する（ファイル冒頭参照）。
-//   有効化後に Drive.Files.get() が使えるようになる。
+// 認証は ScriptApp.getOAuthToken() で取得した OAuth トークンを使う。
+// DriveApp がスコープ内にある（loadTemplate / saveHtmlToDrive で使用）ため、
+// Drive 読み取り権限は自動的に付与される。
 //
 function getDocAsHtml(docId) {
 
-  // Drive API v2 でファイルのエクスポートリンク一覧を取得する
-  var fileInfo = Drive.Files.get(docId);
+  var url =
+    "https://docs.google.com/feeds/download/documents/export/Export?id=" +
+    docId +
+    "&exportFormat=html";
 
-  // exportLinks から text/html 形式の URL を取り出す
-  var exportLinks = fileInfo["exportLinks"];
-  if (!exportLinks) {
-    throw new Error("exportLinks が取得できませんでした。Drive API が有効か、ファイルが Google Docs 形式か確認してください。");
-  }
+  var token = ScriptApp.getOAuthToken();
 
-  var exportUrl = exportLinks["text/html"];
-  if (!exportUrl) {
-    throw new Error("text/html のエクスポートURLがありません。ファイルが Google Docs 形式か確認してください。");
-  }
-
-  // OAuth トークンで認証しながら HTML をダウンロードする
-  var response = UrlFetchApp.fetch(exportUrl, {
+  var response = UrlFetchApp.fetch(url, {
     headers: {
-      Authorization: "Bearer " + ScriptApp.getOAuthToken()
+      Authorization: "Bearer " + token
     },
     muteHttpExceptions: true
   });
 
-  // HTTP ステータスを確認する（200 以外はエラー）
   var statusCode = response.getResponseCode();
   if (statusCode !== 200) {
     throw new Error("HTML の取得に失敗しました。ステータスコード: " + statusCode);
   }
 
-  return response.getContentText("UTF-8");
+  return response.getContentText();
 }
 
 
