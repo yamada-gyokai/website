@@ -54,9 +54,16 @@ Google Docs → `gas/Code.gs`（Parser方式）→ Drive に HTML 保存 → 手
 
 ### フォント
 
-**全文 Noto Sans JP（ゴシック）統一。** タイトル・見出し・引用・本文・リストすべてゴシック。
+ページ種別によってルールが異なる。
 
-serif（Noto Serif JP）は使わない。長文耐性・スマホ可読性・誠実感のためゴシック一択。
+| ページ種別 | 見出し（h1/h2/h3） | 本文・リスト |
+|---|---|---|
+| トップ・サービス・代表等（通常ページ） | **Noto Serif JP**（明朝） | Noto Sans JP（ゴシック） |
+| 記事詳細ページ（`articles/*.html`） | **Noto Sans JP**（ゴシック） | Noto Sans JP（ゴシック） |
+
+**通常ページ**: `h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }` をグローバルに設定。本文はゴシック。
+
+**記事ページのみ**: 見出しを含む全文ゴシック統一。serif は使わない。長文耐性・スマホ可読性のため。
 
 ### 本文カラー
 
