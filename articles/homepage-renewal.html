@@ -37,40 +37,231 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="../article.css">
-
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; line-height: 1.85; background: #fff; }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      color: #2952b8;
-      margin-bottom: 16px;
-    }
-    .label::before {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #3a6fd8;
-    }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; background: #fff; }
 
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #f0f4f8; }
     ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+
+    /* ── reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── prose コンテナ ── */
+    .prose-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── パンくず ── */
+    .prose-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: #9fb3cc;
+      margin-bottom: 2.5rem;
+    }
+    .prose-breadcrumb a {
+      color: #9fb3cc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .prose-breadcrumb a:hover { color: #2952b8; }
+
+    /* ── メタ ── */
+    .prose-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .prose-category {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #2952b8;
+      background: #f0f6ff;
+      padding: 3px 12px;
+      border-radius: 100px;
+    }
+    .prose-date {
+      font-size: 0.75rem;
+      color: #9fb3cc;
+    }
+
+    /* ── H1 ── */
+    .prose-h1 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      line-height: 1.7;
+      color: #2d3a50;
+      letter-spacing: 0.015em;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 640px) {
+      .prose-h1 { font-size: 2rem; }
+    }
+
+    /* ── リード ── */
+    .prose-lead {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.93rem;
+      line-height: 2.25;
+      color: #1f2937;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #deeaff;
+    }
+
+    /* ── ヒーロー画像エリア ── */
+    .prose-figure {
+      margin: 0 0 3.5rem;
+    }
+    .prose-hero-img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(41, 82, 184, 0.08);
+    }
+    .prose-hero-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #f0f6ff 0%, #deeaff 100%);
+      border-radius: 14px;
+      border: 1px solid #c8dcf8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .prose-figcaption {
+      font-size: 0.72rem;
+      color: #9fb3cc;
+      text-align: center;
+      margin-top: 0.65rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── 本文テキスト ── */
+    .prose-p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.95rem;
+      line-height: 2.25;
+      color: #1f2937;
+      margin-bottom: 2rem;
+    }
+
+    /* ── リスト ── */
+    .prose-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.25rem 0 2rem 0.5rem;
+    }
+    .prose-list li {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #1f2937;
+      line-height: 2.15;
+      padding: 0.3em 0 0.3em 1.75em;
+      position: relative;
+    }
+    .prose-list li::before {
+      content: '';
+      position: absolute;
+      left: 0.5em;
+      top: 1.05em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #85afff;
+    }
+
+    /* ── プルクオート ── */
+    .prose-pullquote {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2952b8;
+      text-align: center;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      padding: 3rem 1.5rem;
+      margin: 3.5rem 0;
+      border-top: 1px solid #b8d0ff;
+      border-bottom: 1px solid #b8d0ff;
+    }
+    @media (min-width: 640px) {
+      .prose-pullquote { font-size: 1.2rem; padding: 3.25rem 2rem; }
+    }
+
+    /* ── 区切り線 ── */
+    .prose-divider {
+      border: none;
+      border-top: 1px solid #deeaff;
+      margin: 3.5rem 0;
+    }
+
+    /* ── CTA ── */
+    .prose-cta {
+      background: #f0f6ff;
+      border: 1px solid #deeaff;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+    .prose-cta-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3a50;
+      margin-bottom: 0.65rem;
+      line-height: 1.7;
+    }
+    .prose-cta-body {
+      font-size: 0.82rem;
+      color: #374151;
+      line-height: 2;
+      margin-bottom: 1.25rem;
+    }
+    .prose-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #1e3e96;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .prose-cta-link:hover { color: #0e2058; }
+
+    /* ── 戻るリンク ── */
+    .prose-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: #9fb3cc;
+      text-decoration: none;
+      margin-top: 3rem;
+      transition: color 0.2s;
+    }
+    .prose-back:hover { color: #2952b8; }
   </style>
 </head>
 
@@ -81,7 +272,7 @@
 ───────────────────────────────────────────── -->
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
   <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="../index.html" class="group">
+    <a href="../index.html">
       <img src="../assets/GyokaiLogoYoko.svg" alt="株式会社 業務の改善" class="h-10 w-auto">
     </a>
 
@@ -113,129 +304,151 @@
 
 
 <!-- ─────────────────────────────────────────────
-     ARTICLE MAIN
+     MAIN
 ───────────────────────────────────────────── -->
-<main class="pt-28 pb-24">
-  <div class="article-layout">
-    <article>
+<main class="pt-28 pb-28">
+  <div class="prose-wrap">
 
-      <!-- パンくず -->
-      <div class="reveal flex items-center gap-2 text-xs text-ink-muted mb-8">
-        <a href="../index.html" class="hover:text-ocean-600 transition-colors">ホーム</a>
-        <span>/</span>
-        <a href="../index.html#news" class="hover:text-ocean-600 transition-colors">News &amp; Topics</a>
-        <span>/</span>
-        <span class="text-ink">ホームページをリニューアルしています</span>
+    <!-- パンくず -->
+    <nav class="prose-breadcrumb reveal">
+      <a href="../index.html">ホーム</a>
+      <span>/</span>
+      <a href="#">サイトについて</a>
+      <span>/</span>
+      <span>ホームページをリニューアルしています</span>
+    </nav>
+
+    <!-- カテゴリ・日付 -->
+    <div class="prose-meta reveal">
+      <span class="prose-category">サイトについて</span>
+      <span class="prose-date">2026年5月22日</span>
+    </div>
+
+    <!-- タイトル -->
+    <h1 class="prose-h1 reveal">ホームページをリニューアルしています</h1>
+
+    <!-- リード -->
+    <p class="prose-lead reveal">
+      サイトを作り直しています。以前のサイトは「IT会社のホームページ」に見えていました。それが、私たちがやっていることとは少しずれていると気づいたので、作り直すことにしました。
+    </p>
+
+    <!-- ヒーロー画像 -->
+    <!-- assets/homepage-renewal-hero.jpg を追加したら <img> に差し替える -->
+    <figure class="prose-figure reveal">
+      <div class="prose-hero-placeholder">
+        <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#85afff" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v13.5A1.5 1.5 0 003.75 21zM16.5 8.25a1.125 1.125 0 11-2.25 0 1.125 1.125 0 012.25 0z"/>
+        </svg>
+        <span style="font-size:0.7rem;color:#85afff;letter-spacing:0.12em;">画像準備中</span>
       </div>
+      <figcaption class="prose-figcaption">株式会社 業務の改善</figcaption>
+    </figure>
 
-      <!-- メタ情報 -->
-      <div class="article-meta reveal">
-        <span class="article-category">サイトについて</span>
-        <span class="article-date">2026年5月22日</span>
-      </div>
+    <!-- ── 本文 ────────────────────────────────── -->
 
-      <!-- タイトル -->
-      <h1 class="article-h1 reveal">
-        ホームページをリニューアルしています
-      </h1>
+    <p class="prose-p reveal">
+      現在、株式会社 業務の改善のホームページを、少しずつリニューアルしています。
+    </p>
 
-      <!-- リード文 -->
-      <p class="article-lead reveal">
-        以前のサイトは、「IT会社のホームページ」に見えていました。サービス一覧があって、実績があって、お問い合わせフォームがある。間違ってはいないのですが、私たちがやっていることとは少しずれていた。そのことに気づいたので、作り直すことにしました。
+    <p class="prose-p reveal">
+      今回のリニューアルで目指しているのは、単なる「IT会社のホームページ」を作ることではありません。
+    </p>
+
+    <p class="prose-p reveal">
+      私自身、これまで多くの現場に関わる中で、
+    </p>
+
+    <ul class="prose-list reveal">
+      <li>システムを導入したのに使われない</li>
+      <li>IT会社との会話が噛み合わない</li>
+      <li>現場だけが疲弊していく</li>
+      <li>経営と現場の温度差が埋まらない</li>
+    </ul>
+
+    <p class="prose-p reveal">
+      そんな場面を数え切れないほど見てきました。
+    </p>
+
+    <p class="prose-p reveal">
+      だからこそ、今回のホームページでは、「何を作っている会社なのか」だけではなく、
+    </p>
+
+    <blockquote class="prose-pullquote reveal">
+      「なぜ、この仕事をしているのか」
+    </blockquote>
+
+    <p class="prose-p reveal">
+      を、きちんと伝えたいと思っています。
+    </p>
+
+    <p class="prose-p reveal">
+      私は、ITそのものを売りたいわけではありません。
+    </p>
+
+    <p class="prose-p reveal">
+      本当にやりたいのは、
+    </p>
+
+    <blockquote class="prose-pullquote reveal">
+      「現場が、本来の価値を発揮できる状態を作ること」
+    </blockquote>
+
+    <p class="prose-p reveal">
+      です。
+    </p>
+
+    <p class="prose-p reveal">
+      そのために、時にはシステムを作り、時には整理を行い、時には壁打ちをしながら、一緒に前へ進める形を模索しています。
+    </p>
+
+    <p class="prose-p reveal">
+      今回のリニューアルでは、サービス紹介だけではなく、
+    </p>
+
+    <ul class="prose-list reveal">
+      <li>なぜこの考え方になったのか</li>
+      <li>どんな課題に向き合っているのか</li>
+      <li>どんな人と仕事をしたいのか</li>
+    </ul>
+
+    <p class="prose-p reveal">
+      も含めて、少しずつ整理していきたいと思っています。
+    </p>
+
+    <hr class="prose-divider reveal">
+
+    <p class="prose-p reveal">
+      まだ制作途中ではありますが、今後も少しずつ更新していきます。
+    </p>
+
+    <p class="prose-p reveal">
+      もし、「こういう相談ってしていいのかな」と思うことがあれば、気軽に声をかけてください。
+    </p>
+
+    <!-- CTA -->
+    <div class="prose-cta reveal">
+      <p class="prose-cta-title">まずは気軽にご相談ください</p>
+      <p class="prose-cta-body">
+        「こういう相談でもいいのかな」と思うようなことから、<br>
+        お気軽にどうぞ。
       </p>
+      <a href="../index.html#contact" class="prose-cta-link">
+        相談してみる
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
 
-      <!-- ヒーロー画像（仮） -->
-      <img
-        src="../assets/main-image.jpg"
-        alt="リニューアル中のサイトイメージ"
-        class="article-hero-image reveal">
-      <span class="article-caption reveal">※ 現在もサイトは更新中です。少しずつ整えています。</span>
+    <!-- 記事一覧へ -->
+    <a href="../index.html#news" class="prose-back reveal">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      記事一覧へ
+    </a>
 
-      <!-- 本文 -->
-      <div class="article-content">
-
-        <h2 class="article-h2 reveal">なぜ作り直すのか</h2>
-
-        <p class="article-body reveal">
-          私たちがやっていることは、ITツールを売ることではありません。現場の構造を整えて、人が自然に動けるようにすることです。
-        </p>
-
-        <p class="article-body reveal">
-          でも以前のサイトを見ると、「システム開発をします」「ITの相談に乗ります」という並びになっていました。それはそうなのですが、なぜやるのか、何が変わるのか、という話がほとんど書いてありませんでした。
-        </p>
-
-        <p class="article-body reveal">
-          訪れた方が「この会社に相談してみようかな」と思えるには、もう少し手前の話が必要だと感じていました。
-        </p>
-
-        <h2 class="article-h2 reveal">「IT会社感」を出したくない</h2>
-
-        <p class="article-body reveal">
-          デザインを考えるとき、最初に決めたことがあります。「IT会社っぽく見せない」ということです。
-        </p>
-
-        <p class="article-body reveal">
-          暗い背景に光るUI、スペック表、導入社数○○社——そういう演出は、私たちがやっていることの伝え方としてズレています。私たちのお客さんは、システムが欲しいわけではなく、仕事がうまく回る状態が欲しいのです。
-        </p>
-
-        <blockquote class="article-quote reveal">
-          <p>「ITを売りたいわけではありません。構造が変われば、人は自然と動けます。」</p>
-        </blockquote>
-
-        <p class="article-body reveal">
-          この言葉がサイトの根っこにあります。デザインも文章も、そこから逆算して作っています。
-        </p>
-
-        <h2 class="article-h2 reveal">静かで、読みやすいサイトへ</h2>
-
-        <p class="article-body reveal">
-          現在のサイトは、読み物として成り立つことを意識しています。長い文章でも疲れない行間、主張しすぎないフォント、余白。LP（ランディングページ）のような「今すぐ申し込む」という圧力をできるだけ排除したいと思っています。
-        </p>
-
-        <p class="article-body reveal">
-          決断を急かすより、「読んでいたら、なんとなくこの会社に頼みたくなった」という感覚の方が、私たちの仕事には合っていると思っています。
-        </p>
-
-        <h3 class="article-h3 reveal">記事を少しずつ書いていきます</h3>
-
-        <p class="article-body reveal">
-          このページもその一部です。現場で考えていること、改善の記録、仕事の進め方——そういう話を、少しずつ書いていくつもりです。マーケティングのためではなく、「この会社がどんなことを考えているか」が伝わる場所として。
-        </p>
-
-        <p class="article-body reveal">
-          量よりも、一本一本が手触りのあるものになるよう、ゆっくり続けていきます。
-        </p>
-
-        <hr class="article-divider reveal">
-
-        <h2 class="article-h2 reveal">まだ途中です</h2>
-
-        <p class="article-body reveal">
-          正直に言うと、このサイトはまだ完成していません。ページが足りない部分もあるし、文章を直したいところもあります。でも「完成してから公開する」ではなく、「作りながら見せていく」方が、私たちらしいと思っています。
-        </p>
-
-        <p class="article-body reveal">
-          改善は、一度で完璧にするものではなく、少しずつよくしていくものです。このサイト自体も、その実践になっています。
-        </p>
-
-        <!-- 記事末尾 CTA -->
-        <div class="article-cta reveal">
-          <p class="article-cta-title">サイトについて、気になることがあれば。</p>
-          <p class="article-cta-body">
-            「こういう会社に相談してみたい」と思ったら、<br>
-            まずは気軽に声をかけてみてください。初回は無料です。
-          </p>
-          <a href="../index.html#contact" class="article-cta-link">
-            相談してみる →
-          </a>
-        </div>
-
-      </div>
-      <!-- /article-content -->
-
-    </article>
   </div>
-  <!-- /article-layout -->
 </main>
 
 
@@ -283,7 +496,7 @@
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.06 });
+  }, { threshold: 0.05 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   const header = document.getElementById('site-header');

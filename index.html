@@ -15,7 +15,7 @@
             serif: ['"Noto Serif JP"', 'serif'],
           },
           colors: {
-            ink: { DEFAULT: '#2d3a50', light: '#4a5a72', muted: '#6b7a90' },
+            ink: { DEFAULT: '#1f2937', light: '#4b5563', muted: '#9ca3af' },
             ocean: {
               50:  '#f0f6ff',
               100: '#deeaff',
@@ -39,14 +39,13 @@
 
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; line-height: 1.85; background: #fff; }
-    h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #1f2937; line-height: 1.85; background: #fff; }
 
-    /* Scroll fade-in */
+    /* ── Scroll reveal ── */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
@@ -54,72 +53,127 @@
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
 
-    /* Hero */
+    /* ── Hero ── */
     .hero-gradient {
-      background: linear-gradient(155deg, rgba(242,248,255,0.85) 0%, rgba(255,255,255,0.72) 55%, rgba(247,251,255,0.85) 100%), url('assets/main-image.jpg');
+      background: linear-gradient(155deg, rgba(240,246,255,0.9) 0%, rgba(255,255,255,0.75) 55%, rgba(245,250,255,0.9) 100%), url('assets/main-image.jpg');
       background-size: cover;
       background-position: center;
     }
-    .hero-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-      pointer-events: none;
-    }
 
-    /* Section label */
+    /* ── Section label ── */
     .label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       color: #2952b8;
       margin-bottom: 16px;
+      text-transform: uppercase;
     }
     .label::before {
       content: '';
       display: block;
-      width: 20px;
+      width: 18px;
       height: 2px;
       background: #3a6fd8;
+      flex-shrink: 0;
     }
 
-    /* Pain cards */
-    .pain-card {
-      border-left: 3px solid #b8d0ff;
-      background: #f8faff;
-      border-radius: 0 12px 12px 0;
+    /* ── WHY section ── */
+    .why-p {
+      font-size: 0.95rem;
+      line-height: 2.15;
+      color: #374151;
+      margin-bottom: 1.5rem;
+    }
+    .why-quote {
+      border-left: 2px solid #85afff;
+      padding: 0.25rem 0 0.25rem 1.25rem;
+      margin: 2.5rem 0;
+    }
+    .why-quote p {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #1e3e96;
+      line-height: 1.8;
     }
 
-    /* Service card hover */
+    /* ── Empathy items ── */
+    .empathy-item {
+      background: #fff;
+      border: 1px solid #e5edf7;
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+    }
+    .empathy-item p { line-height: 1.85; color: #374151; }
+    .empathy-item .tag { font-size: 0.72rem; color: #9ca3af; margin-left: 0.5rem; }
+
+    /* ── Service card ── */
     .service-card {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
     .service-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(41, 82, 184, 0.12);
+      box-shadow: 0 12px 40px rgba(41, 82, 184, 0.11);
     }
 
-    /* Process step number */
+    /* ── Process step ── */
     .step-num {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       font-weight: 500;
       flex-shrink: 0;
     }
 
-    /* FAQ accordion */
+    /* ── FAQ ── */
     .faq-item details summary { list-style: none; cursor: pointer; }
     .faq-item details summary::-webkit-details-marker { display: none; }
 
-    /* Floating CTA (mobile) */
+    /* ── News card ── */
+    .news-card {
+      background: #fff;
+      border: 1px solid #e5edf7;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.22s ease, transform 0.22s ease;
+    }
+    .news-card:hover {
+      box-shadow: 0 6px 24px rgba(41, 82, 184, 0.08);
+      transform: translateY(-2px);
+    }
+    .news-thumb {
+      height: 152px;
+      background: #f0f6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .news-body { padding: 20px 22px 24px; }
+    .news-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .news-category { font-size: 0.68rem; font-weight: 500; color: #2952b8; letter-spacing: 0.08em; }
+    .news-date { font-size: 0.68rem; color: #9ca3af; }
+    .news-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: #1f2937;
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .news-excerpt { font-size: 0.78rem; color: #6b7280; line-height: 1.85; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f0f4f8; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+
+    /* ── Floating CTA ── */
     .floating-cta {
       position: fixed;
       bottom: 24px;
@@ -127,44 +181,6 @@
       transform: translateX(-50%);
       z-index: 40;
     }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #f0f4f8; }
-    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
-
-    /* News card */
-    .news-card {
-      background: #fff;
-      border: 1px solid #e5edf7;
-      border-radius: 12px;
-      overflow: hidden;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
-    .news-card:hover {
-      box-shadow: 0 6px 24px rgba(41, 82, 184, 0.08);
-      transform: translateY(-2px);
-    }
-    .news-card-thumb {
-      height: 160px;
-      background: #f0f6ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .news-card-body { padding: 20px 22px 24px; }
-    .news-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .news-category { font-size: 0.7rem; font-weight: 500; color: #2952b8; letter-spacing: 0.08em; }
-    .news-date { font-size: 0.7rem; color: #6b7a90; }
-    .news-card-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #2d3a50;
-      line-height: 1.65;
-      margin-bottom: 10px;
-    }
-    .news-card-excerpt { font-size: 0.8rem; color: #6b7a90; line-height: 1.85; }
   </style>
 </head>
 
@@ -175,12 +191,13 @@
 ───────────────────────────────────────────── -->
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
   <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="#" class="group">
+    <a href="#">
       <img src="assets/GyokaiLogoYoko.svg" alt="株式会社 業務の改善" class="h-10 w-auto">
     </a>
 
     <nav class="hidden md:flex items-center gap-8">
-      <a href="#services" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
+      <a href="#why"        class="text-sm text-ink-light hover:text-ocean-700 transition-colors">想い</a>
+      <a href="services.html" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
       <a href="#process"  class="text-sm text-ink-light hover:text-ocean-700 transition-colors">進め方</a>
       <a href="about.html" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">代表について</a>
       <a href="#contact"  class="text-sm bg-ocean-700 hover:bg-ocean-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">
@@ -197,9 +214,10 @@
 
   <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
     <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-5">
-      <a href="#services" class="text-sm text-ink-light">サービス</a>
+      <a href="#why"        class="text-sm text-ink-light">想い</a>
+      <a href="services.html" class="text-sm text-ink-light">サービス</a>
       <a href="#process"  class="text-sm text-ink-light">進め方</a>
-      <a href="#about"    class="text-sm text-ink-light">代表について</a>
+      <a href="about.html" class="text-sm text-ink-light">代表について</a>
       <a href="#contact"  class="text-sm bg-ocean-700 text-white py-3 px-6 rounded-full text-center font-medium">相談してみる</a>
     </div>
   </div>
@@ -207,183 +225,166 @@
 
 
 <!-- ─────────────────────────────────────────────
-     HERO
+     ① HERO
 ───────────────────────────────────────────── -->
-<section class="hero-gradient relative overflow-hidden pt-36 pb-28 px-6">
-  <!-- Decorative blobs -->
-  <div class="hero-blob w-96 h-96 bg-ocean-100/60 top-0 right-0 -translate-y-1/3 translate-x-1/3" style="position:absolute;"></div>
-  <div class="hero-blob w-72 h-72 bg-blue-50 bottom-0 left-10" style="position:absolute;"></div>
+<section class="hero-gradient relative overflow-hidden pt-40 pb-32 px-6">
+  <div class="absolute top-0 right-0 w-80 h-80 bg-ocean-100/40 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
 
   <div class="relative max-w-4xl mx-auto">
-    <div class="reveal mb-8">
-      <span class="text-xs font-medium text-ocean-600 bg-ocean-50 border border-ocean-100 px-4 py-1.5 rounded-full tracking-widest">
-        中小企業の現場改善パートナー
-      </span>
+    <div class="reveal mb-7">
+      <span class="text-xs font-medium text-ocean-600 tracking-widest">中小企業の現場改善パートナー</span>
     </div>
 
-    <h1 class="reveal reveal-delay-1 text-4xl md:text-[50px] font-semibold leading-tight text-gray-900 mb-8">
+    <h1 class="reveal reveal-delay-1 text-4xl md:text-[48px] font-semibold leading-tight text-gray-900 mb-8 tracking-tight">
       日本を明るく元気にする。<br>
-      <span class="text-ocean-800">現場が本来の価値を発揮できる<br>仕組みを、ITでつくります。</span>
+      <span class="text-ocean-800">現場が本来の価値を<br>発揮できる仕組みを、ITでつくります。</span>
     </h1>
 
-    <p class="reveal reveal-delay-2 text-lg text-ink-light leading-relaxed max-w-2xl mb-10">
+    <p class="reveal reveal-delay-2 text-base text-ink-light leading-relaxed max-w-xl mb-12">
       「なんとかしたい」と思いながらも、<br>
-      忙しさに追われて改善できない日々が続いていませんか？<br><br>
-      問題は、頑張りが足りないのではありません。<br>
-      <strong class="text-ink font-medium">仕組みに、問題があるのです。</strong>
+      なかなか前に進めない日が続いていませんか。<br>
+      問題は、頑張りが足りないのではなく——<br>
+      <strong class="text-ink font-medium">仕組みが、合っていないことがほとんどです。</strong>
     </p>
 
-    <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 mb-16">
-      <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-ocean-700 hover:bg-ocean-800 text-white px-8 py-4 rounded-xl font-medium transition-all hover:shadow-lg hover:-translate-y-0.5 duration-200">
+    <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4">
+      <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-ocean-700 hover:bg-ocean-800 text-white px-8 py-4 rounded-xl font-medium transition-all hover:shadow-lg hover:-translate-y-0.5 duration-200 text-sm">
         まずは話してみる
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
       </a>
-      <a href="services.html" class="inline-flex items-center justify-center gap-2 border border-gray-300 text-ink-light px-8 py-4 rounded-xl hover:border-ocean-300 hover:text-ocean-700 transition-colors duration-200">
-        サービスを見る
+      <a href="#why" class="inline-flex items-center justify-center gap-2 text-sm text-ink-light hover:text-ocean-700 px-8 py-4 transition-colors duration-200">
+        なぜこの仕事をしているのか
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l7 7-7 7"/>
+        </svg>
       </a>
     </div>
-
-    <div class="reveal reveal-delay-4 pt-10 border-t border-gray-100 flex flex-wrap gap-10">
-      <div>
-        <p class="text-2xl font-bold text-ocean-800">初回無料</p>
-        <p class="text-xs text-ink-muted mt-1">まず話を聞かせてください</p>
-      </div>
-      <div>
-        <p class="text-2xl font-bold text-ocean-800">小規模から</p>
-        <p class="text-xs text-ink-muted mt-1">大きな投資は後で</p>
-      </div>
-      <div>
-        <p class="text-2xl font-bold text-ocean-800">IT知識不問</p>
-        <p class="text-xs text-ink-muted mt-1">現場の言葉で話せます</p>
-      </div>
-    </div>
   </div>
 </section>
 
 
 <!-- ─────────────────────────────────────────────
-     EMPATHY — 共感セクション
+     ② WHY — なぜこの仕事をしているのか
 ───────────────────────────────────────────── -->
-<section class="bg-white py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <div class="reveal">
-      <p class="label">こんなことで悩んでいませんか</p>
-      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
-        「なんとかしたい」——<br>その気持ち、受け取りました。
-      </h2>
-      <p class="text-ink-light max-w-xl mb-12">
-        どれかひとつでも思い当たることがあれば、<br>
-        あなたの現場はきっと改善できます。
-      </p>
-    </div>
+<section id="why" class="bg-white py-28 px-6">
+  <div class="max-w-3xl mx-auto">
 
-    <div class="reveal grid md:grid-cols-2 gap-4 mb-12">
-      <div class="pain-card p-6">
-        <p class="text-ink leading-relaxed">
-          システムを入れたのに、<br>
-          <strong class="font-medium">現場がかえって忙しくなった。</strong>
-        </p>
-      </div>
-      <div class="pain-card p-6">
-        <p class="text-ink leading-relaxed">
-          できる人に仕事が集中しすぎて、<br>
-          <strong class="font-medium">その人が倒れたら機能しない。</strong>
-        </p>
-      </div>
-      <div class="pain-card p-6">
-        <p class="text-ink leading-relaxed">
-          改善したいのに、<br>
-          <strong class="font-medium">どこから手をつければいいかわからない。</strong>
-        </p>
-      </div>
-      <div class="pain-card p-6">
-        <p class="text-ink leading-relaxed">
-          システム会社と話しても、<br>
-          <strong class="font-medium">なんかかみ合わない、伝わらない。</strong>
-        </p>
-      </div>
-      <div class="pain-card p-6">
-        <p class="text-ink leading-relaxed">
-          忙しすぎて、<br>
-          <strong class="font-medium">改善のことを考える余裕すらない。</strong>
-        </p>
-      </div>
-      <div class="pain-card p-6">
-        <p class="text-ink leading-relaxed">
-          DXとか言われても、<br>
-          <strong class="font-medium">うちには大げさすぎる気がする。</strong>
-        </p>
-      </div>
-    </div>
-
-    <div class="reveal bg-ocean-50 border border-ocean-100 rounded-2xl px-8 py-7">
-      <p class="text-ocean-900 text-lg text-center leading-relaxed">
-        それは、あなたの努力が足りないのではありません。<br>
-        <strong class="font-semibold">仕組みが、あなたの現場に合っていないだけです。</strong>
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────
-     PHILOSOPHY — 考え方
-───────────────────────────────────────────── -->
-<section class="bg-ocean-900 py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <div class="reveal mb-14">
-      <p class="text-ocean-300 text-xs font-medium tracking-widest flex items-center gap-2 mb-4">
-        <span class="inline-block w-5 h-px bg-ocean-400"></span>わたしたちの考え方
-      </p>
-      <h2 class="text-3xl md:text-4xl font-semibold text-white">
-        3つのことを、大切にしています。
+    <div class="reveal mb-12">
+      <p class="label">なぜ、この仕事をしているのか</p>
+      <h2 class="text-3xl md:text-[36px] font-semibold text-gray-900 leading-tight">
+        頑張っている人が、<br>本来の力を発揮できる状態を作りたい。
       </h2>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-10">
-      <div class="reveal">
-        <div class="text-5xl font-light text-ocean-400/60 mb-5 leading-none">01</div>
-        <h3 class="text-xl font-semibold text-white mb-4">問題は「人」ではなく<br>「構造」にある</h3>
-        <p class="text-ocean-200 text-sm leading-relaxed">
-          頑張っているのに結果が出ない。それは個人の問題ではなく、仕組みや業務の流れに原因があることがほとんどです。責める前に、構造を見直す。そこから始めます。
-        </p>
+    <div class="max-w-xl">
+      <p class="why-p reveal">
+        これまで多くの現場に関わってきました。一生懸命に取り組んでいるのに、なぜかうまくいかない。そういう場面を、何度も目の当たりにしてきました。
+      </p>
+
+      <p class="why-p reveal">
+        気づいたのは、うまくいかない理由のほとんどが「人の問題」ではなかったということです。流れが少し詰まっていたり、仕組みが噛み合っていなかったり、伝わるべきことが伝わっていなかったり。
+      </p>
+
+      <p class="why-p reveal">
+        そういう場所を少し整えるだけで、人は自然に動き始める。チームが前に進み始める。そういう変化を、何度も見てきました。
+      </p>
+
+      <div class="why-quote reveal">
+        <p>流れが整えば、人は自然と前へ進めます。</p>
       </div>
-      <div class="reveal reveal-delay-1">
-        <div class="text-5xl font-light text-ocean-400/60 mb-5 leading-none">02</div>
-        <h3 class="text-xl font-semibold text-white mb-4">ITは目的ではなく<br>手段です</h3>
-        <p class="text-ocean-200 text-sm leading-relaxed">
-          「システムを作る」ことが目標ではありません。現場が楽になること、人が本来の仕事に戻れること。それが目標です。効果がなければ、アナログも迷わず選びます。
-        </p>
+
+      <p class="why-p reveal">
+        だから私は、ITそのものを売りたいわけではありません。現場が本来の価値を発揮できる状態を作ること。そのために、時にはシステムを作り、時には整理を行い、時には壁打ちをしながら、一緒に前へ進める形を模索しています。
+      </p>
+
+      <div class="reveal mt-8 flex items-center gap-4">
+        <img src="assets/kaizen_kng_1.jpg" alt="山田 建太郎" class="w-12 h-12 rounded-full object-cover object-top flex-shrink-0">
+        <div>
+          <p class="text-sm font-medium text-gray-900">山田 建太郎</p>
+          <p class="text-xs text-ink-muted">株式会社 業務の改善 代表取締役</p>
+        </div>
+        <a href="about.html" class="ml-auto text-sm text-ocean-700 hover:text-ocean-900 transition-colors whitespace-nowrap hidden sm:block">
+          もう少し読んでみる →
+        </a>
       </div>
-      <div class="reveal reveal-delay-2">
-        <div class="text-5xl font-light text-ocean-400/60 mb-5 leading-none">03</div>
-        <h3 class="text-xl font-semibold text-white mb-4">小さく試して<br>確かめながら進む</h3>
-        <p class="text-ocean-200 text-sm leading-relaxed">
-          最初から大きな投資はしません。小さく動かして、現場で確認して、うまくいったら広げる。そのサイクルを一緒に回します。
-        </p>
+      <div class="reveal mt-4 sm:hidden">
+        <a href="about.html" class="text-sm text-ocean-700 hover:text-ocean-900 transition-colors">
+          もう少し読んでみる →
+        </a>
       </div>
     </div>
+
   </div>
 </section>
 
 
 <!-- ─────────────────────────────────────────────
-     SERVICES — サービス
+     ③ EMPATHY — こんな場面ありませんか
 ───────────────────────────────────────────── -->
-<section id="services" class="bg-white py-24 px-6">
+<section class="bg-gray-50 py-28 px-6">
   <div class="max-w-4xl mx-auto">
+
+    <div class="reveal mb-12">
+      <p class="label">こんな場面、ありませんか</p>
+      <h2 class="text-3xl font-semibold text-gray-900 mb-3">
+        「なんとかしたい」のに、<br>前に進めない日が続いている。
+      </h2>
+      <p class="text-ink-light text-sm max-w-md leading-relaxed mt-4">
+        どれかひとつでも思い当たることがあれば、<br>きっと一緒に整理できます。
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-3 mb-12">
+      <div class="empathy-item reveal">
+        <p>システムを入れたのに、<strong class="font-medium">現場がかえって忙しくなった。</strong><span class="tag">——そんな経験、ありませんか。</span></p>
+      </div>
+      <div class="empathy-item reveal reveal-delay-1">
+        <p>改善したいのに、<strong class="font-medium">どこから手をつければいいかわからない。</strong><span class="tag">——そういう状態でも相談できます。</span></p>
+      </div>
+      <div class="empathy-item reveal">
+        <p>IT会社と話しても、<strong class="font-medium">なんかかみ合わない、伝わらない。</strong><span class="tag">——それ、会話の構造の問題かもしれません。</span></p>
+      </div>
+      <div class="empathy-item reveal reveal-delay-1">
+        <p>できる人に集中しすぎて、<strong class="font-medium">その人が倒れたら機能しない。</strong><span class="tag">——いまのうちに整理できます。</span></p>
+      </div>
+      <div class="empathy-item reveal">
+        <p>忙しすぎて、<strong class="font-medium">改善のことを考える余裕すらない。</strong><span class="tag">——それが一番危ないサインです。</span></p>
+      </div>
+      <div class="empathy-item reveal reveal-delay-1">
+        <p>DXとか言われても、<strong class="font-medium">うちには大げさすぎる気がする。</strong><span class="tag">——小さく始められます。</span></p>
+      </div>
+    </div>
+
+    <div class="reveal bg-ocean-50 border border-ocean-100 rounded-2xl px-8 py-7 max-w-2xl mx-auto text-center">
+      <p class="text-gray-800 leading-relaxed">
+        少し整えるだけで、前に進める場合がほとんどです。<br>
+        <strong class="font-semibold">まずは、一緒に現状を整理することから始めましょう。</strong>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────────
+     ④ BRIDGE → SERVICES
+───────────────────────────────────────────── -->
+<section id="services" class="bg-white py-28 px-6">
+  <div class="max-w-4xl mx-auto">
+
     <div class="reveal mb-14">
-      <p class="label">サービス</p>
+      <p class="label">だから、こういう形で支援しています</p>
       <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">3つのかかわり方</h2>
-      <p class="text-ink-light max-w-xl">
+      <p class="text-ink-light max-w-xl text-sm leading-relaxed">
         状況や課題に合わせて、最適な関わり方を選べます。<br>
-        「どれがいいかわからない」場合は、まず相談から。
+        「どれがいいかわからない」場合は、まず相談から始めましょう。
       </p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
+
       <!-- サービス 1 -->
       <div class="service-card reveal border border-gray-200 rounded-2xl p-8">
         <div class="w-11 h-11 bg-ocean-50 rounded-xl flex items-center justify-center mb-6">
@@ -402,9 +403,17 @@
           <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> ツール選定・比較</li>
           <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 小規模改善サポート</li>
         </ul>
+        <div class="mt-6 pt-5 border-t border-gray-100">
+          <a href="it-consulting.html" class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700 hover:text-ocean-900 transition-colors group">
+            詳しく見る
+            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
-      <!-- サービス 2 （推奨） -->
+      <!-- サービス 2 -->
       <div class="service-card reveal reveal-delay-1 border-2 border-ocean-500 rounded-2xl p-8 relative shadow-md">
         <div class="absolute -top-3.5 left-6">
           <span class="bg-ocean-500 text-white text-xs font-medium px-3 py-1 rounded-full">もっとも選ばれています</span>
@@ -425,6 +434,14 @@
           <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 効果検証・改善サイクル</li>
           <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 定着支援</li>
         </ul>
+        <div class="mt-6 pt-5 border-t border-gray-100">
+          <a href="support.html" class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700 hover:text-ocean-900 transition-colors group">
+            詳しく見る
+            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <!-- サービス 3 -->
@@ -437,7 +454,7 @@
         <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">プロジェクト単位</p>
         <h3 class="text-xl font-semibold text-gray-900 mb-4">本格開発支援</h3>
         <p class="text-sm text-ink-light leading-relaxed mb-6">
-          PoCで効果を確認できたら、本格的なシステム開発へ。信頼できる開発パートナーと連携し、コストを抑えながら質の高い開発を実現します。
+          PoCで効果を確認できたら、本格的なシステム開発へ。信頼できる開発パートナーと連携し、質の高い開発を実現します。
         </p>
         <ul class="text-sm text-ink-muted space-y-2">
           <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 要件整理・共通言語化</li>
@@ -445,6 +462,14 @@
           <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> Miichisoft連携開発</li>
           <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 品質管理・納品支援</li>
         </ul>
+        <div class="mt-6 pt-5 border-t border-gray-100">
+          <a href="development.html" class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700 hover:text-ocean-900 transition-colors group">
+            詳しく見る
+            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -456,6 +481,7 @@
         </svg>
       </a>
     </div>
+
   </div>
 </section>
 
@@ -463,96 +489,47 @@
 <!-- ─────────────────────────────────────────────
      PROCESS — 進め方
 ───────────────────────────────────────────── -->
-<section id="process" class="bg-gray-50 py-24 px-6">
+<section id="process" class="bg-gray-50 py-28 px-6">
   <div class="max-w-4xl mx-auto">
     <div class="reveal mb-14">
       <p class="label">進め方</p>
       <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">こんなふうに進めます</h2>
-      <p class="text-ink-light max-w-xl">
+      <p class="text-ink-light text-sm max-w-xl leading-relaxed">
         最初の一歩は「ヒアリング」から。<br>
         整理されていなくても、「なんかうまくいっていない」だけでも大丈夫です。
       </p>
     </div>
 
-    <!-- Desktop: 4+4 grid -->
+    <!-- Desktop -->
     <div class="hidden md:block">
-      <!-- Row 1 -->
       <div class="grid grid-cols-4 gap-0 mb-2">
-        <div class="reveal flex items-center">
-          <div class="step-num bg-ocean-700 text-white">1</div>
-          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
-        </div>
-        <div class="reveal reveal-delay-1 flex items-center">
-          <div class="step-num bg-ocean-700 text-white">2</div>
-          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
-        </div>
-        <div class="reveal reveal-delay-2 flex items-center">
-          <div class="step-num bg-ocean-600 text-white">3</div>
-          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
-        </div>
-        <div class="reveal reveal-delay-3 flex items-center">
-          <div class="step-num bg-ocean-600 text-white">4</div>
-        </div>
+        <div class="reveal flex items-center"><div class="step-num bg-ocean-700 text-white">1</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
+        <div class="reveal reveal-delay-1 flex items-center"><div class="step-num bg-ocean-700 text-white">2</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
+        <div class="reveal reveal-delay-2 flex items-center"><div class="step-num bg-ocean-600 text-white">3</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
+        <div class="reveal reveal-delay-3 flex items-center"><div class="step-num bg-ocean-600 text-white">4</div></div>
       </div>
       <div class="grid grid-cols-4 gap-6 mb-10">
-        <div class="reveal pt-4">
-          <h3 class="font-medium text-ink mb-1.5">ヒアリング</h3>
-          <p class="text-sm text-ink-muted leading-relaxed">整理されていなくてOK。まず話を聞きます。</p>
-        </div>
-        <div class="reveal reveal-delay-1 pt-4">
-          <h3 class="font-medium text-ink mb-1.5">現状整理</h3>
-          <p class="text-sm text-ink-muted leading-relaxed">業務フローや課題を一緒に可視化します。</p>
-        </div>
-        <div class="reveal reveal-delay-2 pt-4">
-          <h3 class="font-medium text-ink mb-1.5">真の課題整理</h3>
-          <p class="text-sm text-ink-muted leading-relaxed">症状ではなく根本原因を探ります。</p>
-        </div>
-        <div class="reveal reveal-delay-3 pt-4">
-          <h3 class="font-medium text-ink mb-1.5">ROI仮説</h3>
-          <p class="text-sm text-ink-muted leading-relaxed">「やってみる価値があるか」を数字で考えます。</p>
-        </div>
+        <div class="reveal pt-4"><h3 class="font-medium text-ink mb-1.5">ヒアリング</h3><p class="text-sm text-ink-muted leading-relaxed">整理されていなくてOK。まず話を聞きます。</p></div>
+        <div class="reveal reveal-delay-1 pt-4"><h3 class="font-medium text-ink mb-1.5">現状整理</h3><p class="text-sm text-ink-muted leading-relaxed">業務フローや課題を一緒に可視化します。</p></div>
+        <div class="reveal reveal-delay-2 pt-4"><h3 class="font-medium text-ink mb-1.5">真の課題整理</h3><p class="text-sm text-ink-muted leading-relaxed">症状ではなく根本原因を探ります。</p></div>
+        <div class="reveal reveal-delay-3 pt-4"><h3 class="font-medium text-ink mb-1.5">ROI仮説</h3><p class="text-sm text-ink-muted leading-relaxed">やってみる価値があるかを数字で考えます。</p></div>
       </div>
-
-      <!-- Row 2 -->
       <div class="grid grid-cols-4 gap-0 mb-2">
-        <div class="reveal flex items-center">
-          <div class="step-num bg-ocean-500 text-white">5</div>
-          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
-        </div>
-        <div class="reveal reveal-delay-1 flex items-center">
-          <div class="step-num bg-ocean-500 text-white">6</div>
-          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
-        </div>
-        <div class="reveal reveal-delay-2 flex items-center">
-          <div class="step-num bg-ocean-400 text-white">7</div>
-          <div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div>
-        </div>
-        <div class="reveal reveal-delay-3 flex items-center">
-          <div class="step-num bg-ocean-300 text-white">8</div>
-        </div>
+        <div class="reveal flex items-center"><div class="step-num bg-ocean-500 text-white">5</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
+        <div class="reveal reveal-delay-1 flex items-center"><div class="step-num bg-ocean-500 text-white">6</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
+        <div class="reveal reveal-delay-2 flex items-center"><div class="step-num bg-ocean-400 text-white">7</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
+        <div class="reveal reveal-delay-3 flex items-center"><div class="step-num bg-ocean-300 text-white">8</div></div>
       </div>
       <div class="grid grid-cols-4 gap-6">
-        <div class="reveal pt-4">
-          <h3 class="font-medium text-ink mb-1.5">小規模PoC</h3>
-          <p class="text-sm text-ink-muted leading-relaxed">まず小さく試します。大きな投資は後で。</p>
-        </div>
-        <div class="reveal reveal-delay-1 pt-4">
-          <h3 class="font-medium text-ink mb-1.5">検証</h3>
-          <p class="text-sm text-ink-muted leading-relaxed">現場で使えるか、効果が出るかを確認します。</p>
-        </div>
-        <div class="reveal reveal-delay-2 pt-4">
-          <h3 class="font-medium text-ink mb-1.5">本格導入判断</h3>
-          <p class="text-sm text-ink-muted leading-relaxed">効果が確認できた場合のみ、スケールを検討。</p>
-        </div>
-        <div class="reveal reveal-delay-3 pt-4">
-          <h3 class="font-medium text-ink mb-1.5">定着支援</h3>
-          <p class="text-sm text-ink-muted leading-relaxed">現場になじむまで、そばにいます。</p>
-        </div>
+        <div class="reveal pt-4"><h3 class="font-medium text-ink mb-1.5">小規模PoC</h3><p class="text-sm text-ink-muted leading-relaxed">まず小さく試します。大きな投資は後で。</p></div>
+        <div class="reveal reveal-delay-1 pt-4"><h3 class="font-medium text-ink mb-1.5">検証</h3><p class="text-sm text-ink-muted leading-relaxed">現場で使えるか、効果が出るかを確認します。</p></div>
+        <div class="reveal reveal-delay-2 pt-4"><h3 class="font-medium text-ink mb-1.5">本格導入判断</h3><p class="text-sm text-ink-muted leading-relaxed">効果が確認できた場合のみ、スケールを検討。</p></div>
+        <div class="reveal reveal-delay-3 pt-4"><h3 class="font-medium text-ink mb-1.5">定着支援</h3><p class="text-sm text-ink-muted leading-relaxed">現場になじむまで、そばにいます。</p></div>
       </div>
     </div>
 
-    <!-- Mobile: vertical list -->
-    <div class="md:hidden space-y-6">
+    <!-- Mobile -->
+    <div class="md:hidden space-y-5">
       <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-700 text-white flex-shrink-0">1</div><div><h3 class="font-medium text-ink mb-1">ヒアリング</h3><p class="text-sm text-ink-muted">整理されていなくてOK。まず話を聞きます。</p></div></div>
       <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-700 text-white flex-shrink-0">2</div><div><h3 class="font-medium text-ink mb-1">現状整理</h3><p class="text-sm text-ink-muted">業務フローや課題を一緒に可視化します。</p></div></div>
       <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-600 text-white flex-shrink-0">3</div><div><h3 class="font-medium text-ink mb-1">真の課題整理</h3><p class="text-sm text-ink-muted">症状ではなく根本原因を探ります。</p></div></div>
@@ -567,144 +544,20 @@
 
 
 <!-- ─────────────────────────────────────────────
-     CASES — ダミー事例
+     FAQ
 ───────────────────────────────────────────── -->
-<section class="bg-white py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <div class="reveal mb-14">
-      <p class="label">支援事例（イメージ）</p>
-      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">こんな改善をしてきました</h2>
-      <p class="text-ink-light text-sm">※ 下記はイメージです。実際の支援内容に基づき構成しています。</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="reveal bg-gray-50 rounded-2xl p-7 border border-gray-100">
-        <div class="flex items-center gap-2 mb-5">
-          <span class="text-xs bg-ocean-100 text-ocean-700 px-2.5 py-1 rounded-full font-medium">製造業</span>
-          <span class="text-xs text-ink-muted">従業員 30名</span>
-        </div>
-        <p class="text-sm font-medium text-ink mb-3">課題</p>
-        <p class="text-sm text-ink-light leading-relaxed mb-5">
-          手書きの作業日報をExcelに転記する作業に毎日2時間。担当者が休むと誰も対応できなかった。
-        </p>
-        <p class="text-sm font-medium text-ink mb-3">結果</p>
-        <p class="text-sm text-ocean-700 font-medium leading-relaxed">
-          タブレット入力＋自動集計の仕組みを導入。月間残業時間が約20時間削減。
-        </p>
-      </div>
-
-      <div class="reveal reveal-delay-1 bg-gray-50 rounded-2xl p-7 border border-gray-100">
-        <div class="flex items-center gap-2 mb-5">
-          <span class="text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-medium">小売業</span>
-          <span class="text-xs text-ink-muted">従業員 15名</span>
-        </div>
-        <p class="text-sm font-medium text-ink mb-3">課題</p>
-        <p class="text-sm text-ink-light leading-relaxed mb-5">
-          在庫管理がアナログで、欠品・過剰在庫が頻発。発注判断が経験と勘に依存していた。
-        </p>
-        <p class="text-sm font-medium text-ink mb-3">結果</p>
-        <p class="text-sm text-ocean-700 font-medium leading-relaxed">
-          在庫可視化ツールの導入で欠品率が半減。ロス率も約30%改善。
-        </p>
-      </div>
-
-      <div class="reveal reveal-delay-2 bg-gray-50 rounded-2xl p-7 border border-gray-100">
-        <div class="flex items-center gap-2 mb-5">
-          <span class="text-xs bg-purple-100 text-purple-700 px-2.5 py-1 rounded-full font-medium">サービス業</span>
-          <span class="text-xs text-ink-muted">従業員 50名</span>
-        </div>
-        <p class="text-sm font-medium text-ink mb-3">課題</p>
-        <p class="text-sm text-ink-light leading-relaxed mb-5">
-          問い合わせ対応が特定の担当者に集中。その人のスケジュールで業務が止まる状況だった。
-        </p>
-        <p class="text-sm font-medium text-ink mb-3">結果</p>
-        <p class="text-sm text-ocean-700 font-medium leading-relaxed">
-          FAQ整備と簡易チャット導入で担当者の対応件数が約半分に。他の業務に集中できるように。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────
-     ABOUT — 代表について
-───────────────────────────────────────────── -->
-<section id="about" class="bg-ocean-50 py-24 px-6">
-  <div class="max-w-2xl mx-auto">
-
-    <div class="reveal mb-10">
-      <p class="label">代表について</p>
-      <h2 class="serif text-3xl md:text-4xl font-semibold text-gray-900 leading-snug">
-        問題は、人ではなく<br>
-        <span class="text-ocean-700">構造にある</span>と思っています。
-      </h2>
-    </div>
-
-    <div class="reveal space-y-6 text-ink-light leading-relaxed mb-10">
-      <p>
-        現場を見てきて、ずっと感じていたことがあります。<br>
-        頑張っている人ほど、苦しくなっていく。
-      </p>
-      <p>
-        その原因は、能力でも、やる気でもないことがほとんどでした。
-      </p>
-
-      <!-- Pull quote -->
-      <blockquote class="border-l-4 border-ocean-400 pl-6 py-1 my-8">
-        <p class="text-ocean-900 text-lg font-medium leading-relaxed">
-          「ITを売りたいわけではありません。<br>
-          構造が変われば、人は自然と動けます。」
-        </p>
-      </blockquote>
-
-      <p>
-        なぜそう考えるようになったのか。<br>
-        それは、いくつかの現場と経験を経て、少しずつ見えてきたことです。
-      </p>
-    </div>
-
-    <!-- Profile + CTA -->
-    <div class="reveal">
-      <div class="flex items-center gap-4 mb-8">
-        <img src="assets/kaizen_kng_1.jpg" alt="代表" class="w-14 h-14 rounded-full object-cover object-top">
-        <div>
-          <p class="text-sm font-medium text-ink">山田 建太郎</p>
-          <p class="text-xs text-ink-muted mt-0.5">株式会社 業務の改善 代表取締役</p>
-        </div>
-      </div>
-
-      <a href="about.html" class="inline-flex items-center gap-3 group">
-        <span class="text-sm font-medium text-ocean-700 group-hover:text-ocean-900 transition-colors">
-          なぜこの仕事をしているのか、もう少し読んでみる
-        </span>
-        <svg class="w-4 h-4 text-ocean-500 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-        </svg>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────
-     FAQ — よくある質問
-───────────────────────────────────────────── -->
-<section class="bg-white py-24 px-6">
+<section class="bg-white py-28 px-6">
   <div class="max-w-3xl mx-auto">
     <div class="reveal mb-12">
       <p class="label">よくある質問</p>
-      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900">
-        相談前の不安、解消します。
-      </h2>
+      <h2 class="text-3xl font-semibold text-gray-900">相談前の不安、解消します。</h2>
     </div>
 
-    <div class="space-y-4">
+    <div class="space-y-3">
       <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
         <summary class="flex items-center justify-between px-6 py-5">
-          <span class="font-medium text-ink">Q. 相談だけでもいいですか？</span>
-          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="font-medium text-ink text-sm">Q. 相談だけでもいいですか？</span>
+          <svg class="w-4 h-4 text-ink-muted group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </summary>
@@ -715,32 +568,32 @@
 
       <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
         <summary class="flex items-center justify-between px-6 py-5">
-          <span class="font-medium text-ink">Q. 小さな会社でも対応してもらえますか？</span>
-          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="font-medium text-ink text-sm">Q. 小さな会社でも対応してもらえますか？</span>
+          <svg class="w-4 h-4 text-ink-muted group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </summary>
         <div class="px-6 pb-5 text-sm text-ink-light leading-relaxed">
-          はい。むしろ中小企業・小規模事業者の方の支援が中心です。会社の規模ではなく、「本気で改善したい」という気持ちを大切にしています。
+          はい。むしろ中小企業・小規模事業者の支援が中心です。規模ではなく、「本気で改善したい」という気持ちを大切にしています。
         </div>
       </details>
 
       <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
         <summary class="flex items-center justify-between px-6 py-5">
-          <span class="font-medium text-ink">Q. IT知識がなくても大丈夫ですか？</span>
-          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="font-medium text-ink text-sm">Q. IT知識がなくても大丈夫ですか？</span>
+          <svg class="w-4 h-4 text-ink-muted group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </summary>
         <div class="px-6 pb-5 text-sm text-ink-light leading-relaxed">
-          まったく問題ありません。「ITのことはよくわからない」という状態でのご相談が、むしろ多いです。専門用語を使わず、現場の言葉で話し合います。
+          まったく問題ありません。専門用語を使わず、現場の言葉で話し合います。「ITのことはよくわからない」という状態でのご相談が、むしろ多いです。
         </div>
       </details>
 
       <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
         <summary class="flex items-center justify-between px-6 py-5">
-          <span class="font-medium text-ink">Q. 費用はどのくらいかかりますか？</span>
-          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="font-medium text-ink text-sm">Q. 費用はどのくらいかかりますか？</span>
+          <svg class="w-4 h-4 text-ink-muted group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </summary>
@@ -751,13 +604,13 @@
 
       <details class="faq-item reveal group bg-gray-50 rounded-xl border border-gray-100">
         <summary class="flex items-center justify-between px-6 py-5">
-          <span class="font-medium text-ink">Q. 今すぐ導入するつもりはないのですが…</span>
-          <svg class="w-5 h-5 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="font-medium text-ink text-sm">Q. 今すぐ導入するつもりはないのですが…</span>
+          <svg class="w-4 h-4 text-ink-muted group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
         </summary>
         <div class="px-6 pb-5 text-sm text-ink-light leading-relaxed">
-          それで全く構いません。「今後どうすればいいか整理したい」という段階の相談も多いです。まずは現状を一緒に整理するだけで、見えてくるものがあります。
+          それで全く構いません。「今後どうすればいいか整理したい」という段階の相談も多いです。一緒に現状を整理するだけで、見えてくるものがあります。
         </div>
       </details>
     </div>
@@ -766,72 +619,103 @@
 
 
 <!-- ─────────────────────────────────────────────
-     NEWS & TOPICS
+     ⑥ NEWS & STORIES
 ───────────────────────────────────────────── -->
-<section class="bg-ocean-50 py-24 px-6">
+<section id="news" class="bg-ocean-50 py-28 px-6">
   <div class="max-w-4xl mx-auto">
+
     <div class="reveal mb-12">
-      <p class="label">NEWS &amp; TOPICS</p>
-      <h2 class="font-serif text-3xl md:text-4xl font-semibold text-gray-900 mb-4">最近の取り組み</h2>
+      <p class="label">News &amp; Stories</p>
+      <h2 class="text-3xl font-semibold text-gray-900 mb-3">実際に動いていること</h2>
       <p class="text-ink-light text-sm max-w-md leading-relaxed">
-        改善の記録や、現場で考えていることを、少しずつ掲載しています。
+        考えていること、起きていること、小さな変化を、少しずつ書いています。
       </p>
     </div>
 
-    <!-- 記事グリッド — 将来 JSON / GAS から動的生成予定 -->
-    <div id="news-grid" class="grid md:grid-cols-2 gap-5">
+    <div id="news-grid" class="grid md:grid-cols-3 gap-5">
 
+      <!-- 記事 1 -->
       <article class="news-card reveal" data-slug="homepage-renewal">
         <a href="articles/homepage-renewal.html" class="block group">
-          <div class="news-card-thumb">
-            <img src="assets/GyokaiLogo.svg" alt="" class="h-14 w-14 opacity-20">
+          <div class="news-thumb">
+            <img src="assets/GyokaiLogo.svg" alt="" class="h-12 w-12 opacity-15">
           </div>
-          <div class="news-card-body">
-            <div class="news-card-meta">
+          <div class="news-body">
+            <div class="news-meta">
               <span class="news-category">サイトについて</span>
               <span class="news-date">2026年5月</span>
             </div>
-            <h3 class="news-card-title group-hover:text-ocean-700 transition-colors duration-200">
+            <h3 class="news-title group-hover:text-ocean-700 transition-colors">
               ホームページをリニューアルしています
             </h3>
-            <p class="news-card-excerpt">
-              「IT会社のサイト」ではなく、"成果につながる状態を作る" を整理するサイトへ、少しずつ作り直しています。
+            <p class="news-excerpt">
+              「IT会社のサイト」ではなく、なぜこの仕事をしているのかを伝えるサイトへ。少しずつ作り直しています。
             </p>
           </div>
         </a>
       </article>
 
+      <!-- 準備中 2 -->
+      <article class="news-card reveal reveal-delay-1">
+        <div class="news-thumb bg-gray-50">
+          <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-category">現場の話</span>
+            <span class="news-date">近日公開</span>
+          </div>
+          <h3 class="news-title text-gray-400">小さな改善が、現場を変えた話</h3>
+          <p class="news-excerpt">準備中です。</p>
+        </div>
+      </article>
+
+      <!-- 準備中 3 -->
+      <article class="news-card reveal reveal-delay-2">
+        <div class="news-thumb bg-gray-50">
+          <svg class="w-8 h-8 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-category">インタビュー</span>
+            <span class="news-date">近日公開</span>
+          </div>
+          <h3 class="news-title text-gray-400">「相談してよかった」——ある現場の話</h3>
+          <p class="news-excerpt">準備中です。</p>
+        </div>
+      </article>
+
     </div>
-    <!-- /news-grid -->
+
   </div>
 </section>
 
 
 <!-- ─────────────────────────────────────────────
-     CONTACT — お問い合わせ
+     ⑦ CONTACT — 静かなCTA
 ───────────────────────────────────────────── -->
-<section id="contact" class="bg-ocean-900 py-24 px-6">
+<section id="contact" class="bg-ocean-900 py-28 px-6">
   <div class="max-w-2xl mx-auto">
-    <div class="reveal text-center mb-12">
-      <p class="text-ocean-300 text-xs font-medium tracking-widest flex items-center justify-center gap-2 mb-4">
-        <span class="inline-block w-5 h-px bg-ocean-400"></span>お問い合わせ<span class="inline-block w-5 h-px bg-ocean-400"></span>
-      </p>
-      <h2 class="text-3xl md:text-4xl font-semibold text-white mb-5">
-        まず、話してみませんか。
+
+    <div class="reveal text-center mb-14">
+      <p class="text-ocean-400 text-xs tracking-widest mb-5">お問い合わせ</p>
+      <h2 class="text-3xl md:text-4xl font-semibold text-white mb-6 leading-tight">
+        「こういう相談って、<br>していいのかな」
       </h2>
-      <p class="text-ocean-200 leading-relaxed">
-        「整理できていない」「何から話せばいいかわからない」<br>
-        そんな状態でも大丈夫です。<br>
-        一緒に整理することから始めましょう。
+      <p class="text-ocean-300 leading-relaxed text-sm">
+        そのくらいの気持ちで、声をかけてください。<br>
+        整理できていなくても、何から話せばいいかわからなくても、大丈夫です。
       </p>
     </div>
 
     <form class="reveal bg-white rounded-2xl p-8 md:p-10" onsubmit="handleSubmit(event)">
-      <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div class="grid md:grid-cols-2 gap-5 mb-5">
         <div>
-          <label class="block text-sm font-medium text-ink mb-2">
-            お名前 <span class="text-red-400">*</span>
-          </label>
+          <label class="block text-sm font-medium text-ink mb-2">お名前 <span class="text-red-400">*</span></label>
           <input type="text" required placeholder="山田 太郎"
             class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all">
         </div>
@@ -842,38 +726,34 @@
         </div>
       </div>
 
-      <div class="mb-6">
-        <label class="block text-sm font-medium text-ink mb-2">
-          メールアドレス <span class="text-red-400">*</span>
-        </label>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-ink mb-2">メールアドレス <span class="text-red-400">*</span></label>
         <input type="email" required placeholder="yamada@example.com"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all">
       </div>
 
       <div class="mb-6">
-        <label class="block text-sm font-medium text-ink mb-2">
-          気になっていること・相談したいこと
-        </label>
+        <label class="block text-sm font-medium text-ink mb-2">気になっていること・相談したいこと</label>
         <textarea rows="5" placeholder="どんな小さなことでも構いません。「なんとかしたい」という気持ちだけでも大丈夫です。"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all resize-none"></textarea>
       </div>
 
       <button type="submit"
-        class="w-full bg-ocean-700 hover:bg-ocean-800 text-white py-4 rounded-xl font-medium transition-all hover:shadow-lg duration-200">
+        class="w-full bg-ocean-700 hover:bg-ocean-800 text-white py-4 rounded-xl font-medium transition-all hover:shadow-lg duration-200 text-sm">
         送信する
       </button>
 
       <p class="text-xs text-gray-400 text-center mt-4 leading-relaxed">
-        営業の連絡はしません。<br>まずはお話を聞かせてください。
+        営業の連絡はしません。まずはお話を聞かせてください。
       </p>
     </form>
 
-    <!-- Success message (hidden) -->
     <div id="form-success" class="hidden text-center text-white mt-8">
       <div class="text-5xl mb-4">✓</div>
       <p class="text-xl font-medium mb-2">送信しました。ありがとうございます。</p>
       <p class="text-ocean-300 text-sm">3営業日以内にご連絡いたします。</p>
     </div>
+
   </div>
 </section>
 
@@ -895,17 +775,17 @@
         <div>
           <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">サービス</p>
           <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="services.html#step1" class="hover:text-white transition-colors">ITなんでも相談</a></li>
-            <li><a href="services.html#step2" class="hover:text-white transition-colors">伴走支援</a></li>
-            <li><a href="services.html#step3" class="hover:text-white transition-colors">開発・導入支援</a></li>
+            <li><a href="it-consulting.html" class="hover:text-white transition-colors">ITなんでも相談</a></li>
+            <li><a href="support.html"       class="hover:text-white transition-colors">伴走型改善支援</a></li>
+            <li><a href="development.html"   class="hover:text-white transition-colors">本格開発支援</a></li>
           </ul>
         </div>
         <div>
           <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">会社情報</p>
           <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="#about" class="hover:text-white transition-colors">代表メッセージ</a></li>
-            <li><a href="#process" class="hover:text-white transition-colors">進め方</a></li>
-            <li><a href="#contact" class="hover:text-white transition-colors">お問い合わせ</a></li>
+            <li><a href="about.html"   class="hover:text-white transition-colors">代表について</a></li>
+            <li><a href="#process"     class="hover:text-white transition-colors">進め方</a></li>
+            <li><a href="#contact"     class="hover:text-white transition-colors">お問い合わせ</a></li>
           </ul>
         </div>
         <div>
@@ -917,20 +797,16 @@
         </div>
       </div>
     </div>
-    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-      <p class="text-xs text-gray-600">〒100-0000　東京都○○区○○ ○丁目○番○号（仮）</p>
+    <div class="border-t border-gray-800 pt-6">
       <p class="text-xs text-gray-600">© 2026 株式会社 業務の改善. All rights reserved.</p>
     </div>
   </div>
 </footer>
 
 
-<!-- ─────────────────────────────────────────────
-     Floating CTA (mobile only)
-───────────────────────────────────────────── -->
+<!-- Floating CTA (mobile) -->
 <div class="floating-cta md:hidden">
-  <a href="#contact"
-    class="flex items-center gap-2 bg-ocean-700 text-white text-sm font-medium px-6 py-3.5 rounded-full shadow-xl hover:bg-ocean-800 transition-all">
+  <a href="#contact" class="flex items-center gap-2 bg-ocean-700 text-white text-sm font-medium px-6 py-3.5 rounded-full shadow-xl hover:bg-ocean-800 transition-all">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
     </svg>
@@ -939,48 +815,38 @@
 </div>
 
 
-<!-- ─────────────────────────────────────────────
-     JavaScript
-───────────────────────────────────────────── -->
 <script>
-  // ── Mobile menu
+  // Mobile menu
   const toggle = document.getElementById('mobile-toggle')
   const menu   = document.getElementById('mobile-menu')
   toggle.addEventListener('click', () => menu.classList.toggle('hidden'))
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')))
 
-  // ── Header shadow on scroll
+  // Header shadow
   const header = document.getElementById('site-header')
   window.addEventListener('scroll', () => {
     header.classList.toggle('shadow-md', window.scrollY > 20)
-  })
+  }, { passive: true })
 
-  // ── Scroll reveal (Intersection Observer)
+  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible')
-        observer.unobserve(e.target)
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) }
     })
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
-
+  }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' })
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
 
-  // ── Contact form (PoC: no actual submission)
+  // Contact form
   function handleSubmit(e) {
     e.preventDefault()
-    const form    = e.target
+    const form = e.target
     const success = document.getElementById('form-success')
     form.style.opacity = '0'
     form.style.transition = 'opacity 0.4s'
-    setTimeout(() => {
-      form.style.display = 'none'
-      success.classList.remove('hidden')
-    }, 400)
+    setTimeout(() => { form.style.display = 'none'; success.classList.remove('hidden') }, 400)
   }
 
-  // ── Smooth anchor navigation accounting for fixed header
+  // Smooth scroll (fixed header offset)
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const id = a.getAttribute('href')
