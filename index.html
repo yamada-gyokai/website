@@ -120,19 +120,6 @@
       box-shadow: 0 12px 40px rgba(41, 82, 184, 0.11);
     }
 
-    /* ── Process step ── */
-    .step-num {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 500;
-      flex-shrink: 0;
-    }
-
     /* ── FAQ ── */
     .faq-item details summary { list-style: none; cursor: pointer; }
     .faq-item details summary::-webkit-details-marker { display: none; }
@@ -482,58 +469,210 @@
 
 
 <!-- ─────────────────────────────────────────────
-     PROCESS — 進め方
+     PROCESS — 流れ
 ───────────────────────────────────────────── -->
-<section id="process" class="bg-gray-50 py-28 px-6">
+<section id="process" class="bg-gray-50 py-36 px-6">
   <div class="max-w-4xl mx-auto">
+
     <div class="reveal mb-14">
       <p class="label">進め方</p>
-      <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">こんなふうに進めます</h2>
+      <h2 class="text-3xl md:text-[32px] font-semibold text-gray-900 mb-3">こんなふうに進めます</h2>
       <p class="text-ink-light text-sm max-w-xl leading-relaxed">
-        最初の一歩は「ヒアリング」から。<br>
-        整理されていなくても、「なんかうまくいっていない」だけでも大丈夫です。
+        「なんかうまくいっていない」だけで大丈夫。<br>
+        まず流れを整えることから、一緒に始めます。
       </p>
     </div>
 
-    <!-- Desktop -->
+    <!-- ── Desktop ── -->
     <div class="hidden md:block">
-      <div class="grid grid-cols-4 gap-0 mb-2">
-        <div class="reveal flex items-center"><div class="step-num bg-ocean-700 text-white">1</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
-        <div class="reveal reveal-delay-1 flex items-center"><div class="step-num bg-ocean-700 text-white">2</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
-        <div class="reveal reveal-delay-2 flex items-center"><div class="step-num bg-ocean-600 text-white">3</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
-        <div class="reveal reveal-delay-3 flex items-center"><div class="step-num bg-ocean-600 text-white">4</div></div>
+
+      <!-- Step flow -->
+      <div class="flex items-start mb-10">
+        <div class="w-28 flex-shrink-0"></div>
+        <div class="flex-1 relative">
+          <!-- Connecting line -->
+          <div class="absolute h-px bg-ocean-100" style="top:16px; left:calc(100%/14); right:calc(100%/14);"></div>
+          <!-- Steps -->
+          <div class="grid grid-cols-7 reveal">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full border border-ocean-200 bg-white flex items-center justify-center relative z-10 mb-2">
+                <span class="text-[10px] font-medium text-ocean-400">1</span>
+              </div>
+              <span class="text-[11px] text-gray-600 text-center leading-snug">課題<br>整理</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full border border-ocean-200 bg-white flex items-center justify-center relative z-10 mb-2">
+                <span class="text-[10px] font-medium text-ocean-400">2</span>
+              </div>
+              <span class="text-[11px] text-gray-600 text-center leading-snug">会話<br>整理</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full border border-ocean-200 bg-white flex items-center justify-center relative z-10 mb-2">
+                <span class="text-[10px] font-medium text-ocean-400">3</span>
+              </div>
+              <span class="text-[11px] text-gray-600 text-center leading-snug">方向<br>整理</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full border border-ocean-200 bg-white flex items-center justify-center relative z-10 mb-2">
+                <span class="text-[10px] font-medium text-ocean-400">4</span>
+              </div>
+              <span class="text-[11px] text-gray-600 text-center leading-snug">小さく<br>試す</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full border border-ocean-200 bg-white flex items-center justify-center relative z-10 mb-2">
+                <span class="text-[10px] font-medium text-ocean-400">5</span>
+              </div>
+              <span class="text-[11px] text-gray-600 text-center leading-snug">開発</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full border border-ocean-200 bg-white flex items-center justify-center relative z-10 mb-2">
+                <span class="text-[10px] font-medium text-ocean-400">6</span>
+              </div>
+              <span class="text-[11px] text-gray-600 text-center leading-snug">定着</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full border border-ocean-200 bg-white flex items-center justify-center relative z-10 mb-2">
+                <span class="text-[10px] font-medium text-ocean-400">7</span>
+              </div>
+              <span class="text-[11px] text-gray-600 text-center leading-snug">改善<br>循環</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="grid grid-cols-4 gap-6 mb-10">
-        <div class="reveal pt-4"><h3 class="font-medium text-ink mb-1.5">ヒアリング</h3><p class="text-sm text-ink-muted leading-relaxed">整理されていなくてOK。まず話を聞きます。</p></div>
-        <div class="reveal reveal-delay-1 pt-4"><h3 class="font-medium text-ink mb-1.5">現状整理</h3><p class="text-sm text-ink-muted leading-relaxed">業務フローや課題を一緒に可視化します。</p></div>
-        <div class="reveal reveal-delay-2 pt-4"><h3 class="font-medium text-ink mb-1.5">真の課題整理</h3><p class="text-sm text-ink-muted leading-relaxed">症状ではなく根本原因を探ります。</p></div>
-        <div class="reveal reveal-delay-3 pt-4"><h3 class="font-medium text-ink mb-1.5">ROI仮説</h3><p class="text-sm text-ink-muted leading-relaxed">やってみる価値があるかを数字で考えます。</p></div>
+
+      <!-- Coverage section label -->
+      <div class="flex mb-4">
+        <div class="w-28 flex-shrink-0"></div>
+        <div class="flex-1">
+          <p class="text-[10px] text-ink-muted tracking-widest">各サービスが支援するフェーズ</p>
+        </div>
       </div>
-      <div class="grid grid-cols-4 gap-0 mb-2">
-        <div class="reveal flex items-center"><div class="step-num bg-ocean-500 text-white">5</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
-        <div class="reveal reveal-delay-1 flex items-center"><div class="step-num bg-ocean-500 text-white">6</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
-        <div class="reveal reveal-delay-2 flex items-center"><div class="step-num bg-ocean-400 text-white">7</div><div class="flex-1 h-0.5 bg-ocean-200 mx-3"></div></div>
-        <div class="reveal reveal-delay-3 flex items-center"><div class="step-num bg-ocean-300 text-white">8</div></div>
-      </div>
-      <div class="grid grid-cols-4 gap-6">
-        <div class="reveal pt-4"><h3 class="font-medium text-ink mb-1.5">小規模PoC</h3><p class="text-sm text-ink-muted leading-relaxed">まず小さく試します。大きな投資は後で。</p></div>
-        <div class="reveal reveal-delay-1 pt-4"><h3 class="font-medium text-ink mb-1.5">検証</h3><p class="text-sm text-ink-muted leading-relaxed">現場で使えるか、効果が出るかを確認します。</p></div>
-        <div class="reveal reveal-delay-2 pt-4"><h3 class="font-medium text-ink mb-1.5">本格導入判断</h3><p class="text-sm text-ink-muted leading-relaxed">効果が確認できた場合のみ、スケールを検討。</p></div>
-        <div class="reveal reveal-delay-3 pt-4"><h3 class="font-medium text-ink mb-1.5">定着支援</h3><p class="text-sm text-ink-muted leading-relaxed">現場になじむまで、そばにいます。</p></div>
+
+      <!-- Coverage bars -->
+      <div class="space-y-3">
+
+        <!-- ITなんでも相談: steps 1–3 -->
+        <div class="flex items-center reveal">
+          <div class="w-28 flex-shrink-0 pr-5 text-right">
+            <span class="text-[11px] text-ink-muted leading-tight">ITなんでも<br>相談</span>
+          </div>
+          <div class="flex-1 relative h-7">
+            <div class="absolute left-0 top-0 h-full rounded-full bg-ocean-50 border border-ocean-200 flex items-center px-3" style="width:calc(3/7*100%)">
+              <span class="text-[10px] text-ocean-500 font-medium tracking-wide whitespace-nowrap">整理フェーズ中心</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 伴走型改善支援: steps 1–7 -->
+        <div class="flex items-center reveal">
+          <div class="w-28 flex-shrink-0 pr-5 text-right">
+            <span class="text-[11px] text-ink-muted leading-tight">伴走型<br>改善支援</span>
+          </div>
+          <div class="flex-1 relative h-7">
+            <div class="absolute inset-0 rounded-full bg-ocean-100 border border-ocean-300 flex items-center justify-center">
+              <span class="text-[10px] text-ocean-700 font-medium tracking-wide whitespace-nowrap">全フェーズ横断</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 本格開発支援: steps 4–7 -->
+        <div class="flex items-center reveal">
+          <div class="w-28 flex-shrink-0 pr-5 text-right">
+            <span class="text-[11px] text-ink-muted leading-tight">本格<br>開発支援</span>
+          </div>
+          <div class="flex-1 relative h-7">
+            <div class="absolute top-0 right-0 h-full rounded-full bg-ocean-50 border border-ocean-200 flex items-center px-3" style="left:calc(3/7*100%)">
+              <span class="text-[10px] text-ocean-500 font-medium tracking-wide whitespace-nowrap">開発・定着フェーズ</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- Mobile -->
-    <div class="md:hidden space-y-5">
-      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-700 text-white flex-shrink-0">1</div><div><h3 class="font-medium text-ink mb-1">ヒアリング</h3><p class="text-sm text-ink-muted">整理されていなくてOK。まず話を聞きます。</p></div></div>
-      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-700 text-white flex-shrink-0">2</div><div><h3 class="font-medium text-ink mb-1">現状整理</h3><p class="text-sm text-ink-muted">業務フローや課題を一緒に可視化します。</p></div></div>
-      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-600 text-white flex-shrink-0">3</div><div><h3 class="font-medium text-ink mb-1">真の課題整理</h3><p class="text-sm text-ink-muted">症状ではなく根本原因を探ります。</p></div></div>
-      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-600 text-white flex-shrink-0">4</div><div><h3 class="font-medium text-ink mb-1">ROI仮説</h3><p class="text-sm text-ink-muted">やってみる価値があるかを数字で考えます。</p></div></div>
-      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-500 text-white flex-shrink-0">5</div><div><h3 class="font-medium text-ink mb-1">小規模PoC</h3><p class="text-sm text-ink-muted">まず小さく試します。大きな投資は後で。</p></div></div>
-      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-500 text-white flex-shrink-0">6</div><div><h3 class="font-medium text-ink mb-1">検証</h3><p class="text-sm text-ink-muted">現場で使えるか、効果が出るかを確認します。</p></div></div>
-      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-400 text-white flex-shrink-0">7</div><div><h3 class="font-medium text-ink mb-1">本格導入判断</h3><p class="text-sm text-ink-muted">効果が確認できた場合のみ、スケールを検討。</p></div></div>
-      <div class="flex gap-5 items-start reveal"><div class="step-num bg-ocean-300 text-white flex-shrink-0">8</div><div><h3 class="font-medium text-ink mb-1">定着支援</h3><p class="text-sm text-ink-muted">現場になじむまで、そばにいます。</p></div></div>
+    <!-- ── Mobile ── -->
+    <div class="md:hidden">
+
+      <!-- Vertical step list -->
+      <div class="reveal">
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center w-7 flex-shrink-0">
+            <div class="w-7 h-7 rounded-full border border-ocean-200 bg-white flex items-center justify-center"><span class="text-[9px] font-medium text-ocean-400">1</span></div>
+            <div class="w-px bg-ocean-100 my-1.5" style="min-height:20px; flex:1;"></div>
+          </div>
+          <div class="pt-1 pb-4"><span class="text-sm font-medium text-gray-700">課題整理</span></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center w-7 flex-shrink-0">
+            <div class="w-7 h-7 rounded-full border border-ocean-200 bg-white flex items-center justify-center"><span class="text-[9px] font-medium text-ocean-400">2</span></div>
+            <div class="w-px bg-ocean-100 my-1.5" style="min-height:20px; flex:1;"></div>
+          </div>
+          <div class="pt-1 pb-4"><span class="text-sm font-medium text-gray-700">会話整理</span></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center w-7 flex-shrink-0">
+            <div class="w-7 h-7 rounded-full border border-ocean-200 bg-white flex items-center justify-center"><span class="text-[9px] font-medium text-ocean-400">3</span></div>
+            <div class="w-px bg-ocean-100 my-1.5" style="min-height:20px; flex:1;"></div>
+          </div>
+          <div class="pt-1 pb-4"><span class="text-sm font-medium text-gray-700">方向整理</span></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center w-7 flex-shrink-0">
+            <div class="w-7 h-7 rounded-full border border-ocean-200 bg-white flex items-center justify-center"><span class="text-[9px] font-medium text-ocean-400">4</span></div>
+            <div class="w-px bg-ocean-100 my-1.5" style="min-height:20px; flex:1;"></div>
+          </div>
+          <div class="pt-1 pb-4"><span class="text-sm font-medium text-gray-700">小さく試す</span></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center w-7 flex-shrink-0">
+            <div class="w-7 h-7 rounded-full border border-ocean-200 bg-white flex items-center justify-center"><span class="text-[9px] font-medium text-ocean-400">5</span></div>
+            <div class="w-px bg-ocean-100 my-1.5" style="min-height:20px; flex:1;"></div>
+          </div>
+          <div class="pt-1 pb-4"><span class="text-sm font-medium text-gray-700">開発</span></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center w-7 flex-shrink-0">
+            <div class="w-7 h-7 rounded-full border border-ocean-200 bg-white flex items-center justify-center"><span class="text-[9px] font-medium text-ocean-400">6</span></div>
+            <div class="w-px bg-ocean-100 my-1.5" style="min-height:20px; flex:1;"></div>
+          </div>
+          <div class="pt-1 pb-4"><span class="text-sm font-medium text-gray-700">定着</span></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-7 h-7 rounded-full border border-ocean-200 bg-white flex items-center justify-center flex-shrink-0"><span class="text-[9px] font-medium text-ocean-400">7</span></div>
+          <div class="pt-1"><span class="text-sm font-medium text-gray-700">改善循環</span></div>
+        </div>
+      </div>
+
+      <!-- Mobile coverage -->
+      <div class="mt-10 pt-8 border-t border-gray-200 reveal">
+        <p class="text-[10px] text-ink-muted tracking-widest mb-5">各サービスが支援するフェーズ</p>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-2.5 h-2.5 rounded-sm bg-ocean-50 border border-ocean-200 flex-shrink-0 mt-1"></div>
+            <div>
+              <span class="text-xs font-medium text-gray-700 block mb-0.5">ITなんでも相談</span>
+              <span class="text-[11px] text-ink-muted">整理フェーズ中心（1〜3）</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2.5 h-2.5 rounded-sm bg-ocean-100 border border-ocean-300 flex-shrink-0 mt-1"></div>
+            <div>
+              <span class="text-xs font-medium text-gray-700 block mb-0.5">伴走型改善支援</span>
+              <span class="text-[11px] text-ink-muted">全フェーズ横断（1〜7）</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-2.5 h-2.5 rounded-sm bg-ocean-50 border border-ocean-200 flex-shrink-0 mt-1"></div>
+            <div>
+              <span class="text-xs font-medium text-gray-700 block mb-0.5">本格開発支援</span>
+              <span class="text-[11px] text-ink-muted">開発・定着フェーズ（4〜7）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
   </div>
 </section>
 
