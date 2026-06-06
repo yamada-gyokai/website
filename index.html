@@ -846,46 +846,56 @@
       </p>
     </div>
 
-    <form class="reveal bg-white rounded-2xl p-8 md:p-10" onsubmit="handleSubmit(event)">
+    <form id="contact-form" class="reveal bg-white rounded-2xl p-8 md:p-10" onsubmit="handleSubmit(event)">
       <div class="grid md:grid-cols-2 gap-5 mb-5">
         <div>
           <label class="block text-sm font-medium text-ink mb-2">お名前 <span class="text-red-400">*</span></label>
-          <input type="text" required placeholder="山田 太郎"
+          <input id="form-name" type="text" required placeholder="山田 太郎"
             class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all">
         </div>
         <div>
           <label class="block text-sm font-medium text-ink mb-2">会社名</label>
-          <input type="text" placeholder="株式会社○○"
+          <input id="form-company" type="text" placeholder="株式会社○○"
             class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all">
         </div>
       </div>
 
       <div class="mb-5">
         <label class="block text-sm font-medium text-ink mb-2">メールアドレス <span class="text-red-400">*</span></label>
-        <input type="email" required placeholder="yamada@example.com"
+        <input id="form-email" type="email" required placeholder="yamada@example.com"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all">
       </div>
 
       <div class="mb-6">
         <label class="block text-sm font-medium text-ink mb-2">気になっていること・相談したいこと</label>
-        <textarea rows="5" placeholder="どんな小さなことでも構いません。「なんとかしたい」という気持ちだけでも大丈夫です。"
+        <textarea id="form-message" rows="5" placeholder="どんな小さなことでも構いません。「なんとかしたい」という気持ちだけでも大丈夫です。"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all resize-none"></textarea>
       </div>
 
-      <button type="submit"
-        class="w-full bg-ocean-700 hover:bg-ocean-800 text-white py-4 rounded-xl font-medium transition-all hover:shadow-lg duration-200 text-sm">
+      <button id="form-submit" type="submit"
+        class="w-full bg-ocean-700 hover:bg-ocean-800 text-white py-4 rounded-xl font-medium transition-all hover:shadow-lg duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed">
         送信する
       </button>
+
+      <p id="form-error" class="hidden text-xs text-red-400 text-center mt-4 leading-relaxed">
+        送信に失敗しました。時間をおいて再度お試しください。
+      </p>
 
       <p class="text-xs text-gray-400 text-center mt-4 leading-relaxed">
         営業の連絡はしません。まずはお話を聞かせてください。
       </p>
     </form>
 
-    <div id="form-success" class="hidden text-center text-white mt-8">
-      <div class="text-5xl mb-4">✓</div>
-      <p class="text-xl font-medium mb-2">送信しました。ありがとうございます。</p>
-      <p class="text-ocean-300 text-sm">3営業日以内にご連絡いたします。</p>
+    <div id="form-success" class="hidden text-white mt-8 text-center">
+      <p class="text-ocean-400 text-xs tracking-widest mb-10">ありがとうございます。</p>
+      <p class="text-white text-[15px] leading-loose mb-8">
+        内容を確認し、<br>
+        通常2営業日以内にご連絡します。
+      </p>
+      <p class="text-ocean-300 text-sm leading-loose">
+        整理できていなくても大丈夫です。<br>
+        まずはお話を聞かせてください。
+      </p>
     </div>
 
   </div>
@@ -971,13 +981,39 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
 
   // Contact form
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    const form = e.target
-    const success = document.getElementById('form-success')
-    form.style.opacity = '0'
-    form.style.transition = 'opacity 0.4s'
-    setTimeout(() => { form.style.display = 'none'; success.classList.remove('hidden') }, 400)
+    const form  = document.getElementById('contact-form')
+    const btn   = document.getElementById('form-submit')
+    const errEl = document.getElementById('form-error')
+
+    btn.disabled    = true
+    btn.textContent = '送信中...'
+    errEl.classList.add('hidden')
+
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbyShc4G278-bjchUtxB3vgsnT9g5gA92zZf6KYHhsC3woXkoBmxVp-dznCZ7vY7XjnoLw/exec', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name:    document.getElementById('form-name').value,
+          company: document.getElementById('form-company').value,
+          email:   document.getElementById('form-email').value,
+          message: document.getElementById('form-message').value,
+        }),
+      })
+      form.reset()
+      form.style.opacity   = '0'
+      form.style.transition = 'opacity 0.5s'
+      setTimeout(() => {
+        form.style.display = 'none'
+        document.getElementById('form-success').classList.remove('hidden')
+      }, 500)
+    } catch (err) {
+      errEl.classList.remove('hidden')
+      btn.disabled    = false
+      btn.textContent = '送信する'
+    }
   }
 
   // Smooth scroll (fixed header offset)
