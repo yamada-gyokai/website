@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>なぜ高知に会社を置いているのか | 株式会社 業務の改善</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDNR671320"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FDNR671320');
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+            serif: ['"Noto Serif JP"', 'serif'],
+          },
+          colors: {
+            ink: { DEFAULT: '#2d3a50', light: '#4a5a72', muted: '#6b7a90' },
+            ocean: {
+              50:  '#f0f6ff',
+              100: '#deeaff',
+              200: '#b8d0ff',
+              300: '#85afff',
+              500: '#3a6fd8',
+              600: '#2952b8',
+              700: '#1e3e96',
+              800: '#152f78',
+              900: '#0e2058',
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; background: #fff; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f0f4f8; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+
+    /* ── reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── prose コンテナ ── */
+    .prose-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── パンくず ── */
+    .prose-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: #9fb3cc;
+      margin-bottom: 2.5rem;
+    }
+    .prose-breadcrumb a {
+      color: #9fb3cc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .prose-breadcrumb a:hover { color: #2952b8; }
+
+    /* ── メタ ── */
+    .prose-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .prose-category {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #2952b8;
+      background: #f0f6ff;
+      padding: 3px 12px;
+      border-radius: 100px;
+    }
+    .prose-date {
+      font-size: 0.75rem;
+      color: #9fb3cc;
+    }
+
+    /* ── H1 ── */
+    .prose-h1 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      line-height: 1.7;
+      color: #2d3a50;
+      letter-spacing: 0.015em;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 640px) {
+      .prose-h1 { font-size: 2rem; }
+    }
+
+    /* ── リード ── */
+    .prose-lead {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.93rem;
+      line-height: 2.25;
+      color: #1f2937;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #deeaff;
+    }
+
+    /* ── H2 ── */
+    .prose-h2 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #2d3a50;
+      line-height: 1.7;
+      margin-top: 3.25rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid #deeaff;
+    }
+
+    /* ── 本文テキスト ── */
+    .prose-p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.95rem;
+      line-height: 2.25;
+      color: #1f2937;
+      margin-bottom: 2rem;
+    }
+
+    /* ── プルクオート ── */
+    .prose-pullquote {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: #2952b8;
+      text-align: center;
+      line-height: 2.0;
+      letter-spacing: 0.02em;
+      padding: 2.5rem 1.5rem;
+      margin: 3rem 0;
+      border-top: 1px solid #b8d0ff;
+      border-bottom: 1px solid #b8d0ff;
+    }
+    @media (min-width: 640px) {
+      .prose-pullquote { font-size: 1.1rem; padding: 3rem 2rem; }
+    }
+
+    /* ── 区切り線 ── */
+    .prose-divider {
+      border: none;
+      border-top: 1px solid #deeaff;
+      margin: 3.5rem 0;
+    }
+
+    /* ── CTA ── */
+    .prose-cta {
+      background: #f0f6ff;
+      border: 1px solid #deeaff;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+    .prose-cta-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3a50;
+      margin-bottom: 0.65rem;
+      line-height: 1.7;
+    }
+    .prose-cta-body {
+      font-size: 0.82rem;
+      color: #374151;
+      line-height: 2;
+      margin-bottom: 1.25rem;
+    }
+    .prose-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #1e3e96;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .prose-cta-link:hover { color: #0e2058; }
+
+    /* ── 戻るリンク ── */
+    .prose-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: #9fb3cc;
+      text-decoration: none;
+      margin-top: 3rem;
+      transition: color 0.2s;
+    }
+    .prose-back:hover { color: #2952b8; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- ─────────────────────────────────────────────
+     HEADER
+───────────────────────────────────────────── -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="../index.html">
+      <img src="../assets/GyokaiLogoYoko.svg" alt="株式会社 業務の改善" class="h-10 w-auto">
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="../services.html"      class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
+      <a href="../index.html#process" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">進め方</a>
+      <a href="../about.html"         class="text-sm text-ink-light hover:text-ocean-700 transition-colors">代表について</a>
+      <a href="../index.html#contact" class="text-sm bg-ocean-700 hover:bg-ocean-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">
+        相談してみる
+      </a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 text-ink-muted hover:text-ocean-700 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-5">
+      <a href="../services.html"      class="text-sm text-ink-light">サービス</a>
+      <a href="../index.html#process" class="text-sm text-ink-light">進め方</a>
+      <a href="../about.html"         class="text-sm text-ink-light">代表について</a>
+      <a href="../index.html#contact" class="text-sm bg-ocean-700 text-white py-3 px-6 rounded-full text-center font-medium">相談してみる</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ─────────────────────────────────────────────
+     MAIN
+───────────────────────────────────────────── -->
+<main class="pt-28 pb-28">
+  <div class="prose-wrap">
+
+    <!-- パンくず -->
+    <nav class="prose-breadcrumb reveal">
+      <a href="../index.html">ホーム</a>
+      <span>/</span>
+      <a href="#">想い</a>
+      <span>/</span>
+      <span>なぜ高知に会社を置いているのか</span>
+    </nav>
+
+    <!-- カテゴリ・日付 -->
+    <div class="prose-meta reveal">
+      <span class="prose-category">想い</span>
+      <span class="prose-date">2026年6月</span>
+    </div>
+
+    <!-- タイトル -->
+    <h1 class="prose-h1 reveal">なぜ高知に会社を置いているのか</h1>
+
+    <!-- リード -->
+    <p class="prose-lead reveal">
+      会社の所在地は高知県高知市です。東京を拠点に活動しながら、なぜ高知に会社を置いているのか——その理由を書きました。
+    </p>
+
+    <!-- ── 本文 ────────────────────────────────── -->
+
+    <p class="prose-p reveal">
+      私は普段、東京を拠点に活動しています。
+    </p>
+
+    <p class="prose-p reveal">
+      それにもかかわらず、会社の所在地は高知県高知市です。
+    </p>
+
+    <p class="prose-p reveal">
+      「なぜ高知なのですか？」
+    </p>
+
+    <p class="prose-p reveal">
+      そう聞かれることが少なくありません。
+    </p>
+
+    <h2 class="prose-h2 reveal">地方には、まだ大きな可能性がある</h2>
+
+    <p class="prose-p reveal">
+      私は以前から、東京一極集中に違和感を持っていました。
+    </p>
+
+    <p class="prose-p reveal">
+      東京には多くの企業や人材が集まり、便利で、仕事もあります。一方で、地方では人口減少や人手不足が進み、多くの課題を抱えています。
+    </p>
+
+    <p class="prose-p reveal">
+      しかし私は、地方には可能性がないとは思っていません。
+    </p>
+
+    <p class="prose-p reveal">
+      むしろ、地域に根ざした技術や文化、人とのつながりなど、東京にはない価値が数多く残っています。
+    </p>
+
+    <p class="prose-p reveal">
+      もし地方にも挑戦する企業や人材が集まり、しっかりと利益を生み出せる仕組みが作れたら。地方でも十分に暮らしていける未来を作れるのではないか。
+    </p>
+
+    <p class="prose-p reveal">
+      そんな思いから、私は東京ではなく地方に会社を置くことを選びました。
+    </p>
+
+    <h2 class="prose-h2 reveal">最初は福岡でした</h2>
+
+    <p class="prose-p reveal">
+      実は、最初の登記先は高知ではありません。
+    </p>
+
+    <p class="prose-p reveal">
+      2022年に会社を設立した時は、福岡に拠点を置いていました。
+    </p>
+
+    <p class="prose-p reveal">
+      当時から考えていたのは、
+    </p>
+
+    <blockquote class="prose-pullquote reveal">
+      「東京から地方へ、<br>お金や仕事が流れる仕組みを作りたい」
+    </blockquote>
+
+    <p class="prose-p reveal">
+      ということでした。地方に会社を置くことは、その小さな実践でもありました。
+    </p>
+
+    <h2 class="prose-h2 reveal">高知との出会い</h2>
+
+    <p class="prose-p reveal">
+      高知との関わりが始まったのは、高知県のDX講座でした。
+    </p>
+
+    <p class="prose-p reveal">
+      講師やメンターとして関わる中で、多くの事業者の方々と出会いました。その中でも特に印象に残っているのが、Paper messageというブランドとの出会いです。
+    </p>
+
+    <p class="prose-p reveal">
+      私はそのブランドに大きな可能性を感じました。そして、そのブランドを運営するオーナーの挑戦する姿勢にも強く惹かれました。
+    </p>
+
+    <p class="prose-p reveal">
+      地域ともつながりがあり、行政ともつながりがあり、さらに県外や海外にも目を向けている。そんな挑戦が高知の中心商店街で行われていることに、大きな希望を感じました。
+    </p>
+
+    <h2 class="prose-h2 reveal">高知で見つけた、自分の役割</h2>
+
+    <p class="prose-p reveal">
+      高知で活動する中で感じたことがあります。
+    </p>
+
+    <p class="prose-p reveal">
+      行政には行政の思いがあります。地域のお店には、お店の事情があります。どちらも地域を良くしたいと思っているのに、うまく噛み合わないことがあります。
+    </p>
+
+    <p class="prose-p reveal">
+      私は、その間に立つ翻訳者のような存在になりたいと思うようになりました。
+    </p>
+
+    <p class="prose-p reveal">
+      行政がやりたいことを現場の言葉に変える。現場の声を行政へ届ける。そして、データやITを使いながら、地域が前へ進むための仕組みを作る。
+    </p>
+
+    <p class="prose-p reveal">
+      それが自分の役割ではないかと感じています。
+    </p>
+
+    <h2 class="prose-h2 reveal">高知から、地方の未来をつくる</h2>
+
+    <p class="prose-p reveal">
+      私が目指しているのは、高知だけを良くすることではありません。高知で成功モデルを作ることです。
+    </p>
+
+    <p class="prose-p reveal">
+      地方でも豊かに暮らせる。地方でも挑戦できる。地方でも若い人たちが希望を持てる。
+    </p>
+
+    <p class="prose-p reveal">
+      そんな未来を、高知から実証したいと思っています。
+    </p>
+
+    <blockquote class="prose-pullquote reveal">
+      「なぜ高知は元気なのだろう」<br>
+      「なぜ高知には人が集まるのだろう」
+    </blockquote>
+
+    <p class="prose-p reveal">
+      と全国の人が興味を持ち、他の地方都市にも同じような挑戦が広がっていく。そんな未来を思い描いています。
+    </p>
+
+    <hr class="prose-divider reveal">
+
+    <p class="prose-p reveal">
+      だから私は、高知に会社を置いています。
+    </p>
+
+    <!-- CTA -->
+    <div class="prose-cta reveal">
+      <p class="prose-cta-title">地方の現場を、一緒に前へ</p>
+      <p class="prose-cta-body">
+        地域の課題、現場の悩み、ITの活用——<br>
+        気軽にお話を聞かせてください。
+      </p>
+      <a href="../index.html#contact" class="prose-cta-link">
+        相談してみる
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- 記事一覧へ -->
+    <a href="../index.html#news" class="prose-back reveal">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      記事一覧へ
+    </a>
+
+  </div>
+</main>
+
+
+<!-- ─────────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────────── -->
+<footer class="bg-gray-900 py-14 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between gap-8 mb-10">
+      <div>
+        <div class="text-xs text-gray-500 mb-1">株式会社</div>
+        <div class="text-xl font-bold text-white mb-3">業務の改善</div>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          現場が本来の価値を発揮できる仕組みを、<br>ITでつくります。
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-10">
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">サービス</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="../it-consulting.html" class="hover:text-white transition-colors">ITなんでも相談</a></li>
+            <li><a href="../support.html"       class="hover:text-white transition-colors">伴走型改善支援</a></li>
+            <li><a href="../development.html"   class="hover:text-white transition-colors">本格開発支援</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">会社情報</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="../about.html"         class="hover:text-white transition-colors">代表について</a></li>
+            <li><a href="../index.html#process" class="hover:text-white transition-colors">進め方</a></li>
+            <li><a href="../index.html#contact" class="hover:text-white transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6">
+      <p class="text-xs text-gray-600">© 2026 株式会社 業務の改善. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow-sm', window.scrollY > 20);
+  }, { passive: true });
+
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
