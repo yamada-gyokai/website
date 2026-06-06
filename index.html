@@ -994,6 +994,7 @@
     try {
       await fetch('https://script.google.com/macros/s/AKfycbyShc4G278-bjchUtxB3vgsnT9g5gA92zZf6KYHhsC3woXkoBmxVp-dznCZ7vY7XjnoLw/exec', {
         method:  'POST',
+        mode:    'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name:    document.getElementById('form-name').value,
