@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>なぜ私はリソース投資をするのか | 株式会社 業務の改善</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDNR671320"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FDNR671320');
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+            serif: ['"Noto Serif JP"', 'serif'],
+          },
+          colors: {
+            ink: { DEFAULT: '#2d3a50', light: '#4a5a72', muted: '#6b7a90' },
+            ocean: {
+              50:  '#f0f6ff',
+              100: '#deeaff',
+              200: '#b8d0ff',
+              300: '#85afff',
+              500: '#3a6fd8',
+              600: '#2952b8',
+              700: '#1e3e96',
+              800: '#152f78',
+              900: '#0e2058',
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; background: #fff; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f0f4f8; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+
+    /* ── reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── prose コンテナ ── */
+    .prose-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── パンくず ── */
+    .prose-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: #9fb3cc;
+      margin-bottom: 2.5rem;
+    }
+    .prose-breadcrumb a {
+      color: #9fb3cc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .prose-breadcrumb a:hover { color: #2952b8; }
+
+    /* ── メタ ── */
+    .prose-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .prose-category {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #2952b8;
+      background: #f0f6ff;
+      padding: 3px 12px;
+      border-radius: 100px;
+    }
+    .prose-date {
+      font-size: 0.75rem;
+      color: #9fb3cc;
+    }
+
+    /* ── H1 ── */
+    .prose-h1 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      line-height: 1.7;
+      color: #2d3a50;
+      letter-spacing: 0.015em;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 640px) {
+      .prose-h1 { font-size: 2rem; }
+    }
+
+    /* ── リード ── */
+    .prose-lead {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.93rem;
+      line-height: 2.25;
+      color: #1f2937;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #deeaff;
+    }
+
+    /* ── H2 ── */
+    .prose-h2 {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #2d3a50;
+      line-height: 1.7;
+      margin-top: 3.25rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid #deeaff;
+    }
+
+    /* ── 本文テキスト ── */
+    .prose-p {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.95rem;
+      line-height: 2.25;
+      color: #1f2937;
+      margin-bottom: 2rem;
+    }
+
+    /* ── リスト ── */
+    .prose-ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+    }
+    .prose-li {
+      position: relative;
+      padding-left: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 2.25;
+      color: #1f2937;
+      font-weight: 700;
+    }
+    .prose-li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85em;
+      width: 6px;
+      height: 6px;
+      background: #85afff;
+      border-radius: 50%;
+    }
+
+    /* ── プルクオート ── */
+    .prose-pullquote {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: #2952b8;
+      text-align: center;
+      line-height: 2.0;
+      letter-spacing: 0.02em;
+      padding: 2.5rem 1.5rem;
+      margin: 3rem 0;
+      border-top: 1px solid #b8d0ff;
+      border-bottom: 1px solid #b8d0ff;
+    }
+    @media (min-width: 640px) {
+      .prose-pullquote { font-size: 1.1rem; padding: 3rem 2rem; }
+    }
+
+    /* ── 区切り線 ── */
+    .prose-divider {
+      border: none;
+      border-top: 1px solid #deeaff;
+      margin: 3.5rem 0;
+    }
+
+    /* ── CTA ── */
+    .prose-cta {
+      background: #f0f6ff;
+      border: 1px solid #deeaff;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+    .prose-cta-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3a50;
+      margin-bottom: 0.65rem;
+      line-height: 1.7;
+    }
+    .prose-cta-body {
+      font-size: 0.82rem;
+      color: #374151;
+      line-height: 2;
+      margin-bottom: 1.25rem;
+    }
+    .prose-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #1e3e96;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .prose-cta-link:hover { color: #0e2058; }
+    .prose-cta-link + .prose-cta-link {
+      margin-top: 0.75rem;
+    }
+
+    /* ── ヒーロー画像 ── */
+    .prose-hero {
+      margin: 0 -24px 2.5rem;
+    }
+    .prose-hero img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    /* ── 戻るリンク ── */
+    .prose-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: #9fb3cc;
+      text-decoration: none;
+      margin-top: 3rem;
+      transition: color 0.2s;
+    }
+    .prose-back:hover { color: #2952b8; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- ─────────────────────────────────────────────
+     HEADER
+───────────────────────────────────────────── -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="../index.html">
+      <img src="../assets/GyokaiLogoYoko.svg" alt="株式会社 業務の改善" class="h-10 w-auto">
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="../services.html"      class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
+      <a href="../index.html#process" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">進め方</a>
+      <a href="../about.html"         class="text-sm text-ink-light hover:text-ocean-700 transition-colors">代表について</a>
+      <a href="../index.html#contact" class="text-sm bg-ocean-700 hover:bg-ocean-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">
+        相談してみる
+      </a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 text-ink-muted hover:text-ocean-700 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-5">
+      <a href="../services.html"      class="text-sm text-ink-light">サービス</a>
+      <a href="../index.html#process" class="text-sm text-ink-light">進め方</a>
+      <a href="../about.html"         class="text-sm text-ink-light">代表について</a>
+      <a href="../index.html#contact" class="text-sm bg-ocean-700 text-white py-3 px-6 rounded-full text-center font-medium">相談してみる</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ─────────────────────────────────────────────
+     MAIN
+───────────────────────────────────────────── -->
+<main class="pt-28 pb-28">
+  <div class="prose-wrap">
+
+    <!-- パンくず -->
+    <nav class="prose-breadcrumb reveal">
+      <a href="../index.html">ホーム</a>
+      <span>/</span>
+      <a href="#">STORY</a>
+      <span>/</span>
+      <span>なぜ私はリソース投資をするのか</span>
+    </nav>
+
+    <!-- カテゴリ・日付 -->
+    <div class="prose-meta reveal">
+      <span class="prose-category">STORY</span>
+      <span class="prose-date">2026年6月</span>
+    </div>
+
+    <!-- タイトル -->
+    <h1 class="prose-h1 reveal">なぜ私はリソース投資をするのか</h1>
+
+    <!-- ヒーロー画像（assets/story_resource.jpg を配置すれば表示） -->
+    <figure class="prose-hero reveal">
+      <img src="../assets/story_resource.jpg" alt="リソース投資という考え方について" onerror="this.closest('figure').style.display='none'">
+    </figure>
+
+    <!-- リード -->
+    <p class="prose-lead reveal">
+      私は「リソース投資」という考え方を大切にしています。ここでいうリソースとは、お金だけではありません。時間、経験、知識、人とのつながり——そういった自分が持っている資源を、将来性を感じる人や企業に投資することを意味しています。
+    </p>
+
+    <!-- ── 本文 ────────────────────────────────── -->
+
+    <h2 class="prose-h2 reveal">私はボランティアをしたいわけではありません</h2>
+
+    <p class="prose-p reveal">
+      誤解のないようにお伝えすると、私はボランティアをしたいわけではありません。
+    </p>
+
+    <p class="prose-p reveal">
+      もちろん社会貢献は大切です。ですが、それだけでは継続できません。
+    </p>
+
+    <blockquote class="prose-pullquote reveal">
+      「この人ならきっと良くなる」<br>
+      「この会社ならもっと価値を生み出せる」
+    </blockquote>
+
+    <p class="prose-p reveal">
+      そう感じた相手に対して、自分の時間や知恵を先に投資しています。そして、その結果として成果が生まれた時には、お互いが利益を得られる関係でありたいと思っています。
+    </p>
+
+    <h2 class="prose-h2 reveal">なぜリターンが必要なのか</h2>
+
+    <p class="prose-p reveal">
+      リソース投資には時間も労力もかかります。時には数か月、時には数年かかることもあります。
+    </p>
+
+    <p class="prose-p reveal">
+      だからこそ、投資したリソースに対して一定のリターンを得ることは必要だと考えています。そのリターンは、私自身の利益になるだけではありません。次の挑戦者を支援するための原資になります。
+    </p>
+
+    <p class="prose-p reveal">
+      一つの成功が、次の挑戦への投資につながる。そんな循環を作りたいと思っています。
+    </p>
+
+    <h2 class="prose-h2 reveal">応援という形で参加していただけます</h2>
+
+    <p class="prose-p reveal">
+      この考え方に共感していただける方のために、応援の仕組みも用意しています。いただいた応援金の一部は、私が行うリソース投資活動に活用させていただきます。
+    </p>
+
+    <p class="prose-p reveal">
+      そして残りの部分については、単なる寄付として終わらせるのではなく、私自身がお返しできる形で還元したいと考えています。例えば、
+    </p>
+
+    <ul class="prose-ul reveal">
+      <li class="prose-li">壁打ち相談</li>
+      <li class="prose-li">ITなんでも相談</li>
+      <li class="prose-li">改善に関するアドバイス</li>
+      <li class="prose-li">小規模な伴走支援</li>
+    </ul>
+
+    <p class="prose-p reveal">
+      など、その方の状況に応じて対応させていただきます。応援して終わりではなく、一緒に価値を生み出す関係を目指しています。
+    </p>
+
+    <h2 class="prose-h2 reveal">私が本当に投資したいもの</h2>
+
+    <p class="prose-p reveal">
+      私が投資したいのはシステムではありません。
+    </p>
+
+    <p class="prose-p reveal" style="margin-bottom: 0.75rem;">人です。</p>
+    <p class="prose-p reveal" style="margin-bottom: 0.75rem;">企業です。</p>
+    <p class="prose-p reveal">挑戦です。</p>
+
+    <p class="prose-p reveal">
+      地方で頑張る人。新しい価値を生み出そうとしている人。現状を少しでも良くしたいと思っている人。
+    </p>
+
+    <p class="prose-p reveal">
+      そんな人たちの力が発揮される状態を作ることが、私の仕事だと思っています。
+    </p>
+
+    <h2 class="prose-h2 reveal">日本を明るく元気にするために</h2>
+
+    <p class="prose-p reveal">
+      私が本当にやりたいことは、日本を明るく元気にすることです。そのために必要なのは、大企業だけの成長ではありません。
+    </p>
+
+    <p class="prose-p reveal">
+      地方で頑張る人たち。中小企業。個人事業主。新しい挑戦をしようとしている人たち。そうした人たちが、自分たちの力で未来を切り開いていける状態を増やしていくことだと思っています。
+    </p>
+
+    <p class="prose-p reveal">
+      だから私は、将来性を感じる人や企業にリソースを投資しています。
+    </p>
+
+    <blockquote class="prose-pullquote reveal">
+      一つの成功事例が生まれる。<br>
+      その成功が次の挑戦を生む。<br>
+      その利益がさらに次の投資につながる。
+    </blockquote>
+
+    <p class="prose-p reveal">
+      そんな循環を作ることができれば、日本はもっと元気になると信じています。リソース投資は、そのための小さな一歩です。
+    </p>
+
+    <p class="prose-p reveal">
+      私はこれからも、価値を生み出そうとする人たちと一緒に汗をかきながら、その挑戦を支えていきたいと思っています。
+    </p>
+
+    <h2 class="prose-h2 reveal">実際の取り組み</h2>
+
+    <p class="prose-p reveal">
+      リソース投資は考え方だけではありません。実際に時間と知恵を投資しながら、一緒に改善を進めている取り組みもあります。
+    </p>
+
+    <p class="prose-p reveal">
+      高知で取り組んでいる Paper message 様との活動も、その一つです。小さな改善の積み重ねが、やがて大きな変化につながっていく。私はその瞬間が好きです。
+    </p>
+
+    <hr class="prose-divider reveal">
+
+    <!-- CTA -->
+    <div class="prose-cta reveal">
+      <p class="prose-cta-title">実際の取り組みをご覧ください</p>
+      <p class="prose-cta-body">
+        Paper message 様との取り組みを通じて、<br>
+        リソース投資がどう実践されているかをご紹介しています。
+      </p>
+      <div class="flex flex-col items-center gap-3">
+        <a href="../resource-story.html" class="prose-cta-link">
+          Paper message の事例を見る
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a href="../index.html#contact" class="prose-cta-link">
+          相談してみる
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 記事一覧へ -->
+    <a href="../index.html#news" class="prose-back reveal">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      記事一覧へ
+    </a>
+
+  </div>
+</main>
+
+
+<!-- ─────────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────────── -->
+<footer class="bg-gray-900 py-14 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between gap-8 mb-10">
+      <div>
+        <div class="text-xs text-gray-500 mb-1">株式会社</div>
+        <div class="text-xl font-bold text-white mb-3">業務の改善</div>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          現場が本来の価値を発揮できる仕組みを、<br>ITでつくります。
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-10">
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">サービス</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="../it-consulting.html" class="hover:text-white transition-colors">ITなんでも相談</a></li>
+            <li><a href="../support.html"       class="hover:text-white transition-colors">伴走型改善支援</a></li>
+            <li><a href="../development.html"   class="hover:text-white transition-colors">本格開発支援</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">会社情報</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="../about.html"         class="hover:text-white transition-colors">代表について</a></li>
+            <li><a href="../index.html#process" class="hover:text-white transition-colors">進め方</a></li>
+            <li><a href="../index.html#contact" class="hover:text-white transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6">
+      <p class="text-xs text-gray-600">© 2026 株式会社 業務の改善. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow-sm', window.scrollY > 20);
+  }, { passive: true });
+
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
