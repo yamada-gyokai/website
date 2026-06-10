@@ -260,6 +260,43 @@
       transition: color 0.2s;
     }
     .prose-back:hover { color: #2952b8; }
+
+    /* ── 後記：共感者へのメッセージ ── */
+    .prose-afterword {
+      background: #f7f9ff;
+      border: 1px solid #e5ecf8;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+    }
+    .prose-afterword-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2d3a50;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #deeaff;
+    }
+    .prose-support-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1e3e96;
+      border: 1px solid #b8d0ff;
+      border-radius: 10px;
+      padding: 0.7rem 1.5rem;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .prose-support-btn:hover {
+      background: #f0f6ff;
+      border-color: #3a6fd8;
+    }
   </style>
 </head>
 
@@ -470,6 +507,52 @@
           </svg>
         </a>
       </div>
+    </div>
+
+    <!-- 共感者へのメッセージ -->
+    <div class="prose-afterword reveal">
+      <p class="prose-afterword-title">この活動に共感していただける方へ</p>
+
+      <p class="prose-p">
+        私は、日本を明るく元気にするために、挑戦する人や企業へのリソース投資を続けています。
+      </p>
+      <p class="prose-p">
+        もしこの考え方に共感していただけたなら、ぜひこの活動に参加していただけるとうれしいです。
+      </p>
+      <p class="prose-p">
+        参加の方法は一つではありません。支援金という形でも構いませんし、私と同じように時間や知識、人とのつながりといったリソースを提供していただく形でも構いません。
+      </p>
+      <p class="prose-p">
+        私が本当に増やしたいのは、お金だけではありません。未来に可能性を感じる人や企業を応援し、その成長を一緒に喜べる仲間です。
+      </p>
+      <p class="prose-p">
+        リソース投資という考え方そのものが広がり、「この人を応援したい」「この会社の挑戦を支えたい」そんな人が少しずつ増えていけば、日本はもっと明るく元気になると信じています。
+      </p>
+      <p class="prose-p">
+        支援金という形でご参加いただいた場合は、その一部をリソース投資活動の原資として活用させていただきます。そして残りの部分については、
+      </p>
+      <ul class="prose-ul">
+        <li class="prose-li">壁打ち相談</li>
+        <li class="prose-li">ITなんでも相談</li>
+        <li class="prose-li">改善に関するアドバイス</li>
+      </ul>
+      <p class="prose-p">
+        など、私がお返しできる形で還元したいと考えています。
+      </p>
+      <p class="prose-p">
+        私は、一方的に支援を受けたいわけではありません。いただいたご支援を次の挑戦につなげ、そこで得られた経験や知恵を、再び価値としてお返ししていきたいと思っています。
+      </p>
+      <p class="prose-p">
+        もし共感していただけたなら、支援という形でも、リソース投資という活動を一緒に広げる形でも構いません。一緒に、この循環を育てていけたらうれしいです。
+      </p>
+
+      <!-- 活動を応援する（URLは後で設定） -->
+      <a href="#" class="prose-support-btn">
+        活動を応援する
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
     </div>
 
     <!-- 記事一覧へ -->
