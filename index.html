@@ -128,6 +128,11 @@
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(41, 82, 184, 0.11);
     }
+    a.service-card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
 
     /* ── FAQ ── */
     .faq-item details summary { list-style: none; cursor: pointer; }
@@ -377,35 +382,35 @@
     <div class="grid md:grid-cols-3 gap-6">
 
       <!-- サービス 1 -->
-      <div class="service-card reveal border border-gray-200 rounded-2xl p-8">
+      <a href="it-consulting.html" class="service-card reveal border border-gray-200 rounded-2xl p-8">
         <div class="w-11 h-11 bg-ocean-50 rounded-xl flex items-center justify-center mb-6">
           <svg class="w-5 h-5 text-ocean-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
           </svg>
         </div>
-        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">月額 / スポット</p>
+        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">意思決定支援</p>
         <h3 class="text-xl font-semibold text-gray-900 mb-4">ITなんでも相談</h3>
         <p class="text-sm text-ink-light leading-relaxed mb-6">
-          「こんなこと聞いていいの？」というレベルの相談から。IT全般の壁打ち相手として、気軽に使ってください。
+          課題の背景や本当の目的を整理し、改善ロードマップを作ります。1〜3ヶ月で、納得して次の一手を決められる状態を目指します。
         </p>
         <ul class="text-sm text-ink-muted space-y-2">
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 月額顧問プラン</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> スポット相談（1回〜）</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> ツール選定・比較</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 小規模改善サポート</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 課題の可視化</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 改善ロードマップ作成</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> ROIの整理</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 次の一手の意思決定</li>
         </ul>
         <div class="mt-6 pt-5 border-t border-gray-100">
-          <a href="it-consulting.html" class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700 hover:text-ocean-900 transition-colors group">
+          <span class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700">
             詳しく見る
-            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
 
       <!-- サービス 2 -->
-      <div class="service-card reveal reveal-delay-1 border-2 border-ocean-500 rounded-2xl p-8 relative shadow-md">
+      <a href="support.html" class="service-card reveal reveal-delay-1 border-2 border-ocean-500 rounded-2xl p-8 relative shadow-md">
         <div class="absolute -top-3.5 left-6">
           <span class="bg-ocean-500 text-white text-xs font-medium px-3 py-1 rounded-full">もっとも選ばれています</span>
         </div>
@@ -414,54 +419,54 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
           </svg>
         </div>
-        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">3ヶ月〜 / 月額</p>
+        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">課題解決支援</p>
         <h3 class="text-xl font-semibold text-gray-900 mb-4">伴走型改善支援</h3>
         <p class="text-sm text-ink-light leading-relaxed mb-6">
-          課題整理から小規模PoCの実施、検証、定着まで。一緒に走りながら、現場に合った改善を積み上げます。
+          課題解決を目指しながら、状況に応じて役割を変え、ゴール達成まで伴走します。計画通りに進めることではなく、成果につながる状態を作ることを重視します。
         </p>
         <ul class="text-sm text-ink-muted space-y-2">
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 課題整理・ROI設計</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 小規模PoCの実施</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 効果検証・改善サイクル</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 定着支援</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 課題の再整理</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 優先順位の見直し</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 現場との調整</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 改善の推進</li>
         </ul>
         <div class="mt-6 pt-5 border-t border-gray-100">
-          <a href="support.html" class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700 hover:text-ocean-900 transition-colors group">
+          <span class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700">
             詳しく見る
-            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
 
       <!-- サービス 3 -->
-      <div class="service-card reveal reveal-delay-2 border border-gray-200 rounded-2xl p-8">
+      <a href="development.html" class="service-card reveal reveal-delay-2 border border-gray-200 rounded-2xl p-8">
         <div class="w-11 h-11 bg-ocean-50 rounded-xl flex items-center justify-center mb-6">
           <svg class="w-5 h-5 text-ocean-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
           </svg>
         </div>
-        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">プロジェクト単位</p>
+        <p class="text-xs font-medium text-ocean-500 mb-2 tracking-wide">開発プロジェクト支援</p>
         <h3 class="text-xl font-semibold text-gray-900 mb-4">本格開発支援</h3>
         <p class="text-sm text-ink-light leading-relaxed mb-6">
-          PoCで効果を確認できたら、本格的なシステム開発へ。信頼できる開発パートナーと連携し、質の高い開発を実現します。
+          開発プロジェクトを成功させるために、経営・現場・開発会社をつなぎながら、導入後の成果まで見据えて支援します。
         </p>
         <ul class="text-sm text-ink-muted space-y-2">
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 要件整理・共通言語化</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 開発PM代行</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> Miichisoft連携開発</li>
-          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 品質管理・納品支援</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 要件整理</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 開発会社選定</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> プロジェクト推進</li>
+          <li class="flex items-start gap-2"><span class="text-ocean-400 mt-px">✓</span> 運用定着支援</li>
         </ul>
         <div class="mt-6 pt-5 border-t border-gray-100">
-          <a href="development.html" class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700 hover:text-ocean-900 transition-colors group">
+          <span class="inline-flex items-center gap-1.5 text-sm font-medium text-ocean-700">
             詳しく見る
-            <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
     </div>
 
     <div class="reveal mt-10 text-center">
