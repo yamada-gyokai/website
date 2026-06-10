@@ -133,3 +133,53 @@ color: #1f2937;
 | ニュース＆ストーリーズ | `index.html#news` |
 
 **サービスページを追加・削除・改名したときは、必ず `404.html` のおすすめリンクも確認・更新すること。**
+
+---
+
+## Google Analytics チェック（必須）
+
+HTMLファイルを新規作成・複製・追加・移動・大幅修正した場合は、
+**必ず Google Analytics タグの有無を確認すること。**
+
+### 確認対象
+
+- `index.html` / `services.html` / `about.html` / `404.html` など全ルートページ
+- `articles/` 配下の全ページ
+- 今後追加される全 HTML
+
+### 確認内容
+
+1. Google Analytics タグが `<head>` 内に埋め込まれていること
+2. 計測 ID が既存ページと一致していること（`G-FDNR671320`）
+3. `articles/` など相対パスが変わるページで欠落していないこと
+
+### 正しいタグ（コピー用）
+
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FDNR671320"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FDNR671320');
+</script>
+```
+
+### 作業完了報告時の明記ルール
+
+作業完了を報告する際は、必ず以下を記載すること。
+
+```
+Google Analytics 確認：
+✅ 実施済み・タグ設置確認
+```
+
+または
+
+```
+Google Analytics 確認：
+⚠️ 未設置（理由：______）
+```
+
+**GA 確認なしで完了報告しないこと。**
