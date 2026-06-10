@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページが見つかりません | 株式会社 業務の改善</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDNR671320"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FDNR671320');
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+            serif: ['"Noto Serif JP"', 'serif'],
+          },
+          colors: {
+            ink: { DEFAULT: '#1f2937', light: '#4b5563', muted: '#9ca3af' },
+            ocean: {
+              50:  '#f0f6ff',
+              100: '#deeaff',
+              200: '#b8d0ff',
+              300: '#85afff',
+              500: '#3a6fd8',
+              600: '#2952b8',
+              700: '#1e3e96',
+              800: '#152f78',
+              900: '#0e2058',
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #1f2937; line-height: 1.85; background: #fff; }
+    h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: #2952b8;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .label::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #3a6fd8;
+      flex-shrink: 0;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #f0f4f8; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- ─────────────────────────────────────────────
+     HEADER
+───────────────────────────────────────────── -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html">
+      <img src="assets/GyokaiLogoYoko.svg" alt="株式会社 業務の改善" class="h-10 w-auto">
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="services.html"      class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
+      <a href="index.html#process" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">進め方</a>
+      <a href="about.html"         class="text-sm text-ink-light hover:text-ocean-700 transition-colors">代表について</a>
+      <a href="index.html#contact" class="text-sm bg-ocean-700 hover:bg-ocean-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">
+        相談してみる
+      </a>
+    </nav>
+
+    <button id="mobile-toggle" class="md:hidden p-2 text-ink-muted hover:text-ocean-700 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-5">
+      <a href="services.html"      class="text-sm text-ink-light">サービス</a>
+      <a href="index.html#process" class="text-sm text-ink-light">進め方</a>
+      <a href="about.html"         class="text-sm text-ink-light">代表について</a>
+      <a href="index.html#contact" class="text-sm bg-ocean-700 text-white py-3 px-6 rounded-full text-center font-medium">相談してみる</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ─────────────────────────────────────────────
+     MAIN
+───────────────────────────────────────────── -->
+<main class="pt-44 pb-36 px-6">
+  <div class="max-w-3xl mx-auto">
+
+    <!-- Label -->
+    <div class="reveal mb-6">
+      <p class="label">404</p>
+    </div>
+
+    <!-- Title -->
+    <h1 class="reveal reveal-delay-1 text-3xl md:text-[38px] font-medium leading-snug text-gray-900 mb-10 tracking-tight">
+      少し道に迷ってしまったようです。
+    </h1>
+
+    <!-- Body -->
+    <div class="reveal reveal-delay-2 max-w-xl mb-14">
+      <p class="text-sm text-ink-light mb-5" style="line-height: 2.1;">
+        目的地に向かう途中で、<br>
+        ページが移動したのかもしれません。
+      </p>
+      <p class="text-sm font-medium text-ink mb-5" style="line-height: 2.1;">
+        でも大丈夫です。
+      </p>
+      <p class="text-sm text-ink-light" style="line-height: 2.1;">
+        改善もプロジェクトも、<br>
+        最初から正しい道が見えていることは<br>
+        あまりありません。<br><br>
+        状況を整理しながら、<br>
+        もう一度進んでみましょう。
+      </p>
+    </div>
+
+    <!-- Image area (404-hero.jpg を配置すれば表示されます) -->
+    <figure class="reveal reveal-delay-3 mb-14 rounded-2xl overflow-hidden shadow-sm" style="aspect-ratio: 16/9; background: #f0f6ff;">
+      <img
+        src="assets/404-hero.jpg"
+        alt="道に迷ったときも、整理すれば前に進める"
+        class="w-full h-full object-cover"
+        onerror="this.style.opacity='0'"
+      >
+    </figure>
+
+    <!-- Button -->
+    <div class="reveal reveal-delay-4 mb-20">
+      <a href="index.html" class="inline-flex items-center gap-2 bg-ocean-700 hover:bg-ocean-800 text-white px-8 py-4 rounded-xl font-medium transition-colors shadow-sm text-sm">
+        トップページへ戻る
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Recommended links -->
+    <div class="reveal border-t border-gray-100 pt-12">
+      <p class="text-sm text-ink-muted mb-8">もしかして、探していたのはこちらですか？</p>
+      <ul class="space-y-4">
+        <li>
+          <a href="it-consulting.html" class="inline-flex items-center gap-3 text-sm text-ocean-700 hover:text-ocean-900 transition-colors group">
+            <span class="text-ocean-300 group-hover:translate-x-0.5 transition-transform">→</span>
+            ITなんでも相談
+          </a>
+        </li>
+        <li>
+          <a href="support.html" class="inline-flex items-center gap-3 text-sm text-ocean-700 hover:text-ocean-900 transition-colors group">
+            <span class="text-ocean-300 group-hover:translate-x-0.5 transition-transform">→</span>
+            伴走型改善支援
+          </a>
+        </li>
+        <li>
+          <a href="development.html" class="inline-flex items-center gap-3 text-sm text-ocean-700 hover:text-ocean-900 transition-colors group">
+            <span class="text-ocean-300 group-hover:translate-x-0.5 transition-transform">→</span>
+            本格開発支援
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="inline-flex items-center gap-3 text-sm text-ocean-700 hover:text-ocean-900 transition-colors group">
+            <span class="text-ocean-300 group-hover:translate-x-0.5 transition-transform">→</span>
+            代表について
+          </a>
+        </li>
+        <li>
+          <a href="index.html#news" class="inline-flex items-center gap-3 text-sm text-ocean-700 hover:text-ocean-900 transition-colors group">
+            <span class="text-ocean-300 group-hover:translate-x-0.5 transition-transform">→</span>
+            ニュース＆ストーリーズ
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+
+<!-- ─────────────────────────────────────────────
+     FOOTER
+───────────────────────────────────────────── -->
+<footer class="bg-gray-900 py-14 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between gap-8 mb-10">
+      <div>
+        <div class="text-xs text-gray-500 mb-1">株式会社</div>
+        <div class="text-xl font-bold text-white mb-3">業務の改善</div>
+        <p class="text-sm text-gray-400 leading-relaxed">
+          現場が本来の価値を発揮できる仕組みを、<br>ITでつくります。
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-10">
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">サービス</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="it-consulting.html" class="hover:text-white transition-colors">ITなんでも相談</a></li>
+            <li><a href="support.html"       class="hover:text-white transition-colors">伴走型改善支援</a></li>
+            <li><a href="development.html"   class="hover:text-white transition-colors">本格開発支援</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">会社情報</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="about.html"         class="hover:text-white transition-colors">代表について</a></li>
+            <li><a href="index.html#process" class="hover:text-white transition-colors">進め方</a></li>
+            <li><a href="index.html#contact" class="hover:text-white transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">その他</p>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-white transition-colors">プライバシーポリシー</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">特定商取引法に基づく表記</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-6">
+      <p class="text-xs text-gray-600">© 2026 株式会社 業務の改善. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // Mobile menu
+  const toggle = document.getElementById('mobile-toggle')
+  const menu   = document.getElementById('mobile-menu')
+  toggle.addEventListener('click', () => menu.classList.toggle('hidden'))
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')))
+
+  // Header shadow
+  const header = document.getElementById('site-header')
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow-md', window.scrollY > 20)
+  }, { passive: true })
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) }
+    })
+  }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' })
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+</script>
+
+</body>
+</html>
