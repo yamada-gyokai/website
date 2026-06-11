@@ -134,14 +134,17 @@
     /* ── H2 ── */
     .prose-h2 {
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #2d3a50;
       line-height: 1.7;
-      margin-top: 3.25rem;
+      margin-top: 4.5rem;
       margin-bottom: 1.25rem;
       padding-bottom: 0.65rem;
       border-bottom: 1px solid #deeaff;
+    }
+    @media (min-width: 640px) {
+      .prose-h2 { font-size: 1.3rem; }
     }
 
     /* ── 本文テキスト ── */
@@ -153,22 +156,14 @@
       margin-bottom: 2rem;
     }
 
-    /* ── プルクオート ── */
+    /* ── 強調文（旧プルクオート） ── */
     .prose-pullquote {
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 1.0rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      color: #2952b8;
-      text-align: center;
-      line-height: 2.0;
-      letter-spacing: 0.02em;
-      padding: 2.5rem 1.5rem;
-      margin: 3rem 0;
-      border-top: 1px solid #b8d0ff;
-      border-bottom: 1px solid #b8d0ff;
-    }
-    @media (min-width: 640px) {
-      .prose-pullquote { font-size: 1.1rem; padding: 3rem 2rem; }
+      color: #1f2937;
+      line-height: 2.25;
+      margin-bottom: 2rem;
     }
 
     /* ── 区切り線 ── */
