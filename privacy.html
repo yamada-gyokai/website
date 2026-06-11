@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{PAGE_TITLE}} | 株式会社 業務の改善</title>
+  <title>プライバシーポリシー | 株式会社 業務の改善</title>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FDNR671320"></script>
@@ -25,7 +25,7 @@
             serif: ['"Noto Serif JP"', 'serif'],
           },
           colors: {
-            ink: { DEFAULT: '#2d3a50', light: '#4a5a72', muted: '#6b7a90' },
+            ink: { DEFAULT: '#1f2937', light: '#4b5563', muted: '#9ca3af' },
             ocean: {
               50:  '#f0f6ff',
               100: '#deeaff',
@@ -47,41 +47,55 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- 記事共通スタイル -->
-  <link rel="stylesheet" href="article.css">
-
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', sans-serif; color: #2d3a50; line-height: 1.85; background: #fff; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #1f2937; line-height: 1.85; background: #fff; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+    .policy-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 7rem 1.5rem 6rem;
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      color: #2952b8;
-      margin-bottom: 16px;
+    .policy-title {
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      font-weight: 700;
+      color: #1f2937;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
     }
-    .label::before {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #3a6fd8;
+    .policy-p {
+      font-size: 0.9rem;
+      color: #374151;
+      line-height: 2.0;
+      margin-bottom: 1.4rem;
     }
-
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #f0f4f8; }
-    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
+    .policy-list {
+      margin: 0.5rem 0 1.4rem 0;
+      padding: 0;
+      list-style: none;
+    }
+    .policy-list li {
+      font-size: 0.9rem;
+      color: #374151;
+      line-height: 2.0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .policy-list li::before {
+      content: '・';
+      position: absolute;
+      left: 0;
+      color: #85afff;
+    }
+    .policy-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #f3f4f6;
+    }
   </style>
 </head>
 
@@ -92,16 +106,16 @@
 ───────────────────────────────────────────── -->
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
   <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="index.html" class="group">
+    <a href="index.html">
       <img src="assets/GyokaiLogoYoko.svg" alt="株式会社 業務の改善" class="h-10 w-auto">
     </a>
 
     <nav class="hidden md:flex items-center gap-8">
-      <a href="services.html" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
+      <a href="services.html"      class="text-sm text-ink-light hover:text-ocean-700 transition-colors">サービス</a>
       <a href="index.html#process" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">進め方</a>
-      <a href="about.html" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">想い</a>
-      <a href="index.html#news" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">活動記録</a>
-      <a href="about.html" class="text-sm text-ink-light hover:text-ocean-700 transition-colors">代表について</a>
+      <a href="about.html"         class="text-sm text-ink-light hover:text-ocean-700 transition-colors">想い</a>
+      <a href="index.html#news"    class="text-sm text-ink-light hover:text-ocean-700 transition-colors">活動記録</a>
+      <a href="about.html"         class="text-sm text-ink-light hover:text-ocean-700 transition-colors">代表について</a>
       <a href="index.html#contact" class="text-sm bg-ocean-700 hover:bg-ocean-800 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm">
         相談してみる
       </a>
@@ -116,11 +130,11 @@
 
   <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
     <div class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-5">
-      <a href="services.html" class="text-sm text-ink-light">サービス</a>
+      <a href="services.html"      class="text-sm text-ink-light">サービス</a>
       <a href="index.html#process" class="text-sm text-ink-light">進め方</a>
-      <a href="about.html" class="text-sm text-ink-light">想い</a>
-      <a href="index.html#news" class="text-sm text-ink-light">活動記録</a>
-      <a href="about.html" class="text-sm text-ink-light">代表について</a>
+      <a href="about.html"         class="text-sm text-ink-light">想い</a>
+      <a href="index.html#news"    class="text-sm text-ink-light">活動記録</a>
+      <a href="about.html"         class="text-sm text-ink-light">代表について</a>
       <a href="index.html#contact" class="text-sm bg-ocean-700 text-white py-3 px-6 rounded-full text-center font-medium">相談してみる</a>
     </div>
   </div>
@@ -128,51 +142,37 @@
 
 
 <!-- ─────────────────────────────────────────────
-     ARTICLE MAIN
+     MAIN
 ───────────────────────────────────────────── -->
-<main class="pt-28 pb-24">
-  <div class="article-layout">
-    <article>
+<main>
+  <div class="policy-wrap">
 
-      <!-- パンくず -->
-      <div class="reveal flex items-center gap-2 text-xs text-ink-muted mb-8">
-        <a href="index.html" class="hover:text-ocean-600 transition-colors">ホーム</a>
-        <span>/</span>
-        <a href="#" class="hover:text-ocean-600 transition-colors">{{CATEGORY}}</a>
-        <span>/</span>
-        <span class="text-ink">{{TITLE}}</span>
-      </div>
+    <h1 class="policy-title">プライバシーポリシー</h1>
 
-      <!-- メタ情報 -->
-      <div class="article-meta reveal">
-        <span class="article-category">{{CATEGORY}}</span>
-        <span class="article-date">{{DATE}}</span>
-      </div>
+    <p class="policy-p">
+      株式会社 業務の改善（以下「当社」）は、お問い合わせ等で取得した個人情報を適切に管理し、以下の目的で利用します。
+    </p>
 
-      <!-- タイトル -->
-      <h1 class="article-h1 reveal">{{TITLE}}</h1>
+    <ul class="policy-list">
+      <li>お問い合わせへの回答</li>
+      <li>サービス提供およびご連絡</li>
+      <li>必要なご案内の送付</li>
+    </ul>
 
-      <!-- リード文 -->
-      <p class="article-lead reveal">{{LEAD}}</p>
+    <p class="policy-p">
+      取得した個人情報を、法令に基づく場合を除き第三者へ提供することはありません。
+    </p>
 
-      <!-- ヒーロー画像（任意） -->
-      <!-- 画像がある場合はコメントアウトを外す
-      <img
-        src="assets/article-hero.jpg"
-        alt="記事のビジュアル"
-        class="article-hero-image reveal">
-      <span class="article-caption reveal">画像のキャプションがここに入ります</span>
-      -->
+    <p class="policy-p">
+      個人情報の開示、訂正、削除等をご希望の場合は、お問い合わせフォームよりご連絡ください。
+    </p>
 
-      <!-- 本文 -->
-      <div class="article-content">
-        <!-- ARTICLE_CONTENT -->
-      </div>
-      <!-- /article-content -->
+    <div class="policy-meta">
+      <p>制定日：2026年6月</p>
+      <p>株式会社 業務の改善</p>
+    </div>
 
-    </article>
   </div>
-  <!-- /article-layout -->
 </main>
 
 
@@ -209,7 +209,7 @@
         <div>
           <p class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">その他</p>
           <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="privacy.html"  class="hover:text-white transition-colors">プライバシーポリシー</a></li>
+            <li><a href="privacy.html"  class="hover:text-white transition-colors text-white">プライバシーポリシー</a></li>
             <li><a href="tokusho.html"  class="hover:text-white transition-colors">特定商取引法に基づく表記</a></li>
           </ul>
         </div>
@@ -223,21 +223,15 @@
 
 
 <script>
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  const toggle = document.getElementById('mobile-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
 
   const header = document.getElementById('site-header');
   window.addEventListener('scroll', () => {
-    header.classList.toggle('shadow-sm', window.scrollY > 20);
+    header.classList.toggle('shadow-md', window.scrollY > 20);
   }, { passive: true });
-
-  document.getElementById('mobile-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
-  });
 </script>
 
 </body>
