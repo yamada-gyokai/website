@@ -188,6 +188,9 @@
     ::-webkit-scrollbar-track { background: #f0f4f8; }
     ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 3px; }
 
+    /* ── Honeypot（ボット対策：人間には非表示） ── */
+    .hp-field { display: none !important; }
+
     /* ── Floating CTA ── */
     .floating-cta {
       position: fixed;
@@ -948,14 +951,18 @@
           class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-ink placeholder-gray-300 focus:outline-none focus:border-ocean-400 focus:ring-2 focus:ring-ocean-100 transition-all resize-none"></textarea>
       </div>
 
+      <!-- Honeypot: ボットが自動入力するフィールド。人間には非表示 -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="form-website">Website</label>
+        <input id="form-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
       <button id="form-submit" type="submit"
         class="w-full bg-ocean-700 hover:bg-ocean-800 text-white py-4 rounded-xl font-medium transition-all hover:shadow-lg duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed">
         送信する
       </button>
 
-      <p id="form-error" class="hidden text-xs text-red-400 text-center mt-4 leading-relaxed">
-        送信に失敗しました。時間をおいて再度お試しください。
-      </p>
+      <p id="form-error" class="hidden text-xs text-red-400 text-center mt-4 leading-relaxed"></p>
 
       <p class="text-xs text-gray-400 text-center mt-4 leading-relaxed">
         営業の連絡はしません。まずはお話を聞かせてください。
@@ -1070,15 +1077,42 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
 
   // Contact form
+  const _formLoadTime = Date.now()
+
+  function showFormError(msg) {
+    const errEl = document.getElementById('form-error')
+    errEl.textContent = msg
+    errEl.classList.remove('hidden')
+  }
+
   async function handleSubmit(e) {
     e.preventDefault()
     const form  = document.getElementById('contact-form')
     const btn   = document.getElementById('form-submit')
     const errEl = document.getElementById('form-error')
 
+    errEl.classList.add('hidden')
+    errEl.textContent = ''
+
+    // ① Honeypot チェック（値が入っていたらボット判定）
+    if (document.getElementById('form-website').value) return
+
+    // ② 送信時間チェック（表示から3秒未満はボット判定）
+    const elapsedMs = Date.now() - _formLoadTime
+    if (elapsedMs < 3000) {
+      showFormError('しばらくお待ちいただいてから再度送信してください。')
+      return
+    }
+
+    // ③ お問い合わせ内容の文字数チェック（15文字以上必須）
+    const message = document.getElementById('form-message').value.trim()
+    if (message.length < 15) {
+      showFormError('お問い合わせ内容は15文字以上でご入力ください。')
+      return
+    }
+
     btn.disabled    = true
     btn.textContent = '送信中...'
-    errEl.classList.add('hidden')
 
     try {
       await fetch('https://script.google.com/macros/s/AKfycbyShc4G278-bjchUtxB3vgsnT9g5gA92zZf6KYHhsC3woXkoBmxVp-dznCZ7vY7XjnoLw/exec', {
@@ -1086,21 +1120,23 @@
         mode:    'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name:    document.getElementById('form-name').value,
-          company: document.getElementById('form-company').value,
-          email:   document.getElementById('form-email').value,
-          message: document.getElementById('form-message').value,
+          name:       document.getElementById('form-name').value,
+          company:    document.getElementById('form-company').value,
+          email:      document.getElementById('form-email').value,
+          message:    message,
+          website:    document.getElementById('form-website').value,
+          elapsed_ms: elapsedMs,
         }),
       })
       form.reset()
-      form.style.opacity   = '0'
+      form.style.opacity    = '0'
       form.style.transition = 'opacity 0.5s'
       setTimeout(() => {
         form.style.display = 'none'
         document.getElementById('form-success').classList.remove('hidden')
       }, 500)
     } catch (err) {
-      errEl.classList.remove('hidden')
+      showFormError('送信に失敗しました。時間をおいて再度お試しください。')
       btn.disabled    = false
       btn.textContent = '送信する'
     }
