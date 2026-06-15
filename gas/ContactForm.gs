@@ -44,7 +44,7 @@ var CONFIG = {
   SHEET_NAME: 'お問い合わせ',
 
   // スパム判定: フォーム表示から送信までの最短時間（ミリ秒）
-  MIN_ELAPSED_MS: 3000,
+  MIN_ELAPSED_MS: 5000,
 
   // スパム判定: メッセージの最小文字数
   MIN_MESSAGE_LENGTH: 15,
