@@ -48,13 +48,13 @@ var CONFIG = {
   MIN_ELAPSED_MS: 5000,
 
   // スパム判定: メッセージの最小文字数
-  MIN_MESSAGE_LENGTH: 15,
+  MIN_MESSAGE_LENGTH: 20,
 
-  // reCAPTCHA v3 シークレットキー（登録後に置き換えてください）
-  RECAPTCHA_SECRET_KEY: 'REPLACE_WITH_YOUR_SECRET_KEY',
+  // スパム判定: 名前に必要な日本語文字数（ひらがな・カタカナ・漢字）
+  MIN_NAME_JP: 1,
 
-  // reCAPTCHA v3 スパム判定スコア閾値（0.5未満はスパム扱い）
-  RECAPTCHA_MIN_SCORE: 0.5,
+  // スパム判定: 本文に必要な日本語文字数
+  MIN_MESSAGE_JP: 3,
 
 };
 
@@ -79,13 +79,6 @@ function doPost(e) {
     var spamResult = checkSpam(data);
     if (spamResult) {
       Logger.log('[SPAM] ' + spamResult + ' | email: ' + (data.email || ''));
-      return respond({ status: 'ok' });
-    }
-
-    // ── reCAPTCHA v3 検証 ─────────────────────────────────────
-    var captcha = verifyRecaptcha(data.recaptcha_token || '');
-    if (!captcha.success || captcha.score < CONFIG.RECAPTCHA_MIN_SCORE) {
-      Logger.log('[RECAPTCHA] blocked: success=' + captcha.success + ' score=' + (captcha.score !== undefined ? captcha.score : 'n/a'));
       return respond({ status: 'ok' });
     }
 
@@ -155,27 +148,20 @@ function checkSpam(data) {
     return 'message too short (' + message.length + ' chars)';
   }
 
+  // ④ 名前の日本語チェック（ひらがな・カタカナ・漢字を1文字以上）
+  var name = (data.name || '').trim();
+  var nameJpCount = (name.match(/[぀-ヿ一-鿿]/g) || []).length;
+  if (nameJpCount < CONFIG.MIN_NAME_JP) {
+    return 'name has no Japanese characters';
+  }
+
+  // ⑤ 本文の日本語チェック（3文字以上）
+  var msgJpCount = (message.match(/[぀-ヿ一-鿿]/g) || []).length;
+  if (msgJpCount < CONFIG.MIN_MESSAGE_JP) {
+    return 'message has too few Japanese characters (' + msgJpCount + ')';
+  }
+
   return null; // スパムなし
-}
-
-
-
-
-// =============================================================================
-// reCAPTCHA v3 検証
-// =============================================================================
-
-function verifyRecaptcha(token) {
-  var response = UrlFetchApp.fetch('https://www.google.com/recaptcha/api/siteverify', {
-    method:  'post',
-    payload: {
-      secret:   CONFIG.RECAPTCHA_SECRET_KEY,
-      response: token,
-    },
-  });
-  var result = JSON.parse(response.getContentText());
-  Logger.log('[RECAPTCHA] success=' + result.success + ' score=' + result.score + ' action=' + result.action);
-  return result;
 }
 
 

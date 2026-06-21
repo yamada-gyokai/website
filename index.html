@@ -60,9 +60,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Google reCAPTCHA v3 -->
-  <script src="https://www.google.com/recaptcha/api.js?render=REPLACE_WITH_YOUR_SITE_KEY"></script>
-
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Noto Sans JP', sans-serif; color: #1f2937; line-height: 1.85; background: #fff; }
@@ -1080,9 +1077,6 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' })
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
 
-  // reCAPTCHA v3 サイトキー（登録後に置き換えてください）
-  const RECAPTCHA_SITE_KEY = 'REPLACE_WITH_YOUR_SITE_KEY'
-
   // Contact form
   const _formLoadTime = Date.now()
 
@@ -1111,26 +1105,29 @@
       return
     }
 
-    // ③ お問い合わせ内容の文字数チェック（15文字以上必須）
+    // ③ お問い合わせ内容の文字数チェック（20文字以上必須）
     const message = document.getElementById('form-message').value.trim()
-    if (message.length < 15) {
-      showFormError('お問い合わせ内容は15文字以上でご入力ください。')
+    if (message.length < 20) {
+      showFormError('お問い合わせ内容は20文字以上でご入力ください。')
+      return
+    }
+
+    // ④ 名前の日本語チェック（ひらがな・カタカナ・漢字を1文字以上）
+    const nameVal = document.getElementById('form-name').value.trim()
+    const countJp = str => (str.match(/[぀-ヿ一-鿿]/g) || []).length
+    if (countJp(nameVal) < 1) {
+      showFormError('お名前には日本語（ひらがな・カタカナ・漢字）を含めてください。')
+      return
+    }
+
+    // ⑤ 本文の日本語チェック（3文字以上）
+    if (countJp(message) < 3) {
+      showFormError('お問い合わせ内容には日本語（ひらがな・カタカナ・漢字）を3文字以上含めてください。')
       return
     }
 
     btn.disabled    = true
     btn.textContent = '送信中...'
-
-    // ④ reCAPTCHA v3 トークン取得
-    let recaptchaToken = ''
-    try {
-      recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact_submit' })
-    } catch (captchaErr) {
-      showFormError('reCAPTCHA の検証に失敗しました。ページを再読み込みしてから再度お試しください。')
-      btn.disabled    = false
-      btn.textContent = '送信する'
-      return
-    }
 
     try {
       await fetch('https://script.google.com/macros/s/AKfycbyShc4G278-bjchUtxB3vgsnT9g5gA92zZf6KYHhsC3woXkoBmxVp-dznCZ7vY7XjnoLw/exec', {
@@ -1138,13 +1135,12 @@
         mode:    'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name:            document.getElementById('form-name').value,
-          company:         document.getElementById('form-company').value,
-          email:           document.getElementById('form-email').value,
-          message:         message,
-          website:         document.getElementById('form-website').value,
-          elapsed_ms:      elapsedMs,
-          recaptcha_token: recaptchaToken,
+          name:       document.getElementById('form-name').value,
+          company:    document.getElementById('form-company').value,
+          email:      document.getElementById('form-email').value,
+          message:    message,
+          website:    document.getElementById('form-website').value,
+          elapsed_ms: elapsedMs,
         }),
       })
       form.reset()
