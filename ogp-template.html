@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>OGP Template — 株式会社業務の改善</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #f0f5ff;
+    }
+
+    /* ============================================================
+       コンテナ — OGP サイズ固定 1200×630
+    ============================================================ */
+    .ogp-root {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      font-family: 'Noto Sans JP', 'Hiragino Sans', 'YuGothic', 'Yu Gothic', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       背景画像 — cover 全面表示
+    ============================================================ */
+    .bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/ogp-base.png') center / cover no-repeat;
+    }
+
+    /* ============================================================
+       左側オーバーレイ — ごく薄いブルーグラデーション（CSSのみ）
+       右へ向かって透明になり、背景画像がうっすら見える
+    ============================================================ */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(245, 249, 255, 0.96)  0%,
+        rgba(245, 249, 255, 0.92) 22%,
+        rgba(245, 249, 255, 0.88) 36%,
+        rgba(245, 249, 255, 0.55) 50%,
+        rgba(245, 249, 255, 0.18) 60%,
+        transparent               68%
+      );
+    }
+
+    /* ============================================================
+       コンテンツ列 — 左寄り、縦方向 flex
+    ============================================================ */
+    .content {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      width: 660px;
+      padding: 56px 0 56px 68px;
+    }
+
+    /* ロゴエリア */
+    .logo-section {
+      height: 92px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .logo {
+      height: 60px;
+      width: auto;
+    }
+
+    /* テキストエリア — padding-top で上方向に寄せる */
+    .text-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 44px;
+    }
+
+    /* ============================================================
+       キャッチコピー — 最も目立つ要素
+    ============================================================ */
+    .catchcopy {
+      font-size: 48px;
+      font-weight: 700;
+      color: #1e2d47;
+      line-height: 1.45;
+      letter-spacing: 0.02em;
+      margin-bottom: 22px;
+    }
+
+    /* ============================================================
+       サブコピー
+    ============================================================ */
+    .subcopy {
+      font-size: 22px;
+      font-weight: 500;
+      color: #2952b8;
+      letter-spacing: 0.10em;
+    }
+  </style>
+</head>
+<body>
+<div class="ogp-root">
+
+  <div class="bg"></div>
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <!-- ロゴ：左上、静かに配置 -->
+    <div class="logo-section">
+      <img class="logo" src="assets/GyokaiLogoYoko.svg" alt="株式会社業務の改善">
+    </div>
+
+    <!-- テキストブロック -->
+    <div class="text-section">
+
+      <!-- キャッチコピー：改行を美しく調整 -->
+      <p class="catchcopy">
+        頑張っている人が、<br>
+        本来の力を発揮できる<br>
+        状態をつくる。
+      </p>
+
+      <!-- サブコピー -->
+      <p class="subcopy">日本を明るく元気に。</p>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
